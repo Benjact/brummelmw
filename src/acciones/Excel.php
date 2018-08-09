@@ -1,7 +1,6 @@
 <?php
 namespace BrummelMW\acciones;
 
-
 use Exception;
 use Google_Client;
 use Google_Service_Sheets;
@@ -12,7 +11,6 @@ class Excel implements iAcciones
 
     public function __construct()
     {
-
     }
 
     public function retorno(): string

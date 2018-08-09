@@ -15,7 +15,8 @@
         }
     ],
     "require": {
-        "php": "^7.0"
+        "php": "^7.0",
+        "google/apiclient": "^2.0"
     },
     "require-dev": {
         "jakub-onderka/php-parallel-lint": "^0.9",
