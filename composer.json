@@ -1,28 +1,16 @@
 {
-    "name": "codelytv/php-bootstrap",
-    "description": "Starting point if you want to bootstrap a project in PHP.",
+    "name": "BrummelMW",
+    "description": "Guil Madrid Wars Telegram BOT",
     "type": "project",
     "keywords": [
-        "bootstrap",
-        "skeleton",
-        "kata",
-        "TDD",
-        "boilerplate"
+        "swgoh",
+        "telegram"
     ],
-    "homepage": "http://codely.tv",
-    "time": "2016-09-18",
-    "license": "MIT",
+    "time": "2018-08-09",
     "authors": [
         {
-            "name": "Javier Ferrer",
-            "email": "javier.ferrer@codely.tv",
-            "homepage": "http://codely.tv",
-            "role": "Developer"
-        },
-        {
-            "name": "Rafa Gómez",
-            "email": "rafa.gomez@codely.tv",
-            "homepage": "http://codely.tv",
+            "name": "Benja Colomina",
+            "email": "benjact@gmail.com",
             "role": "Developer"
         }
     ],
@@ -38,12 +26,12 @@
     },
     "autoload": {
         "psr-4": {
-            "CodelyTv\\PhpBootstrap\\": "src/"
+            "BrummelMW\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "CodelyTv\\PhpBootstrapTest\\": "tests/"
+            "BrummelMWTest\\": "tests/"
         }
     },
     "minimum-stability": "stable",
