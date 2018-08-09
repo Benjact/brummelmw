@@ -1,6 +1,8 @@
 <?php
 namespace BrummelMW;
 
+echo "Hola mundo";
+/*require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/core/ini.php';
 
 use BrummelMW\acciones\AccionesGeneral;
@@ -19,4 +21,4 @@ if ($_SERVER["HTTP_HOST"] == RUTA_WEB) {
 }
 
 $acciones = new AccionesGeneral($bot->mensaje());
-$response->devolverMensaje($acciones->retorno());
+$response->devolverMensaje($acciones->retorno());*/
