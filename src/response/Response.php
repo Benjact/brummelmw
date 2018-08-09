@@ -15,7 +15,7 @@ class Response
         $this->bot = $bot;
     }
 
-    public function devolver_mensaje(string $mensaje)
+    public function devolverMensaje(string $mensaje)
     {
         $url = $this->bot->webSite()."/sendMessage?chat_id={$this->bot->chatId()}&parse_mode=HTML&text=".urlencode($mensaje);
         file_get_contents($url);

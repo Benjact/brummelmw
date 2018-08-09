@@ -19,4 +19,4 @@ if ($_SERVER["HTTP_HOST"] == RUTA_WEB) {
 }
 
 $acciones = new AccionesGeneral($bot->mensaje());
-$response->devolver_mensaje($acciones->retorno());
+$response->devolverMensaje($acciones->retorno());

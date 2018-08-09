@@ -7,7 +7,7 @@ class ResponseHTML
     {
     }
 
-    public function devolver_mensaje(string $mensaje)
+    public function devolverMensaje(string $mensaje)
     {
         echo $mensaje;
     }
