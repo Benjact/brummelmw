@@ -3,7 +3,7 @@ namespace BrummelMW;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/core/ini.php';
-echo "Hola mundo";
+echo "Hola mundo extra";
 /*
 use BrummelMW\acciones\AccionesGeneral;
 use BrummelMW\core\Bot;
