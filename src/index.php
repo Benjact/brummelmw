@@ -9,7 +9,6 @@ use BrummelMW\core\BotHTML;
 use BrummelMW\response\Response;
 use BrummelMW\response\ResponseHTML;
 
-
 if ($_SERVER["HTTP_HOST"] == RUTA_WEB) {
     $update = json_decode(file_get_contents("php://input"), true);
     $bot = new Bot(TOKEN, RUTA_API, $update);
