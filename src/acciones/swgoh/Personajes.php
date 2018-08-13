@@ -82,12 +82,12 @@ class Personajes extends SWGOH
             7 => ["cantidad" => 0],
         ];
         foreach ($datos_personaje as $jugador) {
-            if ($jugador["gear_level"] >= $estrellas) {
-                $recopilacion[$jugador["gear_level"]]["cantidad"] += 1;
-                if (!isset($recopilacion[$jugador["gear_level"]]["jugadores"])) {
-                    $recopilacion[$jugador["gear_level"]]["jugadores"] = [];
+            if ($jugador["rarity"] >= $estrellas) {
+                $recopilacion[$jugador["rarity"]]["cantidad"] += 1;
+                if (!isset($recopilacion[$jugador["rarity"]]["jugadores"])) {
+                    $recopilacion[$jugador["rarity"]]["jugadores"] = [];
                 }
-                $recopilacion[$jugador["gear_level"]]["jugadores"][] = $jugador["player"]." lvl:".$jugador["level"];
+                $recopilacion[$jugador["rarity"]]["jugadores"][] = $jugador["player"]." lvl:".$jugador["level"]." gear:".$jugador["gear_level"];
             }
         }
 
