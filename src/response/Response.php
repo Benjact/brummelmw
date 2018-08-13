@@ -26,7 +26,7 @@ class Response
         $fields = [
             "chat_id" => $this->bot->chatId(),
             "parse_mode" => "HTML",
-            "text" => urlencode($mensaje),
+            "text" => urlencode($mensaje)."\nserver=".$_SERVER["HTTP_HOST"],
             'disable_web_page_preview' => urlencode($disable_web_page_preview),
             'reply_to_message_id' => urlencode($reply_to_message_id),
             'reply_markup' => urlencode($reply_markup),
