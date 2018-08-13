@@ -17,7 +17,7 @@ class Ayuda extends AccionBasica implements iAcciones
         if ($this->parametro == "personajes") {
             return "Personajes posibles:<br>" . implode("<br>", (new Personajes())->personajes());
         } else {
-            return "Estoy en ello";
+            throw new ExcepcionAccion("Estoy en ello");
         }
     }
 }

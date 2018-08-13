@@ -12,14 +12,14 @@ class AccionesGeneral
         $instruccion_partida = explode(" ", $instruccion);
         $primera_palabra = $instruccion_partida[0];
 
-        if ($primera_palabra == "/ayuda" || $primera_palabra == "/help") {
+        if (in_array($primera_palabra, ["/ayuda", "ayuda", "/help", "help"])) {
             if (isset($instruccion_partida[1])) {
                 $this->instruccion = new Ayuda($instruccion_partida[1]);
             } else {
                 $this->instruccion = new Ayuda();
             }
 
-        } elseif ($primera_palabra == "/personajes") {
+        } elseif (in_array($primera_palabra, ["/personajes", "personajes"])) {
             if (isset($instruccion_partida[1])) {
                 $this->instruccion = new Personajes($instruccion_partida[1]);
             } else {
@@ -28,7 +28,7 @@ class AccionesGeneral
         } elseif (in_array($primera_palabra, (new Personajes())->personajes())) {
             $this->instruccion = new Personajes($primera_palabra);
 
-        } elseif ($primera_palabra == "/excel") {
+        } elseif (in_array($primera_palabra, ["/excel", "excel"])) {
             $this->instruccion = new Excel();
 
         } elseif ($instruccion[0] == "/") {

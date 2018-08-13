@@ -12,6 +12,10 @@ class Error extends AccionBasica implements iAcciones
 
     public function retorno(): string
     {
-        return ($this->mensaje_error != "") ? $this->mensaje_error : "No reconozco esa instruccion";
+        if ($this->mensaje_error != "") {
+            return $this->mensaje_error;
+        } else {
+            throw new ExcepcionAccion("No reconozco esa instruccion");
+        }
     }
 }
