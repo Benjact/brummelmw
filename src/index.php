@@ -14,7 +14,7 @@ $update = json_decode(file_get_contents("php://input"), true);
 if (is_null($update)) {
     if (!isset($_GET["instruccion"])) $_GET["instruccion"] = "";
 
-    if ($_GET["debug"]) {
+    if (isset($_GET["debug"]) && $_GET["debug"]) {
         $update = [];
         $update["message"]["chat"]["id"] = "411317956";
         $update["message"]["chat"]["type"] = "private";
