@@ -12,10 +12,10 @@ class Ayuda extends AccionBasica implements iAcciones
         $this->parametro = $parametro;
     }
 
-    public function retorno(): string
+    public function retorno()
     {
         if ($this->parametro == "personajes") {
-            return "Personajes posibles:<br>" . implode("<br>", (new Personajes())->personajes());
+            return (new Personajes())->personajes();
         } else {
             throw new ExcepcionAccion("Estoy en ello");
         }

@@ -6,7 +6,7 @@ use BrummelMW\acciones\iAcciones;
 
 class SWGOH extends AccionBasica implements iAcciones
 {
-    public function retorno(): string
+    public function retorno()
     {
         return "Sin retorno";
     }

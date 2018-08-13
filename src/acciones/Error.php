@@ -10,7 +10,7 @@ class Error extends AccionBasica implements iAcciones
         $this->mensaje_error = $parametro;
     }
 
-    public function retorno(): string
+    public function retorno()
     {
         if ($this->mensaje_error != "") {
             return $this->mensaje_error;

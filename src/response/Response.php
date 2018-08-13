@@ -15,7 +15,7 @@ class Response
         $this->bot = $bot;
     }
 
-    public function devolverMensaje(string $mensaje)
+    public function devolverMensaje($mensaje)
     {
         $url = $this->bot->webSite()."/sendMessage";
         // following ones are optional, so could be set as null
@@ -26,7 +26,7 @@ class Response
         $fields = [
             "chat_id" => $this->bot->chatId(),
             "parse_mode" => "HTML",
-            "text" => $mensaje,
+            "text" => is_array($mensaje) ? implode("\n", $mensaje) : $mensaje,
             'disable_web_page_preview' => $disable_web_page_preview,
             'reply_to_message_id' => $reply_to_message_id,
             'reply_markup' => $reply_markup,

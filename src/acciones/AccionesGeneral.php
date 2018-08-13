@@ -36,7 +36,7 @@ class AccionesGeneral
         }
     }
 
-    public function retorno(): string
+    public function retorno()
     {
         try {
             return $this->instruccion->retorno();

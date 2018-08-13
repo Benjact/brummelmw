@@ -9,7 +9,7 @@ class Excel extends AccionBasica implements iAcciones
 {
     const ID = "1L5T8Zso07c5wNKPnW0werZnQ5zS8FAdtD0GWliqg76s";
 
-    public function retorno(): string
+    public function retorno()
     {
         // Get the API client and construct the service object.
         $client = $this->getClient();

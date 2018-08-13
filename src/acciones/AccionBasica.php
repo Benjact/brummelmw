@@ -7,7 +7,7 @@ class AccionBasica implements iAcciones
     {
     }
 
-    public function retorno(): string
+    public function retorno()
     {
         return "";
     }
