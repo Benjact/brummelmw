@@ -82,17 +82,25 @@ class Personajes extends SWGOH
             7 => ["cantidad" => 0],
         ];
         foreach ($datos_personaje as $jugador) {
-            if ($jugador["rarity"] >= $estrellas) {
-                $recopilacion[$jugador["rarity"]]["cantidad"] += 1;
-                if (!isset($recopilacion[$jugador["rarity"]]["jugadores"])) {
-                    $recopilacion[$jugador["rarity"]]["jugadores"] = [];
-                }
-                $recopilacion[$jugador["rarity"]]["jugadores"][] = $jugador["player"];//." lvl:".$jugador["level"]." gear:".$jugador["gear_level"];
+            $recopilacion[$jugador["rarity"]]["cantidad"] += 1;
+            if (!isset($recopilacion[$jugador["rarity"]]["jugadores"])) {
+                $recopilacion[$jugador["rarity"]]["jugadores"] = [];
             }
+            $recopilacion[$jugador["rarity"]]["jugadores"][] = $jugador["player"];//." lvl:".$jugador["level"]." gear:".$jugador["gear_level"];
         }
 
-        $cantidad = array_sum(array_map(function($cantidad) { return $cantidad["cantidad"]; }, $recopilacion));
-        $datos_retorno = ["{$this->personaje} {$cantidad} en el gremio"];
+        $cantidad_total = array_sum(array_map(function($estrella, $cantidad) { return $cantidad["cantidad"]; }, $recopilacion));
+        if ($estrellas > 1) {
+            $cantidad = array_sum(array_map(function($estrella, $cantidad) use ($estrellas) {
+                if ($estrella >= $estrellas) {
+                    return $cantidad["cantidad"];
+                }
+                return 0;
+            }, $recopilacion));
+            $datos_retorno = ["{$this->personaje} {$cantidad}/{$cantidad_total} en el gremio"];
+        } else {
+            $datos_retorno = ["{$this->personaje} {$cantidad_total} en el gremio"];
+        }
         foreach ($recopilacion as $estrellas_recopilacion => $datos) {
             if ($estrellas_recopilacion >= $estrellas) {
                 $datos_retorno[] = "{$estrellas_recopilacion}* => {$datos["cantidad"]} en el gremio";
