@@ -20,7 +20,8 @@ class AccionesGeneral
             $this->accionPersonaje($instruccion_partida);
 
         } elseif (in_array(mb_strtoupper($primera_palabra), (new Personajes())->personajes())) {
-            $this->accionPersonaje(["personajes", $primera_palabra]);
+            array_unshift($instruccion_partida, "personajes");
+            $this->accionPersonaje($instruccion_partida);
 
         } elseif (in_array(mb_strtolower($primera_palabra), ["excel"])) {
             $this->accionExcel();
@@ -56,10 +57,16 @@ class AccionesGeneral
      */
     protected function accionPersonaje($instruccion_partida)
     {
+        $this->instruccion = new Personajes();
         if (isset($instruccion_partida[1])) {
-            $this->instruccion = new Personajes(mb_strtoupper($instruccion_partida[1]));
-        } else {
-            $this->instruccion = new Personajes();
+            $this->instruccion->setPersonaje(mb_strtoupper($instruccion_partida[1]));
+        }
+        if (isset($instruccion_partida[2])) {
+            if (is_numeric($instruccion_partida[2]) && in_array($instruccion_partida[2], [0,1,2,3,4,5,6,7])) {
+                $this->instruccion->setEstrellas($instruccion_partida[2]);
+            } else {
+                throw new ExcepcionAccion("Las estrellas deben ser un número comprendido entre 1-7");
+            }
         }
     }
 

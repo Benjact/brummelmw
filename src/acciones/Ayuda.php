@@ -15,9 +15,15 @@ class Ayuda extends AccionBasica implements iAcciones
     public function retorno()
     {
         if ($this->parametro == "personajes") {
-            return (new Personajes())->personajes();
+            return (new Personajes())->retorno();
         } else {
-            throw new ExcepcionAccion("Estoy en ello");
+            return [
+                "/personajes: devolverá un listado de personajes posibles",
+                "/personajes NOMBRE_PERSONAJE: devolverá información de dicho personaje",
+                "/NOMBRE_PERSONAJE: lo mismo que el anterior",
+                "/personajes NOMBRE_PERSONAJE NUMERO_ESTRELLAS: indicará cuantos hay en el gremio con esas o más estrellas y quién los tiene",
+                "NOMBRE_PERSONAJE NUMERO_ESTRELLAS: lo mismo que el anterior",
+            ];
         }
     }
 }
