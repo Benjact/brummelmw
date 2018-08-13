@@ -19,7 +19,7 @@ if ($_SERVER["HTTP_HOST"] == RUTA_WEB) {
     $update = [];
     $update["message"]["chat"]["id"] = "411317956";
     $update["message"]["chat"]["type"] = "private";
-    $update["message"]["text"] = "/personajes";
+    $update["message"]["text"] = "/ayuda";
 } else {
     $update = json_decode(file_get_contents("php://input"), true);
 }
