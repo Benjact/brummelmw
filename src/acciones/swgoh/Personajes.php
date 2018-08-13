@@ -93,14 +93,16 @@ class Personajes extends SWGOH
 
         $cantidad = array_sum(array_map(function($cantidad) { return $cantidad["cantidad"]; }, $recopilacion));
         $datos_retorno = ["{$this->personaje} {$cantidad} en el gremio"];
-        foreach ($recopilacion as $estrellas => $datos) {
-            $datos_retorno[] = "{$estrellas}* => {$datos["cantidad"]} en el gremio";
-            if (!empty($datos["jugadores"])) {
-                foreach ($datos["jugadores"] as $jugador) {
-                    $datos_retorno[] = $jugador;
+        foreach ($recopilacion as $estrellas_recopilacion => $datos) {
+            if ($estrellas_recopilacion >= $estrellas) {
+                $datos_retorno[] = "{$estrellas_recopilacion}* => {$datos["cantidad"]} en el gremio";
+                if (!empty($datos["jugadores"])) {
+                    foreach ($datos["jugadores"] as $jugador) {
+                        $datos_retorno[] = $jugador;
+                    }
                 }
+                $datos_retorno[] = "";
             }
-            $datos_retorno[] = "";
         }
         return $datos_retorno;
     }
