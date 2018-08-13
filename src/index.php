@@ -21,5 +21,5 @@ if ($_SERVER["HTTP_HOST"] == RUTA_WEB) {
     $response = new Response($bot);
 }
 
-$acciones = new AccionesGeneral($bot->mensaje());
+$acciones = new AccionesGeneral("personajes");
 $response->devolverMensaje($acciones->retorno());
