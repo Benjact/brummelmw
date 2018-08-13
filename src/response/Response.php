@@ -26,10 +26,10 @@ class Response
         $fields = [
             "chat_id" => $this->bot->chatId(),
             "parse_mode" => "HTML",
-            "text" => http_build_query($mensaje),
-            'disable_web_page_preview' => urlencode($disable_web_page_preview),
-            'reply_to_message_id' => urlencode($reply_to_message_id),
-            'reply_markup' => urlencode($reply_markup),
+            "text" => $mensaje,
+            'disable_web_page_preview' => $disable_web_page_preview,
+            'reply_to_message_id' => $reply_to_message_id,
+            'reply_markup' => $reply_markup,
         ];
 
         $ch = curl_init();
@@ -38,7 +38,7 @@ class Response
         //  number of POST vars
         curl_setopt($ch, CURLOPT_POST, count($fields));
         //  POST data
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($fields));
         //  To display result of curl
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         //  execute post
