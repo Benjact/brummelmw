@@ -15,7 +15,7 @@ class Personajes extends SWGOH
     public function retorno(): string
     {
         $array_personajes = $this->personajes();
-
+return "personajes";
         if ($this->personaje == "") {
             return "Personajes posibles:<br>" . implode("<br>", $array_personajes);
         } else {
