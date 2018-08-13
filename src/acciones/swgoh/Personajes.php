@@ -89,7 +89,10 @@ class Personajes extends SWGOH
             $recopilacion[$jugador["rarity"]]["jugadores"][] = $jugador["player"];//." lvl:".$jugador["level"]." gear:".$jugador["gear_level"];
         }
 
-        $cantidad_total = array_sum(array_map(function($estrella, $cantidad) { return $cantidad["cantidad"]; }, $recopilacion));
+        $cantidad_total = array_sum(array_map(function($cantidad) {
+            return $cantidad["cantidad"];
+        }, $recopilacion));
+
         if ($estrellas > 1) {
             $cantidad = array_sum(array_map(function($estrella, $cantidad) use ($estrellas) {
                 if ($estrella >= $estrellas) {
