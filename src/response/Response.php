@@ -31,7 +31,7 @@ class Response
             'reply_to_message_id' => urlencode($reply_to_message_id),
             'reply_markup' => urlencode($reply_markup),
         ];
-
+print_r($fields);
         $ch = curl_init();
         //  set the url
         curl_setopt($ch, CURLOPT_URL, $url);
