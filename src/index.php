@@ -16,12 +16,6 @@ if ($_SERVER["HTTP_HOST"] == RUTA_WEB) {
     $bot = new BotHTML("/" . $_GET["instruccion"]);
     $response = new ResponseHTML();
 } else {
-    register_shutdown_function( "Response::check_for_fatal" );
-    set_error_handler( "Response::log_error" );
-    set_exception_handler( "Response::log_exception" );
-    ini_set( "display_errors", "off" );
-    error_reporting( E_ALL );
-
     $update = json_decode(file_get_contents("php://input"), true);
     $bot = new Bot(TOKEN, RUTA_API, $update);
     $response = new Response($bot);
