@@ -2,6 +2,7 @@
 namespace BrummelMW;
 
 require_once __DIR__ . '/core/ini.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 use BrummelMW\acciones\AccionesGeneral;
 use BrummelMW\core\Bot;
