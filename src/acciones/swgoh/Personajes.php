@@ -99,7 +99,7 @@ class Personajes extends SWGOH
                     return $cantidad["cantidad"];
                 }
                 return 0;
-            }, $recopilacion));
+            }, array_keys($recopilacion), $recopilacion));
             $datos_retorno = ["{$this->personaje} {$cantidad}/{$cantidad_total} en el gremio"];
         } else {
             $datos_retorno = ["{$this->personaje} {$cantidad_total} en el gremio"];
