@@ -27,7 +27,7 @@ class AccionesGeneral
             $this->accionExcel();
 
         } elseif (in_array(mb_strtolower($primera_palabra), ["brumel", "brummel"])) {
-            $this->accionExcel("No te puedo ayudar, poco Brummel siento en ti. Mejora en la raid sith");
+            $this->accionError("No te puedo ayudar, poco Brummel siento en ti. Mejora en la raid sith");
 
         } elseif ($instruccion_partida[0] == "/") {
             $this->accionError();
