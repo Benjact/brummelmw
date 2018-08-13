@@ -57,7 +57,7 @@ class AccionesGeneral
     protected function accionPersonaje($instruccion_partida)
     {
         if (isset($instruccion_partida[1])) {
-            $this->instruccion = new Personajes($instruccion_partida[1]);
+            $this->instruccion = new Personajes(mb_strtoupper($instruccion_partida[1]));
         } else {
             $this->instruccion = new Personajes();
         }
