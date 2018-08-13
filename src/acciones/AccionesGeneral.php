@@ -29,6 +29,9 @@ class AccionesGeneral
         } elseif (in_array(mb_strtolower($primera_palabra), ["brumel", "brummel"])) {
             $this->accionError("No te puedo ayudar, poco Brummel siento en ti. Mejora en la raid sith");
 
+        } elseif (in_array(mb_strtolower($primera_palabra), ["autosith"])) {
+            $this->accionError("Te mando a spaw!");
+
         } elseif ($instruccion_partida[0] == "/") {
             $this->accionError();
         }
