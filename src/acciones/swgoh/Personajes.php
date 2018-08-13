@@ -35,6 +35,7 @@ class Personajes extends SWGOH
     protected function recuperar_json(string $personaje = ""): array
     {
         $recuperar_json = parent::recuperar_json();
+
         if ($personaje) {
             return $recuperar_json[$personaje];
         } else {
