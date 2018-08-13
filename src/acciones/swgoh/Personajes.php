@@ -95,7 +95,7 @@ class Personajes extends SWGOH
         $datos_retorno = ["{$this->personaje} {$cantidad} en el gremio"];
         foreach ($recopilacion as $estrellas => $datos) {
             $datos_retorno[] = "{$estrellas}* => {$datos["cantidad"]} en el gremio";
-            if (!is_empty($datos["jugadores"])) {
+            if (!empty($datos["jugadores"])) {
                 foreach ($datos["jugadores"] as $jugador) {
                     $datos_retorno[] = $jugador;
                 }
