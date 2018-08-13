@@ -36,7 +36,8 @@ class Personajes extends SWGOH
             return $array_personajes;
         } else {
             if (in_array($this->personaje, $array_personajes)) {
-                $datos_personaje = $array_personajes[$this->personaje];
+                $datos_personajes = $this->recuperar_json();
+                $datos_personaje = $datos_personajes[$this->personaje];
                 if ($this->estrellas != 0) {
                     return $this->infoPersonajeEstrellas($datos_personaje, $this->estrellas);
                 } else {
