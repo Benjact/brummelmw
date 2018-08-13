@@ -86,7 +86,7 @@ class Personajes extends SWGOH
                 if (!isset($recopilacion[$jugador["gear_level"]]["jugadores"])) {
                     $recopilacion[$jugador["gear_level"]]["jugadores"] = [];
                 }
-                $recopilacion[$jugador["gear_level"]]["jugadores"][] = $jugador["player"];
+                $recopilacion[$jugador["gear_level"]]["jugadores"][] = $jugador["player"]." lvl:".$jugador["level"];
             }
         }
 
