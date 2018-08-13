@@ -1,12 +1,8 @@
 <?php
 namespace BrummelMW\acciones;
 
-class Ayuda implements iAcciones
+class Ayuda extends AccionBasica implements iAcciones
 {
-    public function __construct()
-    {
-    }
-
     public function retorno(): string
     {
         return "Estoy en ello";

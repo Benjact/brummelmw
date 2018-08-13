@@ -1,14 +1,17 @@
 <?php
 namespace BrummelMW\acciones;
 
-class Error implements iAcciones
+class Error extends AccionBasica implements iAcciones
 {
-    public function __construct()
+    protected $mensaje_error = "";
+
+    public function __construct(string $parametro = "")
     {
+        $this->mensaje_error = $parametro;
     }
 
     public function retorno(): string
     {
-        return "No reconozco esa instruccion";
+        return ($this->mensaje_error != "") ? $this->mensaje_error : "No reconozco esa instruccion";
     }
 }

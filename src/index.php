@@ -11,12 +11,12 @@ use BrummelMW\response\Response;
 use BrummelMW\response\ResponseHTML;
 
 if ($_SERVER["HTTP_HOST"] == RUTA_WEB) {
+    $bot = new BotHTML("/".$_GET["instruccion"]);
+    $response = new ResponseHTML();
+} else {
     $update = json_decode(file_get_contents("php://input"), true);
     $bot = new Bot(TOKEN, RUTA_API, $update);
     $response = new Response($bot);
-} else {
-    $bot = new BotHTML("/".$_GET["instruccion"]);
-    $response = new ResponseHTML();
 }
 
 $acciones = new AccionesGeneral($bot->mensaje());

@@ -5,13 +5,9 @@ use Exception;
 use Google_Client;
 use Google_Service_Sheets;
 
-class Excel implements iAcciones
+class Excel extends AccionBasica implements iAcciones
 {
     const ID = "1L5T8Zso07c5wNKPnW0werZnQ5zS8FAdtD0GWliqg76s";
-
-    public function __construct()
-    {
-    }
 
     public function retorno(): string
     {
