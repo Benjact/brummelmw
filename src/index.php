@@ -12,20 +12,21 @@ use BrummelMW\response\ResponseHTML;
 
 $update = json_decode(file_get_contents("php://input"), true);
 if (is_null($update)) {
+    if (!isset($_GET["instruccion"])) $_GET["instruccion"] = "";
 
-    $update = [];
-    $update["message"]["chat"]["id"] = "411317956";
-    $update["message"]["chat"]["type"] = "private";
-    $update["message"]["text"] = "/ayuda";
+    if ($_GET["debug"]) {
+        $update = [];
+        $update["message"]["chat"]["id"] = "411317956";
+        $update["message"]["chat"]["type"] = "private";
+        $update["message"]["text"] = $_GET["instruccion"];
 
-    $bot = new Bot(TOKEN, RUTA_API, $update);
-    $response = new Response($bot);
-    $response->devolverMensaje(print_r($update, true));
-
-    /*if (!isset($_GET["instruccion"])) $_GET["instruccion"] = "";
-
-    $bot = new BotHTML("/" . $_GET["instruccion"]);
-    $response = new ResponseHTML();*/
+        $bot = new Bot(TOKEN, RUTA_API, $update);
+        $response = new Response($bot);
+        $response->devolverMensaje(print_r($update, true));
+    } else {
+        $bot = new BotHTML("/" . $_GET["instruccion"]);
+        $response = new ResponseHTML();
+    }
 } else {
     $bot = new Bot(TOKEN, RUTA_API, $update);
     $response = new Response($bot);
