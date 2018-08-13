@@ -11,7 +11,9 @@ use BrummelMW\response\Response;
 use BrummelMW\response\ResponseHTML;
 
 if ($_SERVER["HTTP_HOST"] == RUTA_WEB) {
-    $bot = new BotHTML("/".$_GET["instruccion"]);
+    if (!isset($_GET["instruccion"])) $_GET["instruccion"] = "";
+
+    $bot = new BotHTML("/" . $_GET["instruccion"]);
     $response = new ResponseHTML();
 } else {
     $update = json_decode(file_get_contents("php://input"), true);
@@ -21,4 +23,3 @@ if ($_SERVER["HTTP_HOST"] == RUTA_WEB) {
 
 $acciones = new AccionesGeneral($bot->mensaje());
 $response->devolverMensaje($acciones->retorno());
-echo "Hola mundo extra";

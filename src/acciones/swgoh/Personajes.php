@@ -17,8 +17,7 @@ class Personajes extends SWGOH
         $array_personajes = $this->personajes();
 
         if ($this->personaje == "") {
-            echo "<pre>".print_r($array_personajes, true)."</pre>";
-            return "Personajes posibles:<br>/" . implode("<br>", $array_personajes);
+            return "Personajes posibles:<br>/" . implode("<br>/", $array_personajes);
         } else {
             if (in_array($this->personaje, $array_personajes)) {
                 return "veamos {$this->personaje}";

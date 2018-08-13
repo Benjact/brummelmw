@@ -13,6 +13,6 @@ class SWGOH extends AccionBasica implements iAcciones
 
     protected function recuperar_json(): array
     {
-        return json_decode(file_get_contents("https://swgoh.gg/api/guilds/7217/units/"));
+        return json_decode(file_get_contents("https://swgoh.gg/api/guilds/7217/units/"), true);
     }
 }
