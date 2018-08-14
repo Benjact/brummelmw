@@ -32,6 +32,9 @@ class Ayuda extends AccionBasica implements iAcciones
                 "/[NOMBRE_PERSONAJE] [NUMERO_ESTRELLAS]: lo mismo que el anterior",
                 "/brummel: indicaciones indispensables para el gremio",
                 "/autosith: posibles equipos para pasarse la raid sith en auto",
+                "/hulio: ",
+                "/herederos: ",
+                "/chancla: ",
                 //"/jugadores: devolverá un listado de jugadores del gremio registrados en swgoh",
             ];
         }
