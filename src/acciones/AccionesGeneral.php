@@ -6,6 +6,14 @@ use BrummelMW\acciones\swgoh\Personajes;
 class AccionesGeneral
 {
     protected $instruccion;
+    protected $mensajes = [
+        "brummel" => "No te puedo ayudar, poco Brummel siento en ti. Mejora en la raid sith",
+        "brumel" => "No te puedo ayudar, poco Brummel siento en ti. Mejora en la raid sith",
+        "autosith" => "Como spaw se entere la has cagao. El último está en imperio",
+        "hulio" => "germinado!!",
+        "herederos" => "Kiraaaa!!! Mira lo que dicen!!!",
+        "chancla" => "La de nndiaz está en un territorio de las guerras",
+    ];
 
     public function __construct(string $instruccion)
     {
@@ -27,14 +35,8 @@ class AccionesGeneral
         } elseif (in_array($primera_palabra, ["excel"])) {
             $this->accionExcel();
 
-        } elseif (in_array($primera_palabra, ["brumel", "brummel"])) {
-            $this->accionError("No te puedo ayudar, poco Brummel siento en ti. Mejora en la raid sith");
-
-        } elseif (in_array($primera_palabra, ["autosith"])) {
-            $this->accionError("Te mando a spaw!");
-
-        } elseif (in_array($primera_palabra, ["hulio"])) {
-            $this->accionError("germinado!!");
+        } elseif (in_array($primera_palabra, array_keys($this->mensajes))) {
+            $this->accionError($this->mensajes[$primera_palabra]);
 
         } elseif ($instruccion_partida[0] == "/") {
             $this->accionError();
