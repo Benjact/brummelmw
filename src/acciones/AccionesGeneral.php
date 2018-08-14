@@ -72,7 +72,8 @@ class AccionesGeneral
     {
         $this->instruccion = new Personajes();
         if (isset($instruccion_partida[1])) {
-            $this->instruccion->setPersonaje(mb_strtoupper($instruccion_partida[1]));
+            $personaje = mb_strtoupper(str_replace("/", "", $instruccion_partida[1]));
+            $this->instruccion->setPersonaje($personaje);
         }
         if (isset($instruccion_partida[2])) {
             if (is_numeric($instruccion_partida[2]) && in_array($instruccion_partida[2], [0,1,2,3,4,5,6,7])) {
