@@ -12,6 +12,10 @@ class Ayuda extends AccionBasica implements iAcciones
         $this->parametro = $parametro;
     }
 
+    /**
+     * @return array|string
+     * @throws ExcepcionAccion
+     */
     public function retorno()
     {
         if ($this->parametro == "personajes") {

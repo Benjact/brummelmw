@@ -28,6 +28,10 @@ class Personajes extends SWGOH
         return $this;
     }
 
+    /**
+     * @return array|string
+     * @throws ExcepcionAccion
+     */
     public function retorno()
     {
         $array_personajes = $this->personajes();
@@ -44,7 +48,7 @@ class Personajes extends SWGOH
                     return $this->infoPersonaje($datos_personaje);
                 }
             } else {
-                return new ExcepcionAccion("Personaje {$this->personaje} no encontrado");
+                throw new ExcepcionAccion("Personaje {$this->personaje} no encontrado");
             }
         }
     }

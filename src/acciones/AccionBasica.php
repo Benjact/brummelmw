@@ -7,6 +7,10 @@ class AccionBasica implements iAcciones
     {
     }
 
+    /**
+     * @return array|string
+     * @throws ExcepcionAccion
+     */
     public function retorno()
     {
         return "";
