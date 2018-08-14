@@ -33,7 +33,7 @@ class AccionesGeneral
         } elseif (in_array($primera_palabra, ["autosith"])) {
             $this->accionError("Te mando a spaw!");
 
-        } elseif ($instruccion_partida[0] == "/") {
+        } elseif ($instruccion_partida[0] === "/") {
             $this->accionError();
         }
     }
