@@ -23,6 +23,8 @@ class Ayuda extends AccionBasica implements iAcciones
         } else {
             return [
                 "/ayuda: mostrará los comandos disponibles en el bot",
+                "/ayuda personajes: devolverá un listado de personajes posibles",
+                //"/ayuda jugadores: devolverá un listado de jugadores del gremio registrados en swgoh",
                 "/personajes: devolverá un listado de personajes posibles",
                 "/personajes [NOMBRE_PERSONAJE]: devolverá información de dicho personaje",
                 "/personajes [NOMBRE_PERSONAJE] [NUMERO_ESTRELLAS]: indicará cuantos hay en el gremio con esas o más estrellas y quién los tiene",
@@ -30,6 +32,7 @@ class Ayuda extends AccionBasica implements iAcciones
                 "/autosith: posibles equipos para pasarse la raid sith en auto",
                 //"/[NOMBRE_PERSONAJE]: lo mismo que el anterior",
                 //"/[NOMBRE_PERSONAJE] [NUMERO_ESTRELLAS]: lo mismo que el anterior",
+                //"/jugadores: devolverá un listado de jugadores del gremio registrados en swgoh",
             ];
         }
     }

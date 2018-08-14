@@ -42,9 +42,9 @@ class AccionesGeneral
     }
 
     /**
-     * @return string
+     * @return string|array
      */
-    public function retorno(): string
+    public function retorno()
     {
         try {
             return $this->instruccion->retorno();
