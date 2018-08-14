@@ -37,6 +37,7 @@ class Personajes extends SWGOH
         $array_personajes = $this->personajes();
 
         if ($this->personaje == "") {
+            asort($array_personajes);
             return $array_personajes;
         } else {
             if (in_array($this->personaje, $array_personajes)) {
