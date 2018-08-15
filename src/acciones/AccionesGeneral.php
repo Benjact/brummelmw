@@ -13,6 +13,7 @@ class AccionesGeneral
         "hulio" => "germinado!!",
         "herederos" => "Kiraaaa!!! Mira lo que dicen!!!",
         "chancla" => "La de nndiaz está en un territorio de las guerras",
+        "genio" => "Me voy a poner rojo!! Genio mi papi!!"
     ];
 
     public function __construct(string $instruccion)
