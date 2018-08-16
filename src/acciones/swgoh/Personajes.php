@@ -58,6 +58,7 @@ class Personajes extends AccionBasica
     {
         $array_personajes = $this->personajes();
 
+        echo $this->personaje;
         if ($this->personaje == "") {
             asort($array_personajes);
             return $array_personajes;
