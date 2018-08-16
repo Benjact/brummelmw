@@ -12,4 +12,9 @@ class Naves extends Personajes
     {
         return "Nave {$this->personaje} no encontrada";
     }
+
+    public function naves()
+    {
+        return $this->personajes();
+    }
 }
