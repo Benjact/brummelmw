@@ -51,7 +51,6 @@ class AccionesGeneral
         }
 
         $this->mensajes = (new PHPFileLoader)->load(dirname(__DIR__) . "/acciones/mensajes");
-
         if (in_array($primera_palabra, array_keys($this->mensajes))) {
             if ($primera_palabra == "hola") {
                 $this->accionHola($this->mensajes[$primera_palabra], $username);
@@ -129,7 +128,6 @@ class AccionesGeneral
      */
     protected function accionNave($instruccion_partida)
     {
-        echo "si";
         $this->instruccion = new Naves("", $this->jsonGuildUnits);
         if (isset($instruccion_partida[1])) {
             $personaje = mb_strtoupper(str_replace("/", "", $instruccion_partida[1]));
