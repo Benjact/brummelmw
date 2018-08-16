@@ -23,10 +23,9 @@ class Ayuda extends AccionBasica implements iAcciones
         } else {
             return [
                 "/ayuda: mostrará los comandos disponibles en el bot",
-                "/ayuda personajes: devolverá un listado de personajes posibles",
-                //"/ayuda jugadores: devolverá un listado de jugadores del gremio registrados en swgoh",
                 "/personajes o personaje: devolverá un listado de personajes posibles",
-                "/personajes [NOMBRE_PERSONAJE]: devolverá información de dicho personaje",
+                "/personajes [NOMBRE_PERSONAJE]: devolverá información de dicho personaje. Se puede buscar 
+                    %[TROZO_NOMBRE_PERSONAJE] y devolverá solo los coincidentes",
                 "/[NOMBRE_PERSONAJE]: lo mismo que el anterior, tanto para naves como para personajes",
                 "/personajes [NOMBRE_PERSONAJE] [NUMERO_ESTRELLAS]: indicará cuantos hay en el gremio con esas o 
                     más estrellas y quién los tiene",
@@ -34,7 +33,7 @@ class Ayuda extends AccionBasica implements iAcciones
                     para personajes",
                 "/naves o nave: devolverá un listado de naves posibles. Se aplican los mismos parámetros que 
                     para personajes",
-                "/personajes [NOMBRE_PERSONAJE]: devolverá información de dicho personaje",
+                "/naves [NOMBRE_NAVE]: devolverá información de dicho personaje",
                 "/jugadores o jugador: devolverá un listado de jugadores posibles",
                 "/jugadores [NOMBRE_JUGADOR] (opcional extendido): devolverá pg total y de personajes y naves. 
                     Extendido devolverá un listado de su roster separado en personajes y naves",
