@@ -16,29 +16,14 @@ class AccionesGeneral
 
     public function __construct(string $instruccion, string $username)
     {
-        $loader = new PHPFileLoader;
-        $this->mensajes = $loader->load(__DIR__."/../core/mensajes.php");
-
         $instruccion_partida = explode(" ", $instruccion);
         $primera_palabra = mb_strtolower($instruccion_partida[0]);
 
         $primera_palabra = str_replace("/", "", $primera_palabra);
         $primera_palabra = str_replace("@brummelmwbot", "", $primera_palabra);
 
-        $this->jsonGuildUnits = SwgohGuildUnits::recuperarJSON();
-        $personajes = new Personajes("", $this->jsonGuildUnits);
-        $naves = new Naves("", $this->jsonGuildUnits);
-
         if (in_array(mb_strtolower($primera_palabra), ["ayuda", "help"])) {
             $this->accionAyuda($instruccion_partida);
-
-        } elseif (in_array($primera_palabra, array_keys($this->mensajes))) {
-            if ($primera_palabra == "hola") {
-                $this->accionHola($this->mensajes[$primera_palabra], $username);
-            } else {
-                $this->accionMensaje($this->mensajes[$primera_palabra]);
-            }
-
         } elseif (in_array($primera_palabra, ["personajes"])) {
             $this->accionPersonaje($instruccion_partida);
 
@@ -46,6 +31,10 @@ class AccionesGeneral
             $this->accionNave($instruccion_partida);
 
         } elseif (in_array($primera_palabra, ["hoth"])) {
+            $this->jsonGuildUnits = SwgohGuildUnits::recuperarJSON();
+            $personajes = new Personajes("", $this->jsonGuildUnits);
+            $naves = new Naves("", $this->jsonGuildUnits);
+
             $this->accionHoth($instruccion_partida, $personajes, $naves);
 
         } elseif (in_array($primera_palabra, ["jugador"])) {
@@ -54,16 +43,32 @@ class AccionesGeneral
         /*} elseif (in_array($primera_palabra, ["excel"])) {
             $this->accionExcel();*/
 
-        } elseif (in_array(mb_strtoupper($primera_palabra), $personajes->personajes())) {
-            array_unshift($instruccion_partida, "personajes");
-            $this->accionPersonaje($instruccion_partida);
+        } else {
+            $loader = new PHPFileLoader;
+            $this->mensajes = $loader->load(__DIR__ . "/../core/mensajes.php");
 
-        } elseif (in_array(mb_strtoupper($primera_palabra), $naves->personajes())) {
-            array_unshift($instruccion_partida, "naves");
-            $this->accionNave($instruccion_partida);
+            $this->jsonGuildUnits = SwgohGuildUnits::recuperarJSON();
+            $personajes = new Personajes("", $this->jsonGuildUnits);
+            $naves = new Naves("", $this->jsonGuildUnits);
 
-        } elseif ($instruccion_partida[0] == "/") {
-            $this->accionError();
+            if (in_array($primera_palabra, array_keys($this->mensajes))) {
+                if ($primera_palabra == "hola") {
+                    $this->accionHola($this->mensajes[$primera_palabra], $username);
+                } else {
+                    $this->accionMensaje($this->mensajes[$primera_palabra]);
+                }
+
+            } elseif (in_array(mb_strtoupper($primera_palabra), $personajes->personajes())) {
+                array_unshift($instruccion_partida, "personajes");
+                $this->accionPersonaje($instruccion_partida);
+
+            } elseif (in_array(mb_strtoupper($primera_palabra), $naves->personajes())) {
+                array_unshift($instruccion_partida, "naves");
+                $this->accionNave($instruccion_partida);
+
+            } elseif ($instruccion_partida[0] == "/") {
+                $this->accionError();
+            }
         }
     }
 
