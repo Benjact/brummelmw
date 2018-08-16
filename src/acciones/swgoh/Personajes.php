@@ -65,7 +65,7 @@ class Personajes extends AccionBasica
             $coincidencia = str_replace("%", "", $this->personaje);
             $array_personajes_coincidentes = array_filter(array_map(function ($personaje) use ($coincidencia) {
                 if (strpos(mb_strtoupper($personaje), mb_strtoupper($coincidencia)) !== false) {
-                    return $personaje;
+                    return str_replace($coincidencia, "<b>{$coincidencia}</b>", $personaje);
                 }
             }, $array_personajes));
 
