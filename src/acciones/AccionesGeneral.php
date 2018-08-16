@@ -23,11 +23,11 @@ class AccionesGeneral
             $this->accionAyuda($instruccion_partida);
             return;
 
-        } elseif (in_array($primera_palabra, ["personajes"])) {
+        } elseif (in_array($primera_palabra, ["personajes", "personajes"])) {
             $this->accionPersonaje($instruccion_partida);
             return;
 
-        } elseif (in_array($primera_palabra, ["naves"])) {
+        } elseif (in_array($primera_palabra, ["nave", "naves"])) {
             $this->accionNave($instruccion_partida);
             return;
 
@@ -35,7 +35,7 @@ class AccionesGeneral
             $this->accionHoth($instruccion_partida);
             return;
 
-        } elseif (in_array($primera_palabra, ["jugador"])) {
+        } elseif (in_array($primera_palabra, ["jugador", "jugadores"])) {
             $this->accionJugador($instruccion_partida);
             return;
 

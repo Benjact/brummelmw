@@ -25,12 +25,15 @@ class Ayuda extends AccionBasica implements iAcciones
                 "/ayuda: mostrará los comandos disponibles en el bot",
                 "/ayuda personajes: devolverá un listado de personajes posibles",
                 //"/ayuda jugadores: devolverá un listado de jugadores del gremio registrados en swgoh",
-                "/personajes: devolverá un listado de personajes posibles",
+                "/personajes o personaje: devolverá un listado de personajes posibles",
                 "/personajes [NOMBRE_PERSONAJE]: devolverá información de dicho personaje",
                 "/[NOMBRE_PERSONAJE]: lo mismo que el anterior, tanto para naves como para personajes",
                 "/personajes [NOMBRE_PERSONAJE] [NUMERO_ESTRELLAS]: indicará cuantos hay en el gremio con esas o más estrellas y quién los tiene",
                 "/[NOMBRE_PERSONAJE] [NUMERO_ESTRELLAS]: lo mismo que el anterior, tanto para naves como para personajes",
-                "/naves: devolverá un listado de naves posibles. Se aplican los mismos parámetros que para personajes",
+                "/naves o nave: devolverá un listado de naves posibles. Se aplican los mismos parámetros que para personajes",
+                "/personajes [NOMBRE_PERSONAJE]: devolverá información de dicho personaje",
+                "/jugadores o jugador: devolverá un listado de jugadores posibles",
+                "/jugadores [NOMBRE_JUGADOR] (opcional extendido): devolverá pg total y de personajes y naves. Extendido devolverá un listado de su roster separado en personajes y naves",
                 "/hoth [NOMBRE_PERSONAJE] [NUMERO_ESTRELLAS] (opcional [CANTIDAD]): Por defecto devolverá los 5 jugadores que tengan a ese personaje o nave con menos pg",
 
                 //tonterias
