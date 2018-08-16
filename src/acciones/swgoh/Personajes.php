@@ -116,13 +116,13 @@ class Personajes extends AccionBasica
                 }
                 return 0;
             }, array_keys($recopilacion), $recopilacion));
-            $datos_retorno = ["{$this->personaje} {$cantidad}/{$cantidad_total} en el gremio"];
+            $datos_retorno = ["<b><i>{$this->personaje} {$cantidad}/{$cantidad_total} en el gremio</i></b>"];
         } else {
-            $datos_retorno = ["{$this->personaje} {$cantidad_total} en el gremio"];
+            $datos_retorno = ["<b><i>{$this->personaje} {$cantidad_total} en el gremio</i></b>"];
         }
         foreach ($recopilacion as $estrellas_recopilacion => $datos) {
             if ($estrellas_recopilacion >= $estrellas) {
-                $datos_retorno[] = "{$estrellas_recopilacion}* => {$datos["cantidad"]} en el gremio";
+                $datos_retorno[] = "<b>{$estrellas_recopilacion}* => {$datos["cantidad"]} en el gremio</b>";
                 if (!empty($datos["jugadores"])) {
                     foreach ($datos["jugadores"] as $jugador) {
                         $datos_retorno[] = $jugador;
