@@ -54,12 +54,12 @@ class Jugadores extends AccionBasica
         $array_jugadores = $this->jugadores();
 
         if ($this->jugador == "") {
-            asort($array_jugadores);
-            return $array_jugadores;
+            $array_key_jugadores = array_keys($array_jugadores);
+            asort($array_key_jugadores);
+            return $array_key_jugadores;
         } else {
-            if (in_array($this->jugador, $array_jugadores)) {
-                $datos_jugador = $this->objetoJSON[$this->jugador];
-                return $this->infoJugador($datos_jugador);
+            if (in_array($this->jugador, array_keys($array_jugadores))) {
+                return $this->infoJugador($array_jugadores[$this->jugador]);
 
             } else {
                 throw new ExcepcionAccion($this->avisoJugadorNoEncontrado());
@@ -72,7 +72,7 @@ class Jugadores extends AccionBasica
         $array_jugadores = [];
         foreach ($this->objetoJSON as $personaje => $jugadores) {
             foreach ($jugadores as $jugador) {
-                $nombre_judador = mb_strtolower($jugador["player"]);
+                $nombre_judador = mb_strtoupper($jugador["player"]);
                 if (!isset($array_jugadores[$nombre_judador])) {
                     $array_jugadores[$nombre_judador] = [
                         "pg" => 0,
@@ -93,7 +93,7 @@ class Jugadores extends AccionBasica
                 }
             }
         }
-        return array_keys($array_jugadores);
+        return $array_jugadores;
     }
 
     protected function infoJugador(array $datos_jugador)
