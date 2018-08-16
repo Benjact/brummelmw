@@ -3,6 +3,7 @@ namespace BrummelMW\acciones;
 
 use BrummelMW\acciones\swgoh\Hoth;
 use BrummelMW\acciones\swgoh\HothNaves;
+use BrummelMW\acciones\swgoh\Jugadores;
 use BrummelMW\acciones\swgoh\Naves;
 use BrummelMW\acciones\swgoh\Personajes;
 use BrummelMW\acciones\swgoh\SwgohGuildUnits;
