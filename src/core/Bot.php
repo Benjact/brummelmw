@@ -31,7 +31,7 @@ class Bot implements iBot
 
     public function username(): string
     {
-        return $this->update["from"]["username"];
+        return mb_strtolower($this->update["from"]["username"]);
     }
 
     /**

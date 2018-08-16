@@ -180,8 +180,8 @@ class AccionesGeneral
      */
     protected function accionHola($mensaje, $username)
     {
-        if (isset($mensaje[mb_strtolower($username)])) {
-            $this->accionMensaje($mensaje[mb_strtolower($username)]);
+        if (isset($mensaje[$username])) {
+            $this->accionMensaje($mensaje[$username]);
         } else {
             $this->accionMensaje("Tú quien eres");
         }
