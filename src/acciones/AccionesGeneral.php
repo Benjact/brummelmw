@@ -16,10 +16,13 @@ class AccionesGeneral
         "hulio" => "germinado!!",
         "herederos" => "Kiraaaa!!! Mira lo que dicen!!!",
         "chancla" => "La de nndiaz está en un territorio de las guerras",
-        "genio" => "Me voy a poner rojo!! Genio mi papi!!"
+        "genio" => "Me voy a poner rojo!! Genio mi papi!!",
+        "hola" => [
+            "superamo" => "como mandes por html",
+        ],
     ];
 
-    public function __construct(string $instruccion)
+    public function __construct(string $instruccion, string $username)
     {
         $instruccion_partida = explode(" ", $instruccion);
         $primera_palabra = mb_strtolower($instruccion_partida[0]);
@@ -33,11 +36,25 @@ class AccionesGeneral
         if (in_array(mb_strtolower($primera_palabra), ["ayuda", "help"])) {
             $this->accionAyuda($instruccion_partida);
 
+        } elseif (in_array($primera_palabra, array_keys($this->mensajes))) {
+            if ($primera_palabra == "hola") {
+                $this->accionHola($this->mensajes[$primera_palabra], $username);
+            } else {
+                $this->accionMensaje($this->mensajes[$primera_palabra]);
+            }
+
         } elseif (in_array($primera_palabra, ["personajes"])) {
             $this->accionPersonaje($instruccion_partida);
 
         } elseif (in_array($primera_palabra, ["naves"])) {
             $this->accionNave($instruccion_partida);
+
+
+        } elseif (in_array($primera_palabra, ["hoth"])) {
+            $this->accionHoth($instruccion_partida, $personajes, $naves);
+
+        /*} elseif (in_array($primera_palabra, ["excel"])) {
+            $this->accionExcel();*/
 
         } elseif (in_array(mb_strtoupper($primera_palabra), $personajes->personajes())) {
             array_unshift($instruccion_partida, "personajes");
@@ -46,16 +63,6 @@ class AccionesGeneral
         } elseif (in_array(mb_strtoupper($primera_palabra), $naves->personajes())) {
             array_unshift($instruccion_partida, "naves");
             $this->accionNave($instruccion_partida);
-
-        } elseif (in_array($primera_palabra, ["hoth"])) {
-            array_unshift($instruccion_partida, "hoth");
-            $this->accionHoth($instruccion_partida, $personajes, $naves);
-
-        } elseif (in_array($primera_palabra, ["excel"])) {
-            $this->accionExcel();
-
-        } elseif (in_array($primera_palabra, array_keys($this->mensajes))) {
-            $this->accionError($this->mensajes[$primera_palabra]);
 
         } elseif ($instruccion_partida[0] == "/") {
             $this->accionError();
@@ -132,7 +139,7 @@ class AccionesGeneral
             throw new ExcepcionAccion("Debe indicar un personaje o nave: ".implode(", ", $instruccion_partida));
         }
         if (!isset($instruccion_partida[2])) {
-            throw new ExcepcionAccion("Debe indicar el número de estrellas".implode(", ", $instruccion_partida));
+            throw new ExcepcionAccion("Debe indicar el número de estrellas: ".implode(", ", $instruccion_partida));
         }
         if (!(is_numeric($instruccion_partida[2]) && in_array($instruccion_partida[2], [0,1,2,3,4,5,6,7]))) {
             throw new ExcepcionAccion("Las estrellas deben ser un número comprendido entre 1-7".implode(", ", $instruccion_partida));
@@ -178,8 +185,24 @@ class AccionesGeneral
     /**
      * @param $instruccion_partida
      */
-    protected function accionComunHoth($instruccion_partida)
+    protected function accionHola($mensaje, $username)
     {
+        if (isset($mensaje[mb_strtolower($username)])) {
+            $this->accionMensaje($mensaje[mb_strtolower($username)]);
+        } else {
+            $this->accionMensaje("Tú quien eres");
+        }
+    }
 
+    /**
+     * @param $instruccion_partida
+     */
+    protected function accionMensaje($mensaje)
+    {
+        if (is_array($mensaje)) {
+            $this->instruccion = new Error(array_rand(array_flip($mensaje, 1)));
+        } else {
+            $this->instruccion = new Error($mensaje);
+        }
     }
 }

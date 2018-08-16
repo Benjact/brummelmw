@@ -20,6 +20,7 @@ if (is_null($update)) {
         $update["message"]["chat"]["id"] = "411317956";
         $update["message"]["chat"]["type"] = "private";
         $update["message"]["text"] = $_GET["instruccion"];
+        $update["from"]["username"] = "Amthorn";
 
         $bot = new Bot(TOKEN, RUTA_API, $update);
         $response = new Response($bot);
@@ -34,7 +35,7 @@ if (is_null($update)) {
 }
 
 try {
-    $acciones = new AccionesGeneral($bot->mensaje());
+    $acciones = new AccionesGeneral($bot->mensaje(), $bot->username());
     $response->devolverMensaje($acciones->retorno());
 } catch (ExcepcionAccion $e) {
     $response->devolverMensaje($e->getMessage());

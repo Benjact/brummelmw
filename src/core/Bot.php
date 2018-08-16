@@ -29,6 +29,11 @@ class Bot implements iBot
         return $this->update["message"]["text"];
     }
 
+    public function username(): string
+    {
+        return $this->update["from"]["username"];
+    }
+
     /**
      * @return string
      */

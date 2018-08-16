@@ -28,6 +28,11 @@ class BotHTML implements iBot
         return $this->mensaje;
     }
 
+    public function username(): string
+    {
+        return "superamo";
+    }
+
     /**
      * @return string
      */
