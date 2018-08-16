@@ -17,7 +17,7 @@ class AccionesGeneral
     public function __construct(string $instruccion, string $username)
     {
         $loader = new PHPFileLoader;
-        $this->mensajes = $loader->load(dirname(__DIR__)."/core/mensajes.php");
+        $this->mensajes = $loader->load(__DIR__."/core/mensajes.php");
 
         $instruccion_partida = explode(" ", $instruccion);
         $primera_palabra = mb_strtolower($instruccion_partida[0]);
