@@ -6,49 +6,19 @@ use BrummelMW\acciones\swgoh\HothNaves;
 use BrummelMW\acciones\swgoh\Naves;
 use BrummelMW\acciones\swgoh\Personajes;
 use BrummelMW\acciones\swgoh\SwgohGuildUnits;
+use BrummelMW\core\PHPFileLoader;
 
 class AccionesGeneral
 {
     protected $instruccion;
-    protected $mensajes = [
-        "brummel" => "No te puedo ayudar, poco Brummel siento en ti. Mejora en la raid sith",
-        "brumel" => "No te puedo ayudar, poco Brummel siento en ti. Mejora en la raid sith",
-        "autosith" => "Como spaw se entere la has cagao. El último está en imperio",
-        "hulio" => "germinado!!",
-        "herederos" => "Kiraaaa!!! Mira lo que dicen!!!",
-        "chancla" => "La de nndiaz está en un territorio de las guerras",
-        "genio" => "Me voy a poner rojo!! Genio mi papi!!",
-        "hola" => [
-            "superamoweb" => "prueba hola",
-            //"<img src='https://swgoh.gg/static/img/assets/tex.charui_jedi_fighter_ahsoka.png'>"
-            "amthorn" => [
-                "Hola papi!!!",
-                "Que quieres?!",
-                "Deja de molestarme y habla un rato con @TheOldBrummel",
-            ],
-            "spawtadeus" => [
-                "Señor, sí señor!",
-                "A sus órdenes, señor!",
-                "No me pegues!",
-            ],
-            "theoldbrummel" => [
-                "Eres mi amo y señor. Tus deseos son órdenes para mi",
-            ],
-            "genesismad" => [
-                "Al final tu mujer se va a poner celosa",
-                "uf... que pesao... queeeee"
-            ],
-            "ly0ne" => [
-                "Entre tu mujer y la de @Genesismad no doy a vasto con las denuncias",
-                "Yo que se! Habla con @TheOldBrummel",
-            ],
-        ],
-    ];
-
+    protected $mensajes = [];
     protected $jsonGuildUnits = [];
 
     public function __construct(string $instruccion, string $username)
     {
+        $loader = new PHPFileLoader;
+        $this->acciones_invervalos = $loader->load(dirname(__DIR__)."/../core/mensajes.php");
+
         $instruccion_partida = explode(" ", $instruccion);
         $primera_palabra = mb_strtolower($instruccion_partida[0]);
 
