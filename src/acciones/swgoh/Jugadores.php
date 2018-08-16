@@ -6,48 +6,43 @@ use BrummelMW\acciones\ExcepcionAccion;
 
 class Jugadores extends AccionBasica
 {
-    protected $personaje = "";
-    protected $estrellas = 0;
-    protected $combat_type = 1;
+    protected $jugador = "";
     /**
      * @var array
      */
     private $objetoJSON;
+    /**
+     * @var string
+     */
+    private $parametro;
 
     public function __construct(string $parametro = "", array $objetoJSON = [])
     {
         $this->objetoJSON = $this->recuperar_json($objetoJSON);
+        $this->parametro = $parametro;
     }
 
     protected function recuperar_json(array $recuperar_json): array
     {
-        foreach ($recuperar_json as $nombre => $personaje) {
-            if ($personaje[0]["combat_type"] != $this->combat_type) {
-                unset($recuperar_json[$nombre]);
-            }
-        }
-
         return $recuperar_json;
     }
 
     /**
-     * @param string $personaje
+     * @param string $jugador
      * @return Personajes
      */
-    public function setPersonaje(string $personaje): Personajes
+    public function setJugador(string $jugador): Personajes
     {
-        $this->personaje = mb_strtoupper($personaje);
+        $this->jugador = mb_strtoupper($jugador);
         return $this;
     }
 
     /**
-     * @param string $estrellas
-     * @return Personajes
+     * @param string $parametro
      */
-    public function setEstrellas(string $estrellas): Personajes
+    public function setParametro(string $parametro)
     {
-        $this->estrellas = $estrellas;
-        return $this;
+        $this->parametro = $parametro;
     }
 
     /**
@@ -56,80 +51,65 @@ class Jugadores extends AccionBasica
      */
     public function retorno()
     {
-        $array_personajes = $this->personajes();
+        $array_jugadores = $this->jugadores();
 
-        if ($this->personaje == "") {
-            asort($array_personajes);
-            return $array_personajes;
+        if ($this->jugador == "") {
+            asort(array_keys($array_jugadores));
+            return $array_jugadores;
         } else {
-            if (in_array($this->personaje, $array_personajes)) {
-                $datos_personaje = $this->objetoJSON[$this->personaje];
-                if ($this->estrellas != 0) {
-                    return $this->infoPersonajeEstrellas($datos_personaje, $this->estrellas);
-                } else {
-                    return $this->infoPersonaje($datos_personaje);
-                }
+            if (in_array($this->jugador, array_keys($array_jugadores))) {
+                $datos_jugador = $this->objetoJSON[$this->jugador];
+                return $this->infoJugador($datos_jugador);
+
             } else {
-                throw new ExcepcionAccion($this->avisoPersonajeNoEncontrado());
+                throw new ExcepcionAccion($this->avisoJugadorNoEncontrado());
             }
         }
     }
 
-    public function personajes()
+    public function jugadores()
     {
-        return array_keys($this->objetoJSON);
+        $array_jugadores = [];
+        foreach ($this->objetoJSON as $personaje => $jugadores) {
+            foreach ($jugadores as $jugador) {
+                if (!isset($array_jugadores[$jugador["player"]])) {
+                    $array_jugadores[$jugador["player"]] = [
+                        "pg" => 0,
+                        "pg_personajes" => 0,
+                        "pg_naves" => 0,
+                        "personajes" => [],
+                        "naves" => [],
+                    ];
+                }
+
+                $array_jugadores[$jugador["player"]]["pg"] += $jugador["power"];
+                if ($jugador["combat_type"] == 1) {
+                    $array_jugadores[$jugador["player"]]["pg_personajes"] += $jugador["power"];
+                    $array_jugadores[$jugador["player"]]["personajes"][] = $personaje;
+                } else {
+                    $array_jugadores[$jugador["player"]]["pg_naves"] += $jugador["power"];
+                    $array_jugadores[$jugador["player"]]["naves"][] = $personaje;
+                }
+            }
+        }
+        return array_keys($array_jugadores);
     }
 
-    protected function infoPersonaje(array $datos_personaje)
+    protected function infoJugador(array $datos_jugador)
     {
-        return $this->infoPersonajeEstrellas($datos_personaje);
-    }
-
-    protected function infoPersonajeEstrellas(array $datos_personaje, int $estrellas = 1)
-    {
-        $recopilacion = [
-            1 => ["cantidad" => 0],
-            2 => ["cantidad" => 0],
-            3 => ["cantidad" => 0],
-            4 => ["cantidad" => 0],
-            5 => ["cantidad" => 0],
-            6 => ["cantidad" => 0],
-            7 => ["cantidad" => 0],
+        $datos_retorno = [
+            "<b>PG TOTAL {$this->jugador}:</b> ".$datos_jugador["pg"],
+            "PG PERSONAJES: ".$datos_jugador["pg_personajes"],
+            "PG NAVES: ".$datos_jugador["pg_naves"],
         ];
-        foreach ($datos_personaje as $jugador) {
-            $recopilacion[$jugador["rarity"]]["cantidad"] += 1;
-            if (!isset($recopilacion[$jugador["rarity"]]["jugadores"])) {
-                $recopilacion[$jugador["rarity"]]["jugadores"] = [];
-            }
-            $recopilacion[$jugador["rarity"]]["jugadores"][] = $jugador["player"];
-            //." lvl:".$jugador["level"]." gear:".$jugador["gear_level"];
-        }
+        if ($this->parametro == "extendido") {
+            $datos_retorno[] = "";
+            $datos_retorno[] = "<b>PERSONAJES</b>";
+            $datos_retorno = array_merge($datos_retorno, $datos_jugador["personajes"]);
 
-        $cantidad_total = array_sum(array_map(function ($cantidad) {
-            return $cantidad["cantidad"];
-        }, $recopilacion));
-
-        if ($estrellas > 1) {
-            $cantidad = array_sum(array_map(function ($estrella, $cantidad) use ($estrellas) {
-                if ($estrella >= $estrellas) {
-                    return $cantidad["cantidad"];
-                }
-                return 0;
-            }, array_keys($recopilacion), $recopilacion));
-            $datos_retorno = ["<b>{$this->personaje} {$cantidad}/{$cantidad_total} en el gremio</b>"];
-        } else {
-            $datos_retorno = ["<b>{$this->personaje} {$cantidad_total} en el gremio</b>"];
-        }
-        foreach ($recopilacion as $estrellas_recopilacion => $datos) {
-            if ($estrellas_recopilacion >= $estrellas) {
-                $datos_retorno[] = "<b>{$estrellas_recopilacion}* => {$datos["cantidad"]} en el gremio</b>";
-                if (!empty($datos["jugadores"])) {
-                    foreach ($datos["jugadores"] as $jugador) {
-                        $datos_retorno[] = $jugador;
-                    }
-                }
-                $datos_retorno[] = "";
-            }
+            $datos_retorno[] = "";
+            $datos_retorno[] = "<b>NAVES</b>";
+            $datos_retorno = array_merge($datos_retorno, $datos_jugador["naves"]);
         }
         return $datos_retorno;
     }
@@ -137,8 +117,8 @@ class Jugadores extends AccionBasica
     /**
      * @return string
      */
-    protected function avisoPersonajeNoEncontrado(): string
+    protected function avisoJugadorNoEncontrado(): string
     {
-        return "Personaje {$this->personaje} no encontrado";
+        return "Jugador {$this->jugador} no encontrado";
     }
 }

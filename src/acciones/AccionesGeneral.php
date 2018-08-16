@@ -13,7 +13,6 @@ class AccionesGeneral
 {
     protected $instruccion;
     protected $mensajes = [];
-    protected $jsonGuildUnits = [];
 
     public function __construct(string $instruccion, string $username)
     {
@@ -25,21 +24,15 @@ class AccionesGeneral
             return;
 
         } elseif (in_array($primera_palabra, ["personajes"])) {
-            $this->jsonGuildUnits = SwgohGuildUnits::recuperarJSON();
             $this->accionPersonaje($instruccion_partida);
             return;
 
         } elseif (in_array($primera_palabra, ["naves"])) {
-            $this->jsonGuildUnits = SwgohGuildUnits::recuperarJSON();
             $this->accionNave($instruccion_partida);
             return;
 
         } elseif (in_array($primera_palabra, ["hoth"])) {
-            $this->jsonGuildUnits = SwgohGuildUnits::recuperarJSON();
-            $personajes = new Personajes("", $this->jsonGuildUnits);
-            $naves = new Naves("", $this->jsonGuildUnits);
-
-            $this->accionHoth($instruccion_partida, $personajes, $naves);
+            $this->accionHoth($instruccion_partida);
             return;
 
         } elseif (in_array($primera_palabra, ["jugador"])) {
@@ -61,15 +54,15 @@ class AccionesGeneral
             }
         }
 
-        $this->jsonGuildUnits = SwgohGuildUnits::recuperarJSON();
-        $personajes = new Personajes("", $this->jsonGuildUnits);
+        $jsonGuildUnits = SwgohGuildUnits::recuperarJSON();
+        $personajes = new Personajes("", $jsonGuildUnits);
         if (in_array(mb_strtoupper($primera_palabra), $personajes->personajes())) {
             array_unshift($instruccion_partida, "personajes");
             $this->accionPersonaje($instruccion_partida);
             return;
         }
 
-        $naves = new Naves("", $this->jsonGuildUnits);
+        $naves = new Naves("", $jsonGuildUnits);
         if (in_array(mb_strtoupper($primera_palabra), $naves->naves())) {
             array_unshift($instruccion_partida, "naves");
             $this->accionNave($instruccion_partida);
@@ -109,7 +102,7 @@ class AccionesGeneral
      */
     protected function accionPersonaje($instruccion_partida)
     {
-        $this->instruccion = new Personajes("", $this->jsonGuildUnits);
+        $this->instruccion = new Personajes("", SwgohGuildUnits::recuperarJSON());
         if (isset($instruccion_partida[1])) {
             $personaje = mb_strtoupper(str_replace("/", "", $instruccion_partida[1]));
             $this->instruccion->setPersonaje($personaje);
@@ -128,7 +121,7 @@ class AccionesGeneral
      */
     protected function accionNave($instruccion_partida)
     {
-        $this->instruccion = new Naves("", $this->jsonGuildUnits);
+        $this->instruccion = new Naves("", SwgohGuildUnits::recuperarJSON());
         if (isset($instruccion_partida[1])) {
             $personaje = mb_strtoupper(str_replace("/", "", $instruccion_partida[1]));
             $this->instruccion->setPersonaje($personaje);
@@ -145,7 +138,7 @@ class AccionesGeneral
     /**
      * @param $instruccion_partida
      */
-    protected function accionHoth($instruccion_partida, Personajes $personajes, Naves $naves)
+    protected function accionHoth($instruccion_partida)
     {
         if (!isset($instruccion_partida[1])) {
             throw new ExcepcionAccion("Debe indicar un personaje o nave");
@@ -157,12 +150,18 @@ class AccionesGeneral
             throw new ExcepcionAccion("Las estrellas deben ser un número comprendido entre 1-7");
         }
 
+        $jsonGuildUnits = SwgohGuildUnits::recuperarJSON();
+        $personajes = new Personajes("", $jsonGuildUnits);
+        $naves = new Naves("", $jsonGuildUnits);
+
         if (in_array(mb_strtoupper($instruccion_partida[1]), $personajes->personajes())) {
-            $this->instruccion = new Hoth("", $this->jsonGuildUnits);
-        } elseif (in_array(mb_strtoupper($instruccion_partida[1]), $naves->personajes())) {
+            $this->instruccion = new Hoth("", $jsonGuildUnits);
+
+        } elseif (in_array(mb_strtoupper($instruccion_partida[1]), $naves->naves())) {
             unset($instruccion_partida[0]);
             array_unshift($instruccion_partida, "hothnaves");
-            $this->instruccion = new HothNaves("", $this->jsonGuildUnits);
+            $this->instruccion = new HothNaves("", $jsonGuildUnits);
+
         } else {
             throw new ExcepcionAccion("No se identifica ese personaje o nave para pelotones de Hoth. Es posible que no lo tenga nadie del gremio");
         }
@@ -184,14 +183,14 @@ class AccionesGeneral
     {
         $this->instruccion = new Personajes("", $this->jsonGuildUnits);
         if (isset($instruccion_partida[1])) {
-            $personaje = mb_strtoupper(str_replace("/", "", $instruccion_partida[1]));
-            $this->instruccion->setPersonaje($personaje);
+            $jugador = mb_strtoupper(str_replace("/", "", $instruccion_partida[1]));
+            $this->instruccion->setJugador($jugador);
         }
         if (isset($instruccion_partida[2])) {
-            if (is_numeric($instruccion_partida[2]) && in_array($instruccion_partida[2], [0,1,2,3,4,5,6,7])) {
-                $this->instruccion->setEstrellas($instruccion_partida[2]);
+            if ($instruccion_partida[2] == "extendido") {
+                $this->instruccion->setParametro($instruccion_partida[2]);
             } else {
-                throw new ExcepcionAccion("Las estrellas deben ser un número comprendido entre 1-7");
+                throw new ExcepcionAccion("El segundo parametro solo puede ser 'extendido'");
             }
         }
     }
