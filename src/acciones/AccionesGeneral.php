@@ -46,7 +46,7 @@ class AccionesGeneral
 
         } else {
             //$this->mensajes = (new PHPFileLoader)->load(dirname(__DIR__) . "/acciones/mensajes.php");
-            $this->mensajes = include(dirname(__DIR__) . "/acciones/mensajes.php");
+            $this->mensajes = include(dirname(__DIR__) . "/acciones/mensajes");
 
             $this->jsonGuildUnits = SwgohGuildUnits::recuperarJSON();
             $personajes = new Personajes("", $this->jsonGuildUnits);
