@@ -33,7 +33,7 @@ if (is_null($update)) {
     $bot = new Bot(TOKEN, RUTA_API, $update);
     $response = new Response($bot);
 
-    $response->devolverMensaje($update["from"]["username"]);
+    $response->devolverMensaje(print_r($update, true));
 }
 
 try {
