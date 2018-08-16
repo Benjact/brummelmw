@@ -45,7 +45,7 @@ class AccionesGeneral
 
         } else {
             $loader = new PHPFileLoader;
-            $this->mensajes = $loader->load(__DIR__ . "/../core/mensajes.php");
+            $this->mensajes = $loader->load(__DIR__ . "/mensajes.php");
 
             $this->jsonGuildUnits = SwgohGuildUnits::recuperarJSON();
             $personajes = new Personajes("", $this->jsonGuildUnits);
