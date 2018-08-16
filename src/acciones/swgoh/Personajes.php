@@ -58,13 +58,13 @@ class Personajes extends AccionBasica
     {
         $array_personajes = $this->personajes();
 
-        echo $this->personaje;
         if ($this->personaje == "") {
             asort($array_personajes);
             return $array_personajes;
         } elseif ($this->personaje[0] == "%") {
             $coincidencia = str_replace("%", "", $this->personaje[0]);
             $array_personajes_coincidentes = array_filter(array_map(function($personaje) use ($coincidencia) {
+                echo $coincidencia;
                 if (strpos(mb_strtoupper($personaje), mb_strtoupper($coincidencia))) {
                     return $personaje;
                 }
