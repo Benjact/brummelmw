@@ -181,7 +181,7 @@ class AccionesGeneral
      */
     protected function accionJugador($instruccion_partida)
     {
-        $this->instruccion = new Personajes("", $this->jsonGuildUnits);
+        $this->instruccion = new Jugadores("", SwgohGuildUnits::recuperarJSON());
         if (isset($instruccion_partida[1])) {
             $jugador = mb_strtoupper(str_replace("/", "", $instruccion_partida[1]));
             $this->instruccion->setJugador($jugador);
