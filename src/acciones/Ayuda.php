@@ -27,14 +27,19 @@ class Ayuda extends AccionBasica implements iAcciones
                 //"/ayuda jugadores: devolverá un listado de jugadores del gremio registrados en swgoh",
                 "/personajes: devolverá un listado de personajes posibles",
                 "/personajes [NOMBRE_PERSONAJE]: devolverá información de dicho personaje",
-                "/[NOMBRE_PERSONAJE]: lo mismo que el anterior",
+                "/[NOMBRE_PERSONAJE]: lo mismo que el anterior, tanto para naves como para personajes",
                 "/personajes [NOMBRE_PERSONAJE] [NUMERO_ESTRELLAS]: indicará cuantos hay en el gremio con esas o más estrellas y quién los tiene",
-                "/[NOMBRE_PERSONAJE] [NUMERO_ESTRELLAS]: lo mismo que el anterior",
+                "/[NOMBRE_PERSONAJE] [NUMERO_ESTRELLAS]: lo mismo que el anterior, tanto para naves como para personajes",
+                "/naves: devolverá un listado de naves posibles. Se aplican los mismos parámetros que para personajes",
+                "/hoth [NOMBRE_PERSONAJE] [NUMERO_ESTRELLAS] (opcional [CANTIDAD]): Por defecto devolverá los 5 jugadores que tengan a ese personaje o nave con menos pg",
+
+                //tonterias
                 "/brummel: indicaciones indispensables para el gremio",
                 "/autosith: posibles equipos para pasarse la raid sith en auto",
-                "/hulio: ",
-                "/herederos: ",
-                "/chancla: ",
+                "/hulio",
+                "/herederos",
+                "/chancla",
+                "/hola",
                 //"/jugadores: devolverá un listado de jugadores del gremio registrados en swgoh",
             ];
         }
