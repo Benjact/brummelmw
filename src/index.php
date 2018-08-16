@@ -5,6 +5,7 @@ require_once __DIR__ . '/core/ini.php';
 require __DIR__ . '/../vendor/autoload.php';
 
 use BrummelMW\acciones\AccionesGeneral;
+use BrummelMW\acciones\ExcepcionAccion;
 use BrummelMW\core\Bot;
 use BrummelMW\core\BotHTML;
 use BrummelMW\response\Response;
@@ -32,5 +33,9 @@ if (is_null($update)) {
     $response = new Response($bot);
 }
 
-$acciones = new AccionesGeneral($bot->mensaje());
-$response->devolverMensaje($acciones->retorno());
+try {
+    $acciones = new AccionesGeneral($bot->mensaje());
+    $response->devolverMensaje($acciones->retorno());
+} catch (ExcepcionAccion $e) {
+    return $e->getMessage();
+}

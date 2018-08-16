@@ -67,15 +67,10 @@ class AccionesGeneral
      */
     public function retorno()
     {
-        try {
-            if (!is_null($this->instruccion)) {
-                return $this->instruccion->retorno();
-            }
-            throw new ExcepcionAccion("No reconozco esa instruccion");
-
-        } catch (ExcepcionAccion $e) {
-            return $e->getMessage();
+        if (!is_null($this->instruccion)) {
+            return $this->instruccion->retorno();
         }
+        throw new ExcepcionAccion("No reconozco esa instruccion");
     }
 
     /**
