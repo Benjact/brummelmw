@@ -16,7 +16,7 @@ trait TraitHoth
 
         asort($recopilacion);
         foreach (array_slice($recopilacion, 0, $this->cantidad_retorno) as $jugador_nombre => $pg) {
-            $datos_retorno[] = $jugador_nombre." ".$pg;
+            $datos_retorno[] = "<br>".$jugador_nombre."</br> PG: ".$pg;
         }
         return $datos_retorno;
     }
