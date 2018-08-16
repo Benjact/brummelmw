@@ -3,6 +3,7 @@ namespace BrummelMW\acciones\swgoh;
 
 use BrummelMW\acciones\AccionBasica;
 use BrummelMW\acciones\ExcepcionAccion;
+use BrummelMW\core\Utils;
 
 class Jugadores extends AccionBasica
 {
@@ -52,11 +53,19 @@ class Jugadores extends AccionBasica
     public function retorno()
     {
         $array_jugadores = $this->jugadores();
+        $array_key_jugadores = array_keys($array_jugadores);
 
         if ($this->jugador == "") {
-            $array_key_jugadores = array_keys($array_jugadores);
             asort($array_key_jugadores);
             return $array_key_jugadores;
+
+        } elseif ($this->jugador[0] == "%") {
+            $coincidencia = str_replace("%", "", $this->jugador);
+            $array_jugadores_coincidentes = Utils::filtrar($array_key_jugadores, $coincidencia);
+
+            asort($array_jugadores_coincidentes);
+            return $array_jugadores_coincidentes;
+
         } else {
             if (in_array($this->jugador, array_keys($array_jugadores))) {
                 return $this->infoJugador($array_jugadores[$this->jugador]);
