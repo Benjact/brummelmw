@@ -7,6 +7,6 @@ class Hoth extends Personajes
 
     protected function infoPersonajeEstrellas(array $datos_personaje, int $estrellas = 1)
     {
-        return $this->buscarCandidatos();
+        return $this->buscarCandidatos($datos_personaje, $estrellas);
     }
 }

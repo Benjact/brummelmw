@@ -154,13 +154,13 @@ class AccionesGeneral
     protected function accionHoth($instruccion_partida, Personajes $personajes, Naves $naves)
     {
         if (!isset($instruccion_partida[1])) {
-            throw new ExcepcionAccion("Debe indicar un personaje o nave: ".implode(", ", $instruccion_partida));
+            throw new ExcepcionAccion("Debe indicar un personaje o nave");
         }
         if (!isset($instruccion_partida[2])) {
-            throw new ExcepcionAccion("Debe indicar el número de estrellas: ".implode(", ", $instruccion_partida));
+            throw new ExcepcionAccion("Debe indicar el número de estrellas");
         }
         if (!(is_numeric($instruccion_partida[2]) && in_array($instruccion_partida[2], [0,1,2,3,4,5,6,7]))) {
-            throw new ExcepcionAccion("Las estrellas deben ser un número comprendido entre 1-7: ".implode(", ", $instruccion_partida));
+            throw new ExcepcionAccion("Las estrellas deben ser un número comprendido entre 1-7");
         }
 
         if (in_array(mb_strtoupper($instruccion_partida[1]), $personajes->personajes())) {
