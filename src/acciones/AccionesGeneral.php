@@ -1,6 +1,7 @@
 <?php
 namespace BrummelMW\acciones;
 
+use BrummelMW\acciones\swgoh\Naves;
 use BrummelMW\acciones\swgoh\Personajes;
 
 class AccionesGeneral
@@ -29,9 +30,16 @@ class AccionesGeneral
         } elseif (in_array($primera_palabra, ["personajes"])) {
             $this->accionPersonaje($instruccion_partida);
 
+        } elseif (in_array($primera_palabra, ["naves"])) {
+            $this->accionNave($instruccion_partida);
+
         } elseif (in_array(mb_strtoupper($primera_palabra), (new Personajes())->personajes())) {
             array_unshift($instruccion_partida, "personajes");
             $this->accionPersonaje($instruccion_partida);
+
+        } elseif (in_array(mb_strtoupper($primera_palabra), (new Naves())->personajes())) {
+            array_unshift($instruccion_partida, "naves");
+            $this->accionNave($instruccion_partida);
 
         } elseif (in_array($primera_palabra, ["excel"])) {
             $this->accionExcel();
@@ -50,11 +58,11 @@ class AccionesGeneral
     public function retorno()
     {
         try {
-            echo gettype($this->instruccion);
-            return $this->instruccion->retorno();
+            if (!is_null($this->instruccion)) {
+                return $this->instruccion->retorno();
+            }
+            throw new ExcepcionAccion("No reconozco esa instruccion");
         } catch (ExcepcionAccion $e) {
-            return $e->getMessage();
-        } catch (\Exception $e) {
             return $e->getMessage();
         }
     }
@@ -77,6 +85,25 @@ class AccionesGeneral
     protected function accionPersonaje($instruccion_partida)
     {
         $this->instruccion = new Personajes();
+        if (isset($instruccion_partida[1])) {
+            $personaje = mb_strtoupper(str_replace("/", "", $instruccion_partida[1]));
+            $this->instruccion->setPersonaje($personaje);
+        }
+        if (isset($instruccion_partida[2])) {
+            if (is_numeric($instruccion_partida[2]) && in_array($instruccion_partida[2], [0,1,2,3,4,5,6,7])) {
+                $this->instruccion->setEstrellas($instruccion_partida[2]);
+            } else {
+                throw new ExcepcionAccion("Las estrellas deben ser un número comprendido entre 1-7");
+            }
+        }
+    }
+
+    /**
+     * @param $instruccion_partida
+     */
+    protected function accionNave($instruccion_partida)
+    {
+        $this->instruccion = new Naves();
         if (isset($instruccion_partida[1])) {
             $personaje = mb_strtoupper(str_replace("/", "", $instruccion_partida[1]));
             $this->instruccion->setPersonaje($personaje);
