@@ -50,7 +50,7 @@ class Personajes extends SWGOH
                     return $this->infoPersonaje($datos_personaje);
                 }
             } else {
-                throw new ExcepcionAccion("Personaje {$this->personaje} no encontrado");
+                throw new ExcepcionAccion($this->avisoPersonajeNoEncontrado());
             }
         }
     }
@@ -125,5 +125,13 @@ class Personajes extends SWGOH
             }
         }
         return $datos_retorno;
+    }
+
+    /**
+     * @return string
+     */
+    protected function avisoPersonajeNoEncontrado(): string
+    {
+        return "Personaje {$this->personaje} no encontrado";
     }
 }
