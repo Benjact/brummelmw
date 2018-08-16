@@ -116,9 +116,9 @@ class Personajes extends AccionBasica
                 }
                 return 0;
             }, array_keys($recopilacion), $recopilacion));
-            $datos_retorno = ["<b><i>{$this->personaje} {$cantidad}/{$cantidad_total} en el gremio</i></b>"];
+            $datos_retorno = ["<b>{$this->personaje} {$cantidad}/{$cantidad_total} en el gremio</b>"];
         } else {
-            $datos_retorno = ["<b><i>{$this->personaje} {$cantidad_total} en el gremio</i></b>"];
+            $datos_retorno = ["<b>{$this->personaje} {$cantidad_total} en el gremio</b>"];
         }
         foreach ($recopilacion as $estrellas_recopilacion => $datos) {
             if ($estrellas_recopilacion >= $estrellas) {
