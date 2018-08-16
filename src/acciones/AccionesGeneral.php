@@ -178,7 +178,9 @@ class AccionesGeneral
 
         $this->instruccion->setEstrellas($instruccion_partida[2]);
 
-       // array_slice($entrada, 0, 3)
+        if (isset($instruccion_partida[3])) {
+            $this->instruccion->setCantidadRetorno($instruccion_partida[3]);
+        }
     }
 
     protected function accionExcel()
