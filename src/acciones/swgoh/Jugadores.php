@@ -31,7 +31,7 @@ class Jugadores extends AccionBasica
      * @param string $jugador
      * @return Personajes
      */
-    public function setJugador(string $jugador): Personajes
+    public function setJugador(string $jugador): Jugadores
     {
         $this->jugador = mb_strtoupper($jugador);
         return $this;
