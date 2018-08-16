@@ -25,6 +25,7 @@ class AccionesGeneral
 
         if (in_array(mb_strtolower($primera_palabra), ["ayuda", "help"])) {
             $this->accionAyuda($instruccion_partida);
+
         } elseif (in_array($primera_palabra, ["personajes"])) {
             $this->accionPersonaje($instruccion_partida);
 
@@ -114,13 +115,12 @@ class AccionesGeneral
         }
     }
 
-
-
     /**
      * @param $instruccion_partida
      */
     protected function accionNave($instruccion_partida)
     {
+        echo "si";
         $this->instruccion = new Naves("", $this->jsonGuildUnits);
         if (isset($instruccion_partida[1])) {
             $personaje = mb_strtoupper(str_replace("/", "", $instruccion_partida[1]));
