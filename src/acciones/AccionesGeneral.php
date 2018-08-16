@@ -19,19 +19,20 @@ class AccionesGeneral
     {
         $instruccion_partida = explode(" ", $instruccion);
         $primera_palabra = $this->devuelvePrimeraPalabra($instruccion_partida);
-        $this->jsonGuildUnits = SwgohGuildUnits::recuperarJSON();
 
         if (in_array($primera_palabra, ["ayuda", "help"])) {
             $this->accionAyuda($instruccion_partida);
 
         } elseif (in_array($primera_palabra, ["personajes"])) {
+            $this->jsonGuildUnits = SwgohGuildUnits::recuperarJSON();
             $this->accionPersonaje($instruccion_partida);
 
         } elseif (in_array($primera_palabra, ["naves"])) {
-            echo "entra aqui";
+            $this->jsonGuildUnits = SwgohGuildUnits::recuperarJSON();
             $this->accionNave($instruccion_partida);
 
         } elseif (in_array($primera_palabra, ["hoth"])) {
+            $this->jsonGuildUnits = SwgohGuildUnits::recuperarJSON();
             $personajes = new Personajes("", $this->jsonGuildUnits);
             $naves = new Naves("", $this->jsonGuildUnits);
 
