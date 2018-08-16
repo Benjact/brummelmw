@@ -61,6 +61,16 @@ class Personajes extends AccionBasica
         if ($this->personaje == "") {
             asort($array_personajes);
             return $array_personajes;
+        } elseif ($this->personaje[0] == "%") {
+            $coincidencia = str_replace("%", "", $this->personaje[0]);
+            $array_personajes_coincidentes = array_filter(array_map(function($personaje) use ($coincidencia) {
+                if (strpos(mb_strtoupper($personaje), mb_strtoupper($coincidencia))) {
+                    return $personaje;
+                }
+            }, $array_personajes));
+
+            asort($array_personajes_coincidentes);
+            return $array_personajes;
         } else {
             if (in_array($this->personaje, $array_personajes)) {
                 $datos_personaje = $this->objetoJSON[$this->personaje];
