@@ -33,7 +33,10 @@ class AccionesGeneral
             "theoldbrummel" => [
                 "Eres mi amo y señor. Tus deseos son órdenes para mi",
             ],
-            "genesismad" => "Al final tu mujer se va a poner celosa",
+            "genesismad" => [
+                "Al final tu mujer se va a poner celosa",
+                "uf... que pesao... queeeee"
+            ],
             "ly0ne" => "Yo que se! Habla con @TheOldBrummel",
         ],
     ];
