@@ -5,8 +5,9 @@ use BrummelMW\acciones\ExcepcionAccion;
 
 class Personajes extends SWGOH
 {
-    private $personaje = "";
-    private $estrellas = 0;
+    protected $personaje = "";
+    protected $estrellas = 0;
+    protected $combat_type = 1;
 
     /**
      * @param string $personaje
@@ -59,23 +60,25 @@ class Personajes extends SWGOH
         return array_keys($this->recuperar_json());
     }
 
-    protected function recuperar_json(string $personaje = ""): array
+    protected function recuperar_json(): array
     {
         $recuperar_json = parent::recuperar_json();
 
-        if ($personaje) {
-            return $recuperar_json[$personaje];
-        } else {
-            return $recuperar_json;
+        foreach ($recuperar_json as $nombre => $personaje) {
+            if ($personaje[0]["combat_type"] != $this->combat_type) {
+                unset($recuperar_json[$nombre]);
+            }
         }
+
+        return $recuperar_json;
     }
 
-    private function infoPersonaje(array $datos_personaje)
+    protected function infoPersonaje(array $datos_personaje)
     {
         return $this->infoPersonajeEstrellas($datos_personaje);
     }
 
-    private function infoPersonajeEstrellas(array $datos_personaje, int $estrellas = 1)
+    protected function infoPersonajeEstrellas(array $datos_personaje, int $estrellas = 1)
     {
         $recopilacion = [
             1 => ["cantidad" => 0],
@@ -95,12 +98,12 @@ class Personajes extends SWGOH
             //." lvl:".$jugador["level"]." gear:".$jugador["gear_level"];
         }
 
-        $cantidad_total = array_sum(array_map(function($cantidad) {
+        $cantidad_total = array_sum(array_map(function ($cantidad) {
             return $cantidad["cantidad"];
         }, $recopilacion));
 
         if ($estrellas > 1) {
-            $cantidad = array_sum(array_map(function($estrella, $cantidad) use ($estrellas) {
+            $cantidad = array_sum(array_map(function ($estrella, $cantidad) use ($estrellas) {
                 if ($estrella >= $estrellas) {
                     return $cantidad["cantidad"];
                 }
@@ -123,6 +126,4 @@ class Personajes extends SWGOH
         }
         return $datos_retorno;
     }
-
-
 }
