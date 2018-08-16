@@ -198,7 +198,7 @@ class AccionesGeneral
         if (isset($mensaje[$username])) {
             $this->accionMensaje($mensaje[$username]);
         } else {
-            $this->accionMensaje("Tú quien eres");
+            $this->accionMensaje("¿Tú quien eres, {$username}?");
         }
     }
 
