@@ -18,12 +18,9 @@ class AccionesGeneral
     public function __construct(string $instruccion, string $username)
     {
         $instruccion_partida = explode(" ", $instruccion);
-        $primera_palabra = mb_strtolower($instruccion_partida[0]);
+        $primera_palabra = $this->devuelvePrimeraPalabra($instruccion_partida);
 
-        $primera_palabra = str_replace("/", "", $primera_palabra);
-        $primera_palabra = str_replace("@brummelmwbot", "", $primera_palabra);
-
-        if (in_array(mb_strtolower($primera_palabra), ["ayuda", "help"])) {
+        if (in_array($primera_palabra, ["ayuda", "help"])) {
             $this->accionAyuda($instruccion_partida);
 
         } elseif (in_array($primera_palabra, ["personajes"])) {
@@ -221,5 +218,18 @@ class AccionesGeneral
         } else {
             $this->instruccion = new Error($mensaje);
         }
+    }
+
+    /**
+     * @param $instruccion_partida
+     * @return mixed|null|string|string[]
+     */
+    protected function devuelvePrimeraPalabra($instruccion_partida)
+    {
+        $primera_palabra = mb_strtolower($instruccion_partida[0]);
+
+        $primera_palabra = str_replace("/", "", $primera_palabra);
+        $primera_palabra = str_replace("@brummelmwbot", "", $primera_palabra);
+        return $primera_palabra;
     }
 }
