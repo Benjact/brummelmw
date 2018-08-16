@@ -208,7 +208,7 @@ class AccionesGeneral
     protected function accionMensaje($mensaje)
     {
         if (is_array($mensaje)) {
-            $this->instruccion = new Error(array_rand(array_flip($mensaje, 1)));
+            $this->instruccion = new Error(array_rand(array_flip($mensaje), 1));
         } else {
             $this->instruccion = new Error($mensaje);
         }
