@@ -27,6 +27,7 @@ class AccionesGeneral
             $this->accionPersonaje($instruccion_partida);
 
         } elseif (in_array($primera_palabra, ["naves"])) {
+            echo "entra aqui";
             $this->accionNave($instruccion_partida);
 
         } elseif (in_array($primera_palabra, ["hoth"])) {
