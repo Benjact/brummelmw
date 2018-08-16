@@ -19,7 +19,22 @@ class AccionesGeneral
         "chancla" => "La de nndiaz está en un territorio de las guerras",
         "genio" => "Me voy a poner rojo!! Genio mi papi!!",
         "hola" => [
-            "amthorn" => "como mandes por html",
+            "superamo" => "le contesto a la web",
+            "amthorn" => [
+                "Hola papi!!!",
+                "Que quieres?!",
+                "@TheOldBrummel",
+            ],
+            "spawtadeus" => [
+                "Señor, sí señor!",
+                "A sus órdenes, señor!",
+                "No me pegues!",
+            ],
+            "skiri" => [
+                "Eres mi amo y señor. Tus deseos son órdenes para mi",
+            ],
+            "genesismad" => "Al final tu mujer se va a poner celosa",
+            "ly0ne" => "Yo que se! Habla con @TheOldBrummel",
         ],
     ];
     protected $jsonUnitsGuild = [];
