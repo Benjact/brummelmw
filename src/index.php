@@ -20,7 +20,7 @@ if (is_null($update)) {
         $update["message"]["chat"]["id"] = "411317956";
         $update["message"]["chat"]["type"] = "private";
         $update["message"]["text"] = $_GET["instruccion"];
-        $update["from"]["username"] = "Amthorn";
+        $update["from"]["username"] = "amthorn";
 
         $bot = new Bot(TOKEN, RUTA_API, $update);
         $response = new Response($bot);
@@ -32,6 +32,7 @@ if (is_null($update)) {
 } else {
     $bot = new Bot(TOKEN, RUTA_API, $update);
     $response = new Response($bot);
+    $response->devolverMensaje($update["from"]["username"]);
 }
 
 try {
