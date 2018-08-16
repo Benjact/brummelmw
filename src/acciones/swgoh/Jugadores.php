@@ -72,7 +72,7 @@ class Jugadores extends AccionBasica
         $array_jugadores = [];
         foreach ($this->objetoJSON as $personaje => $jugadores) {
             foreach ($jugadores as $jugador) {
-                $nombre_judador = mb_strtoupper($jugador["player"]);
+                $nombre_judador = str_replace(" ", "_", mb_strtoupper($jugador["player"]));
                 if (!isset($array_jugadores[$nombre_judador])) {
                     $array_jugadores[$nombre_judador] = [
                         "pg" => 0,
