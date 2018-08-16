@@ -3,6 +3,8 @@ namespace BrummelMW\acciones\swgoh;
 
 trait TraitHoth
 {
+    protected $cantidad_retorno = 5;
+
     protected function buscarCandidatos(array $datos_personaje, int $estrellas = 1)
     {
         $recopilacion = [];
@@ -13,8 +15,7 @@ trait TraitHoth
         }
 
         asort($recopilacion);
-
-        foreach ($recopilacion as $jugador_nombre => $pg) {
+        foreach (array_slice($recopilacion, 0, $this->cantidad_retorno) as $jugador_nombre => $pg) {
             $datos_retorno[] = $jugador_nombre." ".$pg;
         }
         return $datos_retorno;

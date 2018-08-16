@@ -173,11 +173,12 @@ class AccionesGeneral
             throw new ExcepcionAccion("No se identifica ese personaje o nave para pelotones de Hoth. Es posible que no lo tenga nadie del gremio");
         }
 
-        if (isset($instruccion_partida[1])) {
-            $personaje = mb_strtoupper(str_replace("/", "", $instruccion_partida[1]));
-            $this->instruccion->setPersonaje($personaje);
-        }
+        $personaje = mb_strtoupper(str_replace("/", "", $instruccion_partida[1]));
+        $this->instruccion->setPersonaje($personaje);
+
         $this->instruccion->setEstrellas($instruccion_partida[2]);
+
+       // array_slice($entrada, 0, 3)
     }
 
     protected function accionExcel()
