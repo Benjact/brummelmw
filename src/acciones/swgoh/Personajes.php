@@ -66,13 +66,13 @@ class Personajes extends AccionBasica
             $array_personajes_coincidentes = array_filter(array_map(function ($personaje) use ($coincidencia) {
                 $strpos = strpos(mb_strtoupper($personaje), mb_strtoupper($coincidencia));
                 if ($strpos !== false) {
-                    echo $personaje. " ".$strpos."<br>";
                     return str_replace($coincidencia, "<b>{$coincidencia}</b>", $personaje);
                 }
+                return "";
             }, $array_personajes));
 
             asort($array_personajes_coincidentes);
-            return $array_personajes;
+            return $array_personajes_coincidentes;
         } else {
             if (in_array($this->personaje, $array_personajes)) {
                 $datos_personaje = $this->objetoJSON[$this->personaje];
