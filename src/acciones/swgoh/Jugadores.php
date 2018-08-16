@@ -54,9 +54,8 @@ class Jugadores extends AccionBasica
         $array_jugadores = $this->jugadores();
 
         if ($this->jugador == "") {
-            $array_keys_jugadores = array_keys($array_jugadores);
-            asort($array_keys_jugadores);
-            return $array_keys_jugadores;
+            asort($array_jugadores);
+            return $array_jugadores;
         } else {
             if (in_array($this->jugador, array_keys($array_jugadores))) {
                 $datos_jugador = $this->objetoJSON[$this->jugador];
