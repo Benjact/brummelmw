@@ -19,7 +19,7 @@ class AccionesGeneral
         "chancla" => "La de nndiaz está en un territorio de las guerras",
         "genio" => "Me voy a poner rojo!! Genio mi papi!!",
         "hola" => [
-            "superamo" => "<img='https://swgoh.gg/static/img/assets/tex.charui_jedi_fighter_ahsoka.png'>",
+            "superamo" => "<img src='https://swgoh.gg/static/img/assets/tex.charui_jedi_fighter_ahsoka.png'>",
             "amthorn" => [
                 "Hola papi!!!",
                 "Que quieres?!",
