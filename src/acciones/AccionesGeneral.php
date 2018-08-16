@@ -50,8 +50,11 @@ class AccionesGeneral
     public function retorno()
     {
         try {
+            echo gettype($this->instruccion);
             return $this->instruccion->retorno();
         } catch (ExcepcionAccion $e) {
+            return $e->getMessage();
+        } catch (\Exception $e) {
             return $e->getMessage();
         }
     }
