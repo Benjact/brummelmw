@@ -18,7 +18,7 @@ class AccionesGeneral
         "chancla" => "La de nndiaz está en un territorio de las guerras",
         "genio" => "Me voy a poner rojo!! Genio mi papi!!",
         "hola" => [
-            "superamo" => "como mandes por html",
+            "amthorn" => "como mandes por html",
         ],
     ];
 
@@ -142,7 +142,7 @@ class AccionesGeneral
             throw new ExcepcionAccion("Debe indicar el número de estrellas: ".implode(", ", $instruccion_partida));
         }
         if (!(is_numeric($instruccion_partida[2]) && in_array($instruccion_partida[2], [0,1,2,3,4,5,6,7]))) {
-            throw new ExcepcionAccion("Las estrellas deben ser un número comprendido entre 1-7".implode(", ", $instruccion_partida));
+            throw new ExcepcionAccion("Las estrellas deben ser un número comprendido entre 1-7: ".implode(", ", $instruccion_partida));
         }
 
         if (in_array(mb_strtoupper($instruccion_partida[1]), $personajes->personajes())) {
@@ -160,16 +160,6 @@ class AccionesGeneral
             $this->instruccion->setPersonaje($personaje);
         }
         $this->instruccion->setEstrellas($instruccion_partida[2]);
-    }
-
-    /**
-     * @param $instruccion_partida
-     */
-    protected function accionHothNaves($instruccion_partida)
-    {
-        $this->instruccion = new HothNaves();
-
-        $this->accionComunHoth($instruccion_partida);
     }
 
     protected function accionExcel()
