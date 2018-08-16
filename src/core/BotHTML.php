@@ -30,7 +30,7 @@ class BotHTML implements iBot
 
     public function username(): string
     {
-        return "superamo";
+        return "superamoweb";
     }
 
     /**

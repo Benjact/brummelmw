@@ -19,8 +19,13 @@ class AccionesGeneral
         "chancla" => "La de nndiaz está en un territorio de las guerras",
         "genio" => "Me voy a poner rojo!! Genio mi papi!!",
         "hola" => [
-            "superamo" => "<img src='https://swgoh.gg/static/img/assets/tex.charui_jedi_fighter_ahsoka.png'>",
-            "amthorn" => "<img src='https://swgoh.gg/static/img/assets/tex.charui_jedi_fighter_ahsoka.png'>",
+            "superamoweb" => "prueba hola",
+            //"<img src='https://swgoh.gg/static/img/assets/tex.charui_jedi_fighter_ahsoka.png'>"
+            "amthorn" => [
+                "Hola papi!!!",
+                "Que quieres?!",
+                "Deja de molestarme y habla un rato con @TheOldBrummel",
+            ],
             "spawtadeus" => [
                 "Señor, sí señor!",
                 "A sus órdenes, señor!",
