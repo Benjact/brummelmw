@@ -23,14 +23,14 @@ class AccionesGeneral
             "amthorn" => [
                 "Hola papi!!!",
                 "Que quieres?!",
-                "@TheOldBrummel",
+                "Deja de molestarme y habla un rato con @TheOldBrummel",
             ],
             "spawtadeus" => [
                 "Señor, sí señor!",
                 "A sus órdenes, señor!",
                 "No me pegues!",
             ],
-            "skiri" => [
+            "theoldbrummel" => [
                 "Eres mi amo y señor. Tus deseos son órdenes para mi",
             ],
             "genesismad" => "Al final tu mujer se va a poner celosa",
