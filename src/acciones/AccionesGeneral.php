@@ -38,9 +38,13 @@ class AccionesGeneral
                 "Al final tu mujer se va a poner celosa",
                 "uf... que pesao... queeeee"
             ],
-            "ly0ne" => "Yo que se! Habla con @TheOldBrummel",
+            "ly0ne" => [
+                "Entre tu mujer y la de @Genesismad no doy a vasto con las denuncias",
+                "Yo que se! Habla con @TheOldBrummel",
+            ],
         ],
     ];
+
     protected $jsonGuildUnits = [];
 
     public function __construct(string $instruccion, string $username)
@@ -71,9 +75,11 @@ class AccionesGeneral
         } elseif (in_array($primera_palabra, ["naves"])) {
             $this->accionNave($instruccion_partida);
 
-
         } elseif (in_array($primera_palabra, ["hoth"])) {
             $this->accionHoth($instruccion_partida, $personajes, $naves);
+
+        } elseif (in_array($primera_palabra, ["jugador"])) {
+            $this->accionJugador($instruccion_partida);
 
         /*} elseif (in_array($primera_palabra, ["excel"])) {
             $this->accionExcel();*/
@@ -133,6 +139,8 @@ class AccionesGeneral
         }
     }
 
+
+
     /**
      * @param $instruccion_partida
      */
@@ -184,6 +192,25 @@ class AccionesGeneral
 
         if (isset($instruccion_partida[3])) {
             $this->instruccion->setCantidadRetorno($instruccion_partida[3]);
+        }
+    }
+
+    /**
+     * @param $instruccion_partida
+     */
+    protected function accionJugador($instruccion_partida)
+    {
+        $this->instruccion = new Personajes("", $this->jsonGuildUnits);
+        if (isset($instruccion_partida[1])) {
+            $personaje = mb_strtoupper(str_replace("/", "", $instruccion_partida[1]));
+            $this->instruccion->setPersonaje($personaje);
+        }
+        if (isset($instruccion_partida[2])) {
+            if (is_numeric($instruccion_partida[2]) && in_array($instruccion_partida[2], [0,1,2,3,4,5,6,7])) {
+                $this->instruccion->setEstrellas($instruccion_partida[2]);
+            } else {
+                throw new ExcepcionAccion("Las estrellas deben ser un número comprendido entre 1-7");
+            }
         }
     }
 
