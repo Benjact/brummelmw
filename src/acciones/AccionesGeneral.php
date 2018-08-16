@@ -7,6 +7,7 @@ use BrummelMW\acciones\swgoh\Naves;
 use BrummelMW\acciones\swgoh\Personajes;
 use BrummelMW\acciones\swgoh\SwgohGuildUnits;
 use BrummelMW\core\PHPFileLoader;
+use function Composer\Autoload\includeFile;
 
 class AccionesGeneral
 {
@@ -44,7 +45,8 @@ class AccionesGeneral
             $this->accionExcel();*/
 
         } else {
-            $this->mensajes = (new PHPFileLoader)->load(dirname(__DIR__) . "/acciones/mensajes.php");
+            //$this->mensajes = (new PHPFileLoader)->load(dirname(__DIR__) . "/acciones/mensajes.php");
+            $this->mensajes = include(dirname(__DIR__) . "/acciones/mensajes.php");
 
             $this->jsonGuildUnits = SwgohGuildUnits::recuperarJSON();
             $personajes = new Personajes("", $this->jsonGuildUnits);
