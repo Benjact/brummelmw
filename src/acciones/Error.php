@@ -5,7 +5,7 @@ class Error extends AccionBasica implements iAcciones
 {
     protected $mensaje_error = "";
 
-    public function __construct(string $parametro = "")
+    public function __construct(string $parametro = "", array $objetoJSON = [])
     {
         $this->mensaje_error = $parametro;
     }

@@ -3,7 +3,12 @@ namespace BrummelMW\acciones;
 
 interface iAcciones
 {
-    public function __construct(string $parametro = "");
+    /**
+     * iAcciones constructor.
+     * @param string $parametro
+     * @param array $objetoJSON
+     */
+    public function __construct(string $parametro = "", array $objetoJSON = []);
 
     /**
      * @return array|string

@@ -1,13 +1,34 @@
 <?php
 namespace BrummelMW\acciones\swgoh;
 
+use BrummelMW\acciones\AccionBasica;
 use BrummelMW\acciones\ExcepcionAccion;
 
-class Personajes extends SWGOH
+class Personajes extends AccionBasica
 {
     protected $personaje = "";
     protected $estrellas = 0;
     protected $combat_type = 1;
+    /**
+     * @var array
+     */
+    private $objetoJSON;
+
+    public function __construct(string $parametro = "", array $objetoJSON = [])
+    {
+        $this->objetoJSON = $this->recuperar_json($objetoJSON);
+    }
+
+    protected function recuperar_json(array $recuperar_json): array
+    {
+        foreach ($recuperar_json as $nombre => $personaje) {
+            if ($personaje[0]["combat_type"] != $this->combat_type) {
+                unset($recuperar_json[$nombre]);
+            }
+        }
+
+        return $recuperar_json;
+    }
 
     /**
      * @param string $personaje
@@ -42,8 +63,7 @@ class Personajes extends SWGOH
             return $array_personajes;
         } else {
             if (in_array($this->personaje, $array_personajes)) {
-                $datos_personajes = $this->recuperar_json();
-                $datos_personaje = $datos_personajes[$this->personaje];
+                $datos_personaje = $this->objetoJSON[$this->personaje];
                 if ($this->estrellas != 0) {
                     return $this->infoPersonajeEstrellas($datos_personaje, $this->estrellas);
                 } else {
@@ -57,20 +77,7 @@ class Personajes extends SWGOH
 
     public function personajes()
     {
-        return array_keys($this->recuperar_json());
-    }
-
-    protected function recuperar_json(): array
-    {
-        $recuperar_json = parent::recuperar_json();
-
-        foreach ($recuperar_json as $nombre => $personaje) {
-            if ($personaje[0]["combat_type"] != $this->combat_type) {
-                unset($recuperar_json[$nombre]);
-            }
-        }
-
-        return $recuperar_json;
+        return array_keys($this->objetoJSON);
     }
 
     protected function infoPersonaje(array $datos_personaje)

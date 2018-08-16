@@ -5,6 +5,7 @@ use BrummelMW\acciones\swgoh\Hoth;
 use BrummelMW\acciones\swgoh\HothNaves;
 use BrummelMW\acciones\swgoh\Naves;
 use BrummelMW\acciones\swgoh\Personajes;
+use BrummelMW\acciones\swgoh\SWGOH;
 
 class AccionesGeneral
 {
@@ -21,6 +22,7 @@ class AccionesGeneral
             "amthorn" => "como mandes por html",
         ],
     ];
+    protected $jsonUnitsGuild = [];
 
     public function __construct(string $instruccion, string $username)
     {
@@ -30,8 +32,9 @@ class AccionesGeneral
         $primera_palabra = str_replace("/", "", $primera_palabra);
         $primera_palabra = str_replace("@brummelmwbot", "", $primera_palabra);
 
-        $personajes = new Personajes();
-        $naves = new Naves();
+        $this->jsonUnitsGuild = SWGOH::recuperarJSON();
+        $personajes = new Personajes("", $this->jsonUnitsGuild);
+        $naves = new Naves("", $this->jsonUnitsGuild);
 
         if (in_array(mb_strtolower($primera_palabra), ["ayuda", "help"])) {
             $this->accionAyuda($instruccion_partida);
@@ -97,7 +100,7 @@ class AccionesGeneral
      */
     protected function accionPersonaje($instruccion_partida)
     {
-        $this->instruccion = new Personajes();
+        $this->instruccion = new Personajes("", $this->jsonUnitsGuild);
         if (isset($instruccion_partida[1])) {
             $personaje = mb_strtoupper(str_replace("/", "", $instruccion_partida[1]));
             $this->instruccion->setPersonaje($personaje);
@@ -116,7 +119,7 @@ class AccionesGeneral
      */
     protected function accionNave($instruccion_partida)
     {
-        $this->instruccion = new Naves();
+        $this->instruccion = new Naves("", $this->jsonUnitsGuild);
         if (isset($instruccion_partida[1])) {
             $personaje = mb_strtoupper(str_replace("/", "", $instruccion_partida[1]));
             $this->instruccion->setPersonaje($personaje);
@@ -146,11 +149,11 @@ class AccionesGeneral
         }
 
         if (in_array(mb_strtoupper($instruccion_partida[1]), $personajes->personajes())) {
-            $this->instruccion = new Hoth();
+            $this->instruccion = new Hoth("", $this->jsonUnitsGuild);
         } elseif (in_array(mb_strtoupper($instruccion_partida[1]), $naves->personajes())) {
             unset($instruccion_partida[0]);
             array_unshift($instruccion_partida, "hothnaves");
-            $this->instruccion = new HothNaves();
+            $this->instruccion = new HothNaves("", $this->jsonUnitsGuild);
         } else {
             throw new ExcepcionAccion("No se identifica ese personaje o nave para pelotones de Hoth. Es posible que no lo tenga nadie del gremio");
         }

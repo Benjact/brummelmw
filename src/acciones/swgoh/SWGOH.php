@@ -4,17 +4,9 @@ namespace BrummelMW\acciones\swgoh;
 use BrummelMW\acciones\AccionBasica;
 use BrummelMW\acciones\iAcciones;
 
-class SWGOH extends AccionBasica implements iAcciones
+class SWGOH implements iSWGOH
 {
-    /**
-     * @return string
-     */
-    public function retorno()
-    {
-        return "Sin retorno";
-    }
-
-    protected function recuperar_json(): array
+    public static function recuperarJSON(): array
     {
         return json_decode(file_get_contents("https://swgoh.gg/api/guilds/7217/units/"), true);
     }

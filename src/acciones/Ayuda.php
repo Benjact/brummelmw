@@ -7,7 +7,7 @@ class Ayuda extends AccionBasica implements iAcciones
 {
     private $parametro = "";
 
-    public function __construct(string $parametro = "")
+    public function __construct(string $parametro = "", array $objetoJSON = [])
     {
         $this->parametro = $parametro;
     }
