@@ -44,8 +44,7 @@ class AccionesGeneral
             $this->accionExcel();*/
 
         } else {
-            $loader = new PHPFileLoader;
-            $this->mensajes = $loader->load(__DIR__ . "/mensajes.php");
+            $this->mensajes = (new PHPFileLoader)->load(dirname(__DIR__) . "/acciones/mensajes.php");
 
             $this->jsonGuildUnits = SwgohGuildUnits::recuperarJSON();
             $personajes = new Personajes("", $this->jsonGuildUnits);
