@@ -37,5 +37,5 @@ try {
     $acciones = new AccionesGeneral($bot->mensaje());
     $response->devolverMensaje($acciones->retorno());
 } catch (ExcepcionAccion $e) {
-    return $e->getMessage();
+    $response->devolverMensaje($e->getMessage());
 }
