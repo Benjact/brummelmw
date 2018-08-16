@@ -57,7 +57,7 @@ class Jugadores extends AccionBasica
             asort($array_jugadores);
             return $array_jugadores;
         } else {
-            if (in_array($this->jugador, array_keys($array_jugadores))) {
+            if (in_array($this->jugador, $array_jugadores)) {
                 $datos_jugador = $this->objetoJSON[$this->jugador];
                 return $this->infoJugador($datos_jugador);
 
@@ -72,8 +72,9 @@ class Jugadores extends AccionBasica
         $array_jugadores = [];
         foreach ($this->objetoJSON as $personaje => $jugadores) {
             foreach ($jugadores as $jugador) {
-                if (!isset($array_jugadores[$jugador["player"]])) {
-                    $array_jugadores[$jugador["player"]] = [
+                $nombre_judador = mb_strtolower($jugador["player"]);
+                if (!isset($array_jugadores[$nombre_judador])) {
+                    $array_jugadores[$nombre_judador] = [
                         "pg" => 0,
                         "pg_personajes" => 0,
                         "pg_naves" => 0,
@@ -82,13 +83,13 @@ class Jugadores extends AccionBasica
                     ];
                 }
 
-                $array_jugadores[$jugador["player"]]["pg"] += $jugador["power"];
+                $array_jugadores[$nombre_judador]["pg"] += $jugador["power"];
                 if ($jugador["combat_type"] == 1) {
-                    $array_jugadores[$jugador["player"]]["pg_personajes"] += $jugador["power"];
-                    $array_jugadores[$jugador["player"]]["personajes"][] = $personaje;
+                    $array_jugadores[$nombre_judador]["pg_personajes"] += $jugador["power"];
+                    $array_jugadores[$nombre_judador]["personajes"][] = $personaje;
                 } else {
-                    $array_jugadores[$jugador["player"]]["pg_naves"] += $jugador["power"];
-                    $array_jugadores[$jugador["player"]]["naves"][] = $personaje;
+                    $array_jugadores[$nombre_judador]["pg_naves"] += $jugador["power"];
+                    $array_jugadores[$nombre_judador]["naves"][] = $personaje;
                 }
             }
         }
