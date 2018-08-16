@@ -24,7 +24,7 @@ class AccionesGeneral
             $this->accionAyuda($instruccion_partida);
             return;
 
-        } elseif (in_array($primera_palabra, ["personajes", "personajes"])) {
+        } elseif (in_array($primera_palabra, ["personaje", "personajes"])) {
             $this->accionPersonaje($instruccion_partida);
             return;
 
