@@ -3,6 +3,7 @@ namespace BrummelMW\acciones\swgoh;
 
 use BrummelMW\acciones\AccionBasica;
 use BrummelMW\acciones\ExcepcionAccion;
+use BrummelMW\core\Utils;
 
 class Personajes extends AccionBasica
 {
@@ -63,13 +64,7 @@ class Personajes extends AccionBasica
             return $array_personajes;
         } elseif ($this->personaje[0] == "%") {
             $coincidencia = str_replace("%", "", $this->personaje);
-            $array_personajes_coincidentes = array_filter(array_map(function ($personaje) use ($coincidencia) {
-                $strpos = strpos(mb_strtoupper($personaje), mb_strtoupper($coincidencia));
-                if ($strpos !== false) {
-                    return str_replace($coincidencia, "<b>{$coincidencia}</b>", $personaje);
-                }
-                return "";
-            }, $array_personajes));
+            $array_personajes_coincidentes = Utils::filtrar($array_personajes, $coincidencia);
 
             asort($array_personajes_coincidentes);
             return $array_personajes_coincidentes;
