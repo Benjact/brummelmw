@@ -6,6 +6,8 @@ use BrummelMW\acciones\swgoh\HothNaves;
 use BrummelMW\acciones\swgoh\Jugadores;
 use BrummelMW\acciones\swgoh\Naves;
 use BrummelMW\acciones\swgoh\Personajes;
+use BrummelMW\acciones\swgoh\PersonajesInline;
+use BrummelMW\acciones\swgoh\SwgohCharacters;
 use BrummelMW\acciones\swgoh\SwgohGuildUnits;
 use BrummelMW\core\PHPFileLoader;
 
@@ -14,7 +16,7 @@ class AccionesGeneral
     protected $instruccion;
     protected $mensajes = [];
 
-    public function __construct(string $instruccion, string $username)
+    public function __construct(string $instruccion, string $username, bool $inline)
     {
         $instruccion_partida = explode(" ", $instruccion);
         $primera_palabra = $this->devuelvePrimeraPalabra($instruccion_partida);
@@ -39,6 +41,10 @@ class AccionesGeneral
             $this->accionJugador($instruccion_partida);
             return;
 
+        } elseif (in_array($primera_palabra, ["gremio"])) {
+            $this->accionGremio($instruccion_partida);
+            return;
+
         /*} elseif (in_array($primera_palabra, ["excel"])) {
             $this->accionExcel();*/
         }
@@ -58,7 +64,7 @@ class AccionesGeneral
         $personajes = new Personajes("", $jsonGuildUnits);
         if (in_array(mb_strtoupper($primera_palabra), $personajes->personajes())) {
             array_unshift($instruccion_partida, "personajes");
-            $this->accionPersonaje($instruccion_partida);
+            $this->accionPersonaje($instruccion_partida, $inline);
             return;
         }
 
@@ -100,9 +106,13 @@ class AccionesGeneral
     /**
      * @param $instruccion_partida
      */
-    protected function accionPersonaje($instruccion_partida)
+    protected function accionPersonaje($instruccion_partida, bool $inline = false)
     {
-        $this->instruccion = new Personajes("", SwgohGuildUnits::recuperarJSON());
+        if ($inline) {
+            $this->instruccion = new PersonajesInline("", SwgohCharacters::recuperarJSON());
+        } else {
+            $this->instruccion = new Personajes("", SwgohGuildUnits::recuperarJSON());
+        }
         if (isset($instruccion_partida[1])) {
             $personaje = mb_strtoupper(str_replace("/", "", $instruccion_partida[1]));
             $this->instruccion->setPersonaje($personaje);
@@ -174,6 +184,11 @@ class AccionesGeneral
         if (isset($instruccion_partida[3])) {
             $this->instruccion->setCantidadRetorno($instruccion_partida[3]);
         }
+    }
+
+    protected function accionGremio($instruccion_partida)
+    {
+        $this->instruccion = new Gremio("", SwgohGuildUnits::recuperarJSON());
     }
 
     /**

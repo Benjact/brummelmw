@@ -108,17 +108,17 @@ class Jugadores extends AccionBasica
     protected function infoJugador(array $datos_jugador)
     {
         $datos_retorno = [
-            "<b>PG TOTAL {$this->jugador}:</b> ".$datos_jugador["pg"],
+            "*PG TOTAL {$this->jugador}:* ".$datos_jugador["pg"],
             "PG PERSONAJES: ".$datos_jugador["pg_personajes"],
             "PG NAVES: ".$datos_jugador["pg_naves"],
         ];
         if ($this->parametro == "extendido") {
             $datos_retorno[] = "";
-            $datos_retorno[] = "<b>PERSONAJES</b>";
+            $datos_retorno[] = "*PERSONAJES*";
             $datos_retorno = array_merge($datos_retorno, $datos_jugador["personajes"]);
 
             $datos_retorno[] = "";
-            $datos_retorno[] = "<b>NAVES</b>";
+            $datos_retorno[] = "*NAVES*";
             $datos_retorno = array_merge($datos_retorno, $datos_jugador["naves"]);
         }
         return $datos_retorno;

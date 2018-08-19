@@ -1,16 +1,16 @@
 <?php
 namespace BrummelMW\response;
 
-use BrummelMW\core\Bot;
+use BrummelMW\bot\iBot;
 
 class Response
 {
     /**
-     * @var Bot
+     * @var iBot
      */
     private $bot;
 
-    public function __construct(Bot $bot)
+    public function __construct(iBot $bot)
     {
         $this->bot = $bot;
     }
@@ -18,18 +18,11 @@ class Response
     public function devolverMensaje($mensaje)
     {
         $url = $this->bot->webSite()."/sendMessage";
-        // following ones are optional, so could be set as null
-        $disable_web_page_preview = null;
-        $reply_to_message_id = null;
-        $reply_markup = null;
 
         $fields = [
             "chat_id" => $this->bot->chatId(),
-            "parse_mode" => "HTML",
+            "parse_mode" => "Markdown",
             "text" => is_array($mensaje) ? implode("\n", $mensaje) : $mensaje,
-            'disable_web_page_preview' => $disable_web_page_preview,
-            'reply_to_message_id' => $reply_to_message_id,
-            'reply_markup' => $reply_markup,
         ];
 
         $ch = curl_init();

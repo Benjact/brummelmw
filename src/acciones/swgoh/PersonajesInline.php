@@ -5,7 +5,7 @@ use BrummelMW\acciones\AccionBasica;
 use BrummelMW\acciones\ExcepcionAccion;
 use BrummelMW\core\Utils;
 
-class Personajes extends AccionBasica
+class PersonajesInline extends AccionBasica
 {
     protected $personaje = "";
     protected $estrellas = 0;
@@ -22,9 +22,9 @@ class Personajes extends AccionBasica
 
     protected function recuperar_json(array $recuperar_json): array
     {
-        foreach ($recuperar_json as $nombre => $personaje) {
-            if ($personaje[0]["combat_type"] != $this->combat_type) {
-                unset($recuperar_json[$nombre]);
+        foreach ($recuperar_json as $key_json => $personaje) {
+            if ($personaje["combat_type"] != $this->combat_type) {
+                unset($recuperar_json[$key_json]);
             }
         }
 
@@ -33,9 +33,9 @@ class Personajes extends AccionBasica
 
     /**
      * @param string $personaje
-     * @return Personajes
+     * @return PersonajesInline
      */
-    public function setPersonaje(string $personaje): Personajes
+    public function setPersonaje(string $personaje): PersonajesInline
     {
         $this->personaje = mb_strtoupper($personaje);
         return $this;
@@ -43,9 +43,9 @@ class Personajes extends AccionBasica
 
     /**
      * @param int $estrellas
-     * @return Personajes
+     * @return PersonajesInline
      */
-    public function setEstrellas(int $estrellas): Personajes
+    public function setEstrellas(int $estrellas): PersonajesInline
     {
         $this->estrellas = $estrellas;
         return $this;
