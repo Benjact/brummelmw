@@ -21,7 +21,7 @@ class Response
 
         $fields = [
             "chat_id" => $this->bot->chatId(),
-            "parse_mode" => "Markdown",
+            "parse_mode" => PARSE_MODE,
             "text" => is_array($mensaje) ? implode("\\", $mensaje) : $mensaje,
         ];
         echo "entra aqui<pre>".print_r($fields, true)."</pre>";
