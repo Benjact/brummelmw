@@ -22,7 +22,7 @@ class Response
         $fields = [
             "chat_id" => $this->bot->chatId(),
             "parse_mode" => PARSE_MODE,
-            "text" => is_array($mensaje) ? implode("\r\n", $mensaje) : $mensaje,
+            "text" => is_array($mensaje) ? implode(ENTER, $mensaje) : $mensaje,
         ];
         echo "entra aqui<pre>".print_r($fields, true)."</pre>";
         $ch = curl_init();
