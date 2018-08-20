@@ -35,6 +35,8 @@ class Gremio extends AccionBasica
                 if ($jugador["combat_type"] == "1") {
                     $total_personajes += $jugador["power"];
                 } else {
+                    if ($jugador["player"] == "AMTHORN")
+                        echo $jugador["power"]." = ".$total_naves."<br>";
                     $total_naves += $jugador["power"];
                 }
                 $total += $jugador["power"];
@@ -42,9 +44,9 @@ class Gremio extends AccionBasica
         }
 
         return [
-            "*PG TOTAL:* {$total}",
-            "*PG PERSONAJES:* {$total_personajes}",
-            "*PG NAVES:* {$total_naves}",
+            BOLD."PG TOTAL:".BOLD_CERRAR." {$total}",
+            BOLD."PG PERSONAJES:".BOLD_CERRAR." {$total_personajes}",
+            BOLD."PG NAVES:".BOLD_CERRAR." {$total_naves}",
         ];
     }
 }
