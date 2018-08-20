@@ -32,6 +32,7 @@ class Gremio extends AccionBasica
         $total_naves = 0;
         $total_naves_amthorn = 0;
         $cantidad_naves_amthorn = 0;
+        echo "<table>";
         foreach ($this->objetoJSON as $nombre_personaje => $personaje) {
             foreach ($personaje as $jugador) {
                 if ($jugador["combat_type"] == "1") {
@@ -40,14 +41,14 @@ class Gremio extends AccionBasica
                     if (mb_strtoupper($jugador["player"]) == "AMTHORN") {
                         $total_naves_amthorn += $jugador["power"];
                         $cantidad_naves_amthorn += 1;
-                        echo "[{$cantidad_naves_amthorn}] ".$nombre_personaje.": ".$jugador["power"] . " = " . $total_naves_amthorn . "<br>";
+                        echo "<tr><td>".$nombre_personaje."</td><td>".$jugador["power"] . "</td><td>" . $total_naves_amthorn . "</td></tr>";
                     }
                     $total_naves += $jugador["power"];
                 }
                 $total += $jugador["power"];
             }
         }
-
+        echo "</table>";
         return [
             BOLD."PG TOTAL:".BOLD_CERRAR." {$total}",
             BOLD."PG PERSONAJES:".BOLD_CERRAR." {$total_personajes}",
