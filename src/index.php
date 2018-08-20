@@ -25,7 +25,7 @@ if (is_null($update)) {
         $update["message"]["text"] = $_GET["instruccion"];
         $update["message"]["from"]["username"] = "Amthorn";
 
-        $bot = new BotInline(TOKEN, RUTA_API, $update);
+        $bot = new Bot(TOKEN, RUTA_API, $update);
         $response = new Response($bot);
     } else {
         $bot = new BotHTML("/" . $_GET["instruccion"]);
