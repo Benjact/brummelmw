@@ -30,13 +30,16 @@ class Gremio extends AccionBasica
         $total = 0;
         $total_personajes = 0;
         $total_naves = 0;
+        $total_naves_amthorn = 0;
         foreach ($this->objetoJSON as $personaje) {
             foreach ($personaje as $jugador) {
                 if ($jugador["combat_type"] == "1") {
                     $total_personajes += $jugador["power"];
                 } else {
-                    if (mb_strtoupper($jugador["player"]) == "AMTHORN")
-                        echo $jugador["power"]." = ".$total_naves."<br>";
+                    if (mb_strtoupper($jugador["player"]) == "AMTHORN") {
+                        $total_naves_amthorn += $jugador["power"];
+                        echo $jugador["power"] . " = " . $total_naves_amthorn . "<br>";
+                    }
                     $total_naves += $jugador["power"];
                 }
                 $total += $jugador["power"];
