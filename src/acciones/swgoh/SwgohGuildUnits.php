@@ -8,6 +8,6 @@ class SwgohGuildUnits implements iSWGOH
 {
     public static function recuperarJSON(): array
     {
-        return json_decode(file_get_contents("https://swgoh.gg/api/guilds/7217/units/"), true);
+        return json_decode(file_get_contents("https://swgoh.gg/api/guilds/".ID_GREMIO."/units/"), true);
     }
 }
