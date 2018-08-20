@@ -18,7 +18,7 @@ class Response
     public function devolverMensaje($mensaje)
     {
         $url = $this->bot->webSite()."/sendMessage";
-
+        echo "entra aqui";
         $fields = [
             "chat_id" => $this->bot->chatId(),
             "parse_mode" => "Markdown",
