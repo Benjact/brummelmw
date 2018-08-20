@@ -7,8 +7,10 @@ define("RUTA_WEB", "brumelmw.000webhostapp.com");
 //define("PARSE_MODE", "MARKDOWN");
 //define("BOLD", "*");
 //define("ENTER", "\\");
+//define("ASTERISCO", "\*");
 
 define("PARSE_MODE", "HTML");
 define("BOLD", "<b>");
 define("ENTER", "\n");
+define("ASTERISCO", "&#42;");
 

@@ -129,7 +129,7 @@ class Personajes extends AccionBasica
         }
         foreach ($recopilacion as $estrellas_recopilacion => $datos) {
             if ($estrellas_recopilacion >= $estrellas) {
-                $datos_retorno[] = BOLD."{$estrellas_recopilacion}\* => {$datos["cantidad"]} en el gremio".BOLD;
+                $datos_retorno[] = BOLD.$estrellas_recopilacion.ASTERISCO." => {$datos["cantidad"]} en el gremio".BOLD;
                 if (!empty($datos["jugadores"])) {
                     foreach ($datos["jugadores"] as $jugador) {
                         $datos_retorno[] = $jugador;
