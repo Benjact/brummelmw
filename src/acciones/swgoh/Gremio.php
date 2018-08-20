@@ -35,7 +35,7 @@ class Gremio extends AccionBasica
                 if ($jugador["combat_type"] == "1") {
                     $total_personajes += $jugador["power"];
                 } else {
-                    if ($jugador["player"] == "AMTHORN")
+                    if (mb_strtoupper($jugador["player"]) == "AMTHORN")
                         echo $jugador["power"]." = ".$total_naves."<br>";
                     $total_naves += $jugador["power"];
                 }
