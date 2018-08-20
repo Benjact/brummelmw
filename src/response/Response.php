@@ -18,13 +18,13 @@ class Response
     public function devolverMensaje($mensaje)
     {
         $url = $this->bot->webSite()."/sendMessage";
-        echo "entra aqui";
+
         $fields = [
             "chat_id" => $this->bot->chatId(),
             "parse_mode" => "Markdown",
             "text" => is_array($mensaje) ? implode("\n", $mensaje) : $mensaje,
         ];
-
+        echo "entra aqui<pre>".print_r($fields, true)."</pre>";
         $ch = curl_init();
         //  set the url
         curl_setopt($ch, CURLOPT_URL, $url);
