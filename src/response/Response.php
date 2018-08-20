@@ -24,7 +24,7 @@ class Response
             "parse_mode" => PARSE_MODE,
             "text" => is_array($mensaje) ? implode(ENTER, $mensaje) : $mensaje,
         ];
-        echo "entra aqui<pre>".print_r($fields, true)."</pre>";
+
         $ch = curl_init();
         //  set the url
         curl_setopt($ch, CURLOPT_URL, $url);
