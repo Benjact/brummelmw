@@ -5,6 +5,6 @@ class ResponseHTML
 {
     public function devolverMensaje($mensaje)
     {
-        echo is_array($mensaje) ? implode("<br>", $mensaje) : $mensaje;
+        echo is_array($mensaje) ? implode(ENTER, $mensaje) : $mensaje;
     }
 }
