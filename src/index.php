@@ -26,6 +26,7 @@ if (is_null($update)) {
         $update["message"]["from"]["username"] = "Amthorn";
 
         $bot = new Bot(TOKEN, RUTA_API, $update);
+        echo "entra aqui";
         $response = new Response($bot);
     } else {
         $bot = new BotHTML("/" . $_GET["instruccion"]);
@@ -34,6 +35,7 @@ if (is_null($update)) {
 } else {
     if (isset($update["message"]["chat"])) {
         $bot = new Bot(TOKEN, RUTA_API, $update);
+
         $response = new Response($bot);
     } else {
         $bot = new BotInline(TOKEN, RUTA_API, $update);
