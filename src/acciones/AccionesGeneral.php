@@ -247,7 +247,7 @@ class AccionesGeneral
                     $texto = str_replace($original, $final, $texto);
                 }
             }
-            $this->instruccion = new Error();
+            $this->instruccion = new Error($texto);
         } else {
             $this->instruccion = new Error($mensaje);
         }
