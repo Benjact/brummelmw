@@ -8,7 +8,7 @@ class Utils
         return array_filter(array_map(function ($personaje) use ($filtro) {
             $strpos = strpos(mb_strtoupper($personaje), mb_strtoupper($filtro));
             if ($strpos !== false) {
-                return str_replace($filtro, BOLD."{$filtro}".BOLD, $personaje);
+                return str_replace($filtro, BOLD.$filtro.BOLD_CERRAR, $personaje);
             }
             return "";
         }, $array_filtrar));
