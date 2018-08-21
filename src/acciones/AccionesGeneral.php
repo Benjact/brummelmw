@@ -222,24 +222,32 @@ class AccionesGeneral
     }
 
     /**
-     * @param $instruccion_partida
+     * @param $mensaje
+     * @param string $username
      */
-    protected function accionHola($mensaje, $username)
+    protected function accionHola($mensaje, string $username)
     {
         if (isset($mensaje[$username])) {
             $this->accionMensaje($mensaje[$username]);
         } else {
-            $this->accionMensaje("¿Tú quien eres, {$username}?");
+            $this->accionMensaje($mensaje["desconocido"], ["username" => $username]);
         }
     }
 
     /**
-     * @param $instruccion_partida
+     * @param $mensaje
+     * @param array $sustituir
      */
-    protected function accionMensaje($mensaje)
+    protected function accionMensaje($mensaje, array $sustituir = [])
     {
         if (is_array($mensaje)) {
-            $this->instruccion = new Error(array_rand(array_flip($mensaje), 1));
+            $texto = array_rand(array_flip($mensaje), 1);
+            if (count($sustituir)) {
+                foreach ($sustituir as $original => $final) {
+                    $texto = str_replace($original, $final, $texto);
+                }
+            }
+            $this->instruccion = new Error();
         } else {
             $this->instruccion = new Error($mensaje);
         }

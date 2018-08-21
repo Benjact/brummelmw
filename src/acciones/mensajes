@@ -31,5 +31,9 @@ return [
             "Entre tu mujer y la de @Genesismad no doy a vasto con las denuncias",
             "Yo que se! Habla con @TheOldBrummel",
         ],
+        "desconocido" => [
+            "¿Tú quien eres, username?",
+            "@SpawTadeus, ¿username nos cae bien?",
+        ],
     ],
 ];
