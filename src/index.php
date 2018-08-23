@@ -13,7 +13,6 @@ use BrummelMW\response\Response;
 use BrummelMW\response\ResponseHTML;
 use BrummelMW\response\ResponseInline;
 
-
 $update = json_decode(file_get_contents("php://input"), true);
 $inline = false;
 if (is_null($update)) {
