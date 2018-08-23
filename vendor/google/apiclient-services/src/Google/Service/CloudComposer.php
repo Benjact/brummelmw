@@ -16,7 +16,7 @@
  */
 
 /**
- * Service definition for CloudComposer (v1beta1).
+ * Service definition for CloudComposer (v1).
  *
  * <p>
  * Manages Apache Airflow environments on Google Cloud Platform.</p>
@@ -47,7 +47,7 @@ class Google_Service_CloudComposer extends Google_Service
     parent::__construct($client);
     $this->rootUrl = 'https://composer.googleapis.com/';
     $this->servicePath = '';
-    $this->version = 'v1beta1';
+    $this->version = 'v1';
     $this->serviceName = 'composer';
 
     $this->projects_locations_environments = new Google_Service_CloudComposer_Resource_ProjectsLocationsEnvironments(
@@ -57,7 +57,7 @@ class Google_Service_CloudComposer extends Google_Service
         array(
           'methods' => array(
             'create' => array(
-              'path' => 'v1beta1/{+parent}/environments',
+              'path' => 'v1/{+parent}/environments',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'parent' => array(
@@ -67,7 +67,7 @@ class Google_Service_CloudComposer extends Google_Service
                 ),
               ),
             ),'delete' => array(
-              'path' => 'v1beta1/{+name}',
+              'path' => 'v1/{+name}',
               'httpMethod' => 'DELETE',
               'parameters' => array(
                 'name' => array(
@@ -77,7 +77,7 @@ class Google_Service_CloudComposer extends Google_Service
                 ),
               ),
             ),'get' => array(
-              'path' => 'v1beta1/{+name}',
+              'path' => 'v1/{+name}',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'name' => array(
@@ -87,7 +87,7 @@ class Google_Service_CloudComposer extends Google_Service
                 ),
               ),
             ),'list' => array(
-              'path' => 'v1beta1/{+parent}/environments',
+              'path' => 'v1/{+parent}/environments',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'parent' => array(
@@ -105,7 +105,7 @@ class Google_Service_CloudComposer extends Google_Service
                 ),
               ),
             ),'patch' => array(
-              'path' => 'v1beta1/{+name}',
+              'path' => 'v1/{+name}',
               'httpMethod' => 'PATCH',
               'parameters' => array(
                 'name' => array(
@@ -129,7 +129,7 @@ class Google_Service_CloudComposer extends Google_Service
         array(
           'methods' => array(
             'delete' => array(
-              'path' => 'v1beta1/{+name}',
+              'path' => 'v1/{+name}',
               'httpMethod' => 'DELETE',
               'parameters' => array(
                 'name' => array(
@@ -139,7 +139,7 @@ class Google_Service_CloudComposer extends Google_Service
                 ),
               ),
             ),'get' => array(
-              'path' => 'v1beta1/{+name}',
+              'path' => 'v1/{+name}',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'name' => array(
@@ -149,17 +149,13 @@ class Google_Service_CloudComposer extends Google_Service
                 ),
               ),
             ),'list' => array(
-              'path' => 'v1beta1/{+name}/operations',
+              'path' => 'v1/{+name}/operations',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'name' => array(
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
                 ),
                 'filter' => array(
                   'location' => 'query',
@@ -168,6 +164,10 @@ class Google_Service_CloudComposer extends Google_Service
                 'pageToken' => array(
                   'location' => 'query',
                   'type' => 'string',
+                ),
+                'pageSize' => array(
+                  'location' => 'query',
+                  'type' => 'integer',
                 ),
               ),
             ),

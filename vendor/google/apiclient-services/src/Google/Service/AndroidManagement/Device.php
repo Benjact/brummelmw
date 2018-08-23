@@ -40,6 +40,7 @@ class Google_Service_AndroidManagement_Device extends Google_Collection
   public $lastPolicyComplianceReportTime;
   public $lastPolicySyncTime;
   public $lastStatusReportTime;
+  public $managementMode;
   protected $memoryEventsType = 'Google_Service_AndroidManagement_MemoryEvent';
   protected $memoryEventsDataType = 'array';
   protected $memoryInfoType = 'Google_Service_AndroidManagement_MemoryInfo';
@@ -222,6 +223,14 @@ class Google_Service_AndroidManagement_Device extends Google_Collection
   public function getLastStatusReportTime()
   {
     return $this->lastStatusReportTime;
+  }
+  public function setManagementMode($managementMode)
+  {
+    $this->managementMode = $managementMode;
+  }
+  public function getManagementMode()
+  {
+    return $this->managementMode;
   }
   /**
    * @param Google_Service_AndroidManagement_MemoryEvent

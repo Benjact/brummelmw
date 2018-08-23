@@ -41,7 +41,11 @@ class Google_Service_AndroidPublisher_Resource_EditsBundles extends Google_Servi
     return $this->call('list', array($params), "Google_Service_AndroidPublisher_BundlesListResponse");
   }
   /**
-   * (bundles.upload)
+   * Uploads a new Android App Bundle to this edit. If you are using the Google
+   * API client libraries, please increase the timeout of the http request before
+   * calling this endpoint (a timeout of 2 minutes is recommended). See:
+   * https://developers.google.com/api-client-library/java/google-api-java-
+   * client/errors for an example in java. (bundles.upload)
    *
    * @param string $packageName Unique identifier for the Android app that is
    * being updated; for example, "com.spiffygame".

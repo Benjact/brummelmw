@@ -70,6 +70,8 @@ class Google_Service_AndroidManagement_Policy extends Google_Collection
   public $outgoingCallsDisabled;
   protected $passwordRequirementsType = 'Google_Service_AndroidManagement_PasswordRequirements';
   protected $passwordRequirementsDataType = '';
+  protected $permissionGrantsType = 'Google_Service_AndroidManagement_PermissionGrant';
+  protected $permissionGrantsDataType = 'array';
   protected $permittedInputMethodsType = 'Google_Service_AndroidManagement_PackageNameList';
   protected $permittedInputMethodsDataType = '';
   protected $persistentPreferredActivitiesType = 'Google_Service_AndroidManagement_PersistentPreferredActivity';
@@ -504,6 +506,20 @@ class Google_Service_AndroidManagement_Policy extends Google_Collection
   public function getPasswordRequirements()
   {
     return $this->passwordRequirements;
+  }
+  /**
+   * @param Google_Service_AndroidManagement_PermissionGrant
+   */
+  public function setPermissionGrants($permissionGrants)
+  {
+    $this->permissionGrants = $permissionGrants;
+  }
+  /**
+   * @return Google_Service_AndroidManagement_PermissionGrant
+   */
+  public function getPermissionGrants()
+  {
+    return $this->permissionGrants;
   }
   /**
    * @param Google_Service_AndroidManagement_PackageNameList

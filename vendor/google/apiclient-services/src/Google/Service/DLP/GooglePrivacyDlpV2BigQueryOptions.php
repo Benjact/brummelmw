@@ -21,6 +21,7 @@ class Google_Service_DLP_GooglePrivacyDlpV2BigQueryOptions extends Google_Collec
   protected $identifyingFieldsType = 'Google_Service_DLP_GooglePrivacyDlpV2FieldId';
   protected $identifyingFieldsDataType = 'array';
   public $rowsLimit;
+  public $rowsLimitPercent;
   public $sampleMethod;
   protected $tableReferenceType = 'Google_Service_DLP_GooglePrivacyDlpV2BigQueryTable';
   protected $tableReferenceDataType = '';
@@ -46,6 +47,14 @@ class Google_Service_DLP_GooglePrivacyDlpV2BigQueryOptions extends Google_Collec
   public function getRowsLimit()
   {
     return $this->rowsLimit;
+  }
+  public function setRowsLimitPercent($rowsLimitPercent)
+  {
+    $this->rowsLimitPercent = $rowsLimitPercent;
+  }
+  public function getRowsLimitPercent()
+  {
+    return $this->rowsLimitPercent;
   }
   public function setSampleMethod($sampleMethod)
   {

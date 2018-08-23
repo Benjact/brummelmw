@@ -16,7 +16,7 @@
  */
 
 /**
- * Service definition for Dfareporting (v3.1).
+ * Service definition for Dfareporting (v3.2).
  *
  * <p>
  * Manages your DoubleClick Campaign Manager ad campaigns and reports.</p>
@@ -113,8 +113,8 @@ class Google_Service_Dfareporting extends Google_Service
   {
     parent::__construct($client);
     $this->rootUrl = 'https://www.googleapis.com/';
-    $this->servicePath = 'dfareporting/v3.1/';
-    $this->version = 'v3.1';
+    $this->servicePath = 'dfareporting/v3.2/';
+    $this->version = 'v3.2';
     $this->serviceName = 'dfareporting';
 
     $this->accountActiveAdSummaries = new Google_Service_Dfareporting_Resource_AccountActiveAdSummaries(

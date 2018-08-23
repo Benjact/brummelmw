@@ -28,7 +28,8 @@ class Google_Service_CloudKMS_Resource_ProjectsLocationsKeyRingsCryptoKeys exten
   /**
    * Create a new CryptoKey within a KeyRing.
    *
-   * CryptoKey.purpose is required. (cryptoKeys.create)
+   * CryptoKey.purpose and CryptoKey.version_template.algorithm are required.
+   * (cryptoKeys.create)
    *
    * @param string $parent Required. The name of the KeyRing associated with the
    * CryptoKeys.
@@ -46,7 +47,8 @@ class Google_Service_CloudKMS_Resource_ProjectsLocationsKeyRingsCryptoKeys exten
     return $this->call('create', array($params), "Google_Service_CloudKMS_CryptoKey");
   }
   /**
-   * Decrypts data that was protected by Encrypt. (cryptoKeys.decrypt)
+   * Decrypts data that was protected by Encrypt. The CryptoKey.purpose must be
+   * ENCRYPT_DECRYPT. (cryptoKeys.decrypt)
    *
    * @param string $name Required. The resource name of the CryptoKey to use for
    * decryption. The server will choose the appropriate version.
@@ -61,8 +63,8 @@ class Google_Service_CloudKMS_Resource_ProjectsLocationsKeyRingsCryptoKeys exten
     return $this->call('decrypt', array($params), "Google_Service_CloudKMS_DecryptResponse");
   }
   /**
-   * Encrypts data, so that it can only be recovered by a call to Decrypt.
-   * (cryptoKeys.encrypt)
+   * Encrypts data, so that it can only be recovered by a call to Decrypt. The
+   * CryptoKey.purpose must be ENCRYPT_DECRYPT. (cryptoKeys.encrypt)
    *
    * @param string $name Required. The resource name of the CryptoKey or
    * CryptoKeyVersion to use for encryption.
@@ -115,12 +117,14 @@ class Google_Service_CloudKMS_Resource_ProjectsLocationsKeyRingsCryptoKeys exten
    * the format `projects/locations/keyRings`.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string pageToken Optional pagination token, returned earlier via
-   * ListCryptoKeysResponse.next_page_token.
    * @opt_param int pageSize Optional limit on the number of CryptoKeys to include
    * in the response.  Further CryptoKeys can subsequently be obtained by
    * including the ListCryptoKeysResponse.next_page_token in a subsequent request.
    * If unspecified, the server will pick an appropriate default.
+   * @opt_param string versionView The fields of the primary version to include in
+   * the response.
+   * @opt_param string pageToken Optional pagination token, returned earlier via
+   * ListCryptoKeysResponse.next_page_token.
    * @return Google_Service_CloudKMS_ListCryptoKeysResponse
    */
   public function listProjectsLocationsKeyRingsCryptoKeys($parent, $optParams = array())
@@ -188,6 +192,8 @@ class Google_Service_CloudKMS_Resource_ProjectsLocationsKeyRingsCryptoKeys exten
   }
   /**
    * Update the version of a CryptoKey that will be used in Encrypt.
+   *
+   * Returns an error if called on an asymmetric key.
    * (cryptoKeys.updatePrimaryVersion)
    *
    * @param string $name The resource name of the CryptoKey to update.

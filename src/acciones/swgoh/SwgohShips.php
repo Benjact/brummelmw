@@ -4,7 +4,7 @@ namespace BrummelMW\acciones\swgoh;
 use BrummelMW\acciones\AccionBasica;
 use BrummelMW\acciones\iAcciones;
 
-class SwgohCharacters implements iSWGOH
+class SwgohShips implements iSWGOH
 {
     public static function recuperarJSON(): array
     {

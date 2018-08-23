@@ -76,10 +76,8 @@ class Google_Service_CloudTasks_Resource_ProjectsLocationsQueuesTasks extends Go
    *
    * Tasks cannot be updated after creation; there is no UpdateTask command.
    *
-   * * For [App Engine queues](google.cloud.tasks.v2beta2.AppEngineHttpTarget),
-   * the maximum task size is 100KB. * For [pull
-   * queues](google.cloud.tasks.v2beta2.PullTarget), this   the maximum task size
-   * is 1MB. (tasks.create)
+   * * For App Engine queues, the maximum task size is   100KB. * For pull queues,
+   * the maximum task size is 1MB. (tasks.create)
    *
    * @param string $parent Required.
    *
@@ -135,7 +133,7 @@ class Google_Service_CloudTasks_Resource_ProjectsLocationsQueuesTasks extends Go
    * data that it contains.
    *
    * Authorization for FULL requires `cloudtasks.tasks.fullView` [Google
-   * IAM](/iam/) permission on the Task resource.
+   * IAM](https://cloud.google.com/iam/) permission on the Task resource.
    * @return Google_Service_CloudTasks_Task
    */
   public function get($name, $optParams = array())
@@ -179,7 +177,10 @@ class Google_Service_CloudTasks_Resource_ProjectsLocationsQueuesTasks extends Go
    *
    * By default, only the BASIC view is retrieved due to performance
    * considerations; response_view controls the subset of information which is
-   * returned. (tasks.listProjectsLocationsQueuesTasks)
+   * returned.
+   *
+   * The tasks may be returned in any order. The ordering may change at any time.
+   * (tasks.listProjectsLocationsQueuesTasks)
    *
    * @param string $parent Required.
    *
@@ -202,7 +203,7 @@ class Google_Service_CloudTasks_Resource_ProjectsLocationsQueuesTasks extends Go
    * data that it contains.
    *
    * Authorization for FULL requires `cloudtasks.tasks.fullView` [Google
-   * IAM](/iam/) permission on the Task resource.
+   * IAM](https://cloud.google.com/iam/) permission on the Task resource.
    * @opt_param string pageToken A token identifying the page of results to
    * return.
    *

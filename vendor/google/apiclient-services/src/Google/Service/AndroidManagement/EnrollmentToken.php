@@ -21,6 +21,7 @@ class Google_Service_AndroidManagement_EnrollmentToken extends Google_Model
   public $duration;
   public $expirationTimestamp;
   public $name;
+  public $oneTimeOnly;
   public $policyName;
   public $qrCode;
   public $value;
@@ -56,6 +57,14 @@ class Google_Service_AndroidManagement_EnrollmentToken extends Google_Model
   public function getName()
   {
     return $this->name;
+  }
+  public function setOneTimeOnly($oneTimeOnly)
+  {
+    $this->oneTimeOnly = $oneTimeOnly;
+  }
+  public function getOneTimeOnly()
+  {
+    return $this->oneTimeOnly;
   }
   public function setPolicyName($policyName)
   {

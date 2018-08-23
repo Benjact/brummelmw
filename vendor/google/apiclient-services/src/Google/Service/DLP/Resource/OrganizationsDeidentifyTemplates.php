@@ -86,10 +86,10 @@ class Google_Service_DLP_Resource_OrganizationsDeidentifyTemplates extends Googl
    * project-id or organizations/my-org-id.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param int pageSize Optional size of the page, can be limited by server.
-   * If zero server returns a page of max size 100.
    * @opt_param string pageToken Optional page token to continue retrieval. Comes
    * from previous call to `ListDeidentifyTemplates`.
+   * @opt_param int pageSize Optional size of the page, can be limited by server.
+   * If zero server returns a page of max size 100.
    * @return Google_Service_DLP_GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
    */
   public function listOrganizationsDeidentifyTemplates($parent, $optParams = array())

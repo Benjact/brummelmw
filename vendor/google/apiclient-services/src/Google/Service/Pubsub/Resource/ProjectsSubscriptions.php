@@ -125,8 +125,8 @@ class Google_Service_Pubsub_Resource_ProjectsSubscriptions extends Google_Servic
   /**
    * Lists matching subscriptions. (subscriptions.listProjectsSubscriptions)
    *
-   * @param string $project The name of the cloud project that subscriptions
-   * belong to. Format is `projects/{project}`.
+   * @param string $project The name of the project in which to list
+   * subscriptions. Format is `projects/{project-id}`.
    * @param array $optParams Optional parameters.
    *
    * @opt_param string pageToken The value returned by the last
@@ -204,10 +204,9 @@ class Google_Service_Pubsub_Resource_ProjectsSubscriptions extends Google_Servic
     return $this->call('patch', array($params), "Google_Service_Pubsub_Subscription");
   }
   /**
-   * Pulls messages from the server. Returns an empty list if there are no
-   * messages available in the backlog. The server may return `UNAVAILABLE` if
-   * there are too many concurrent pull requests pending for the given
-   * subscription. (subscriptions.pull)
+   * Pulls messages from the server. The server may return `UNAVAILABLE` if there
+   * are too many concurrent pull requests pending for the given subscription.
+   * (subscriptions.pull)
    *
    * @param string $subscription The subscription from which messages should be
    * pulled. Format is `projects/{project}/subscriptions/{sub}`.

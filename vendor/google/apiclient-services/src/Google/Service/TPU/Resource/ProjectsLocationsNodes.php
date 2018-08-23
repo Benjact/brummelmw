@@ -73,9 +73,9 @@ class Google_Service_TPU_Resource_ProjectsLocationsNodes extends Google_Service_
    * @param string $parent The parent resource name.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param int pageSize The maximum number of items to return.
    * @opt_param string pageToken The next_page_token value returned from a
    * previous List request, if any.
+   * @opt_param int pageSize The maximum number of items to return.
    * @return Google_Service_TPU_ListNodesResponse
    */
   public function listProjectsLocationsNodes($parent, $optParams = array())
@@ -97,20 +97,6 @@ class Google_Service_TPU_Resource_ProjectsLocationsNodes extends Google_Service_
     $params = array('name' => $name, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
     return $this->call('reimage', array($params), "Google_Service_TPU_Operation");
-  }
-  /**
-   * Resets a node, which stops and starts the VM. (nodes.reset)
-   *
-   * @param string $name The resource name.
-   * @param Google_Service_TPU_ResetNodeRequest $postBody
-   * @param array $optParams Optional parameters.
-   * @return Google_Service_TPU_Operation
-   */
-  public function reset($name, Google_Service_TPU_ResetNodeRequest $postBody, $optParams = array())
-  {
-    $params = array('name' => $name, 'postBody' => $postBody);
-    $params = array_merge($params, $optParams);
-    return $this->call('reset', array($params), "Google_Service_TPU_Operation");
   }
   /**
    * Starts a node. (nodes.start)

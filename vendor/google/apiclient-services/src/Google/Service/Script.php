@@ -19,9 +19,7 @@
  * Service definition for Script (v1).
  *
  * <p>
- * An API for managing and executing Google Apps Script projects. Note: In order
- * to use this API in your apps, you must  enable it for use. To allow other
- * apps to manage your scripts, you must  grant them access.</p>
+ * An API for managing and executing Google Apps Script projects.</p>
  *
  * <p>
  * For more information about this service, see the API
@@ -98,6 +96,22 @@ class Google_Service_Script extends Google_Service
               'path' => 'v1/processes',
               'httpMethod' => 'GET',
               'parameters' => array(
+                'userProcessFilter.deploymentId' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'pageToken' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'userProcessFilter.endTime' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'pageSize' => array(
+                  'location' => 'query',
+                  'type' => 'integer',
+                ),
                 'userProcessFilter.startTime' => array(
                   'location' => 'query',
                   'type' => 'string',
@@ -128,22 +142,6 @@ class Google_Service_Script extends Google_Service
                   'location' => 'query',
                   'type' => 'string',
                   'repeated' => true,
-                ),
-                'userProcessFilter.deploymentId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'userProcessFilter.endTime' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
                 ),
               ),
             ),'listScriptProcesses' => array(

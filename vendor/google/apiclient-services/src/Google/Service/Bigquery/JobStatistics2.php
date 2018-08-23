@@ -24,6 +24,10 @@ class Google_Service_Bigquery_JobStatistics2 extends Google_Collection
   protected $ddlTargetTableType = 'Google_Service_Bigquery_TableReference';
   protected $ddlTargetTableDataType = '';
   public $estimatedBytesProcessed;
+  protected $modelTrainingType = 'Google_Service_Bigquery_BigQueryModelTraining';
+  protected $modelTrainingDataType = '';
+  public $modelTrainingCurrentIteration;
+  public $modelTrainingExpectedTotalIteration;
   public $numDmlAffectedRows;
   protected $queryPlanType = 'Google_Service_Bigquery_ExplainQueryStage';
   protected $queryPlanDataType = 'array';
@@ -88,6 +92,36 @@ class Google_Service_Bigquery_JobStatistics2 extends Google_Collection
   public function getEstimatedBytesProcessed()
   {
     return $this->estimatedBytesProcessed;
+  }
+  /**
+   * @param Google_Service_Bigquery_BigQueryModelTraining
+   */
+  public function setModelTraining(Google_Service_Bigquery_BigQueryModelTraining $modelTraining)
+  {
+    $this->modelTraining = $modelTraining;
+  }
+  /**
+   * @return Google_Service_Bigquery_BigQueryModelTraining
+   */
+  public function getModelTraining()
+  {
+    return $this->modelTraining;
+  }
+  public function setModelTrainingCurrentIteration($modelTrainingCurrentIteration)
+  {
+    $this->modelTrainingCurrentIteration = $modelTrainingCurrentIteration;
+  }
+  public function getModelTrainingCurrentIteration()
+  {
+    return $this->modelTrainingCurrentIteration;
+  }
+  public function setModelTrainingExpectedTotalIteration($modelTrainingExpectedTotalIteration)
+  {
+    $this->modelTrainingExpectedTotalIteration = $modelTrainingExpectedTotalIteration;
+  }
+  public function getModelTrainingExpectedTotalIteration()
+  {
+    return $this->modelTrainingExpectedTotalIteration;
   }
   public function setNumDmlAffectedRows($numDmlAffectedRows)
   {

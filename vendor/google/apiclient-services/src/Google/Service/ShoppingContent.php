@@ -153,6 +153,21 @@ class Google_Service_ShoppingContent extends Google_Service
                   'type' => 'boolean',
                 ),
               ),
+            ),'link' => array(
+              'path' => '{merchantId}/accounts/{accountId}/link',
+              'httpMethod' => 'POST',
+              'parameters' => array(
+                'merchantId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'accountId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
             ),'list' => array(
               'path' => '{merchantId}/accounts',
               'httpMethod' => 'GET',
@@ -1039,6 +1054,10 @@ class Google_Service_ShoppingContent extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ),
+                'country' => array(
+                  'location' => 'query',
+                  'type' => 'string',
                 ),
               ),
             ),'instorerefundlineitem' => array(

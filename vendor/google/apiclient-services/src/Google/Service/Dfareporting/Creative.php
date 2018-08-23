@@ -22,6 +22,8 @@ class Google_Service_Dfareporting_Creative extends Google_Collection
   public $active;
   public $adParameters;
   public $adTagKeys;
+  protected $additionalSizesType = 'Google_Service_Dfareporting_Size';
+  protected $additionalSizesDataType = 'array';
   public $advertiserId;
   public $allowScriptAccess;
   public $archived;
@@ -132,6 +134,20 @@ class Google_Service_Dfareporting_Creative extends Google_Collection
   public function getAdTagKeys()
   {
     return $this->adTagKeys;
+  }
+  /**
+   * @param Google_Service_Dfareporting_Size
+   */
+  public function setAdditionalSizes($additionalSizes)
+  {
+    $this->additionalSizes = $additionalSizes;
+  }
+  /**
+   * @return Google_Service_Dfareporting_Size
+   */
+  public function getAdditionalSizes()
+  {
+    return $this->additionalSizes;
   }
   public function setAdvertiserId($advertiserId)
   {

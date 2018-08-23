@@ -39,6 +39,7 @@ class Google_Service_Datastore extends Google_Service
       "https://www.googleapis.com/auth/datastore";
 
   public $projects;
+  public $projects_indexes;
   public $projects_operations;
   
   /**
@@ -148,6 +149,53 @@ class Google_Service_Datastore extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ),
+              ),
+            ),
+          )
+        )
+    );
+    $this->projects_indexes = new Google_Service_Datastore_Resource_ProjectsIndexes(
+        $this,
+        $this->serviceName,
+        'indexes',
+        array(
+          'methods' => array(
+            'get' => array(
+              'path' => 'v1/projects/{projectId}/indexes/{indexId}',
+              'httpMethod' => 'GET',
+              'parameters' => array(
+                'projectId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'indexId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),'list' => array(
+              'path' => 'v1/projects/{projectId}/indexes',
+              'httpMethod' => 'GET',
+              'parameters' => array(
+                'projectId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'filter' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'pageToken' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'pageSize' => array(
+                  'location' => 'query',
+                  'type' => 'integer',
                 ),
               ),
             ),

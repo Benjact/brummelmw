@@ -20,6 +20,8 @@ class Google_Service_Dfareporting_CreativeAsset extends Google_Collection
   protected $collection_key = 'detectedFeatures';
   public $actionScript3;
   public $active;
+  protected $additionalSizesType = 'Google_Service_Dfareporting_Size';
+  protected $additionalSizesDataType = 'array';
   public $alignment;
   public $artworkType;
   protected $assetIdentifierType = 'Google_Service_Dfareporting_CreativeAssetId';
@@ -87,6 +89,20 @@ class Google_Service_Dfareporting_CreativeAsset extends Google_Collection
   public function getActive()
   {
     return $this->active;
+  }
+  /**
+   * @param Google_Service_Dfareporting_Size
+   */
+  public function setAdditionalSizes($additionalSizes)
+  {
+    $this->additionalSizes = $additionalSizes;
+  }
+  /**
+   * @return Google_Service_Dfareporting_Size
+   */
+  public function getAdditionalSizes()
+  {
+    return $this->additionalSizes;
   }
   public function setAlignment($alignment)
   {

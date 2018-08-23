@@ -58,6 +58,7 @@ class Google_Service_Analytics extends Google_Service
   public $management_accountSummaries;
   public $management_accountUserLinks;
   public $management_accounts;
+  public $management_clientId;
   public $management_customDataSources;
   public $management_customDimensions;
   public $management_customMetrics;
@@ -372,6 +373,20 @@ class Google_Service_Analytics extends Google_Service
                   'type' => 'integer',
                 ),
               ),
+            ),
+          )
+        )
+    );
+    $this->management_clientId = new Google_Service_Analytics_Resource_ManagementClientId(
+        $this,
+        $this->serviceName,
+        'clientId',
+        array(
+          'methods' => array(
+            'hashClientId' => array(
+              'path' => 'management/clientId:hashClientId',
+              'httpMethod' => 'POST',
+              'parameters' => array(),
             ),
           )
         )
