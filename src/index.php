@@ -32,15 +32,15 @@ if (is_null($update)) {
         $response = new ResponseHTML();
     }
 } else {
-    if (isset($update["message"]["chat"])) {
+    //if (isset($update["message"]["chat"])) {
         $bot = new Bot(TOKEN, RUTA_API, $update);
 
         $response = new Response($bot);
-    } else {
+    /*} else {
         $bot = new BotInline(TOKEN, RUTA_API, $update);
         $response = new ResponseInline($bot);
         $inline = true;
-    }
+    }*/
 }
 
 try {
