@@ -19,16 +19,12 @@ class Response
     {
         $url = $this->bot->webSite()."/sendMessage";
 
-        /*$fields = [
+        $fields = [
             "chat_id" => $this->bot->chatId(),
             "parse_mode" => PARSE_MODE,
             "text" => is_array($mensaje) ? implode(ENTER, $mensaje) : $mensaje,
-        ];*/
-        $fields = [
-            "chat_id" => $this->bot->chatId(),
-            "parse_mode" => "html",
-            "text" => "hola",
         ];
+
         $ch = curl_init();
         //  set the url
         curl_setopt($ch, CURLOPT_URL, $url);
