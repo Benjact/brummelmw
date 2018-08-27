@@ -7,12 +7,10 @@ require __DIR__ . '/../vendor/autoload.php';
 use BrummelMW\acciones\AccionesGeneral;
 use BrummelMW\acciones\ExcepcionAccion;
 use BrummelMW\bot\Bot;
-use BrummelMW\bot\BotInline;
 use BrummelMW\bot\BotHTML;
 use BrummelMW\response\ObjetoResponse;
 use BrummelMW\response\Response;
 use BrummelMW\response\ResponseHTML;
-use BrummelMW\response\ResponseInline;
 
 $update = json_decode(file_get_contents("php://input"), true);
 $inline = false;
