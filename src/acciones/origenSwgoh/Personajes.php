@@ -173,7 +173,7 @@ class Personajes extends AccionCompuesta
     {
         foreach ($this->objetoJSONextra as $personaje) {
             if ($personaje["base_id"] == $idPersonaje) {
-                return "{$idPersonaje} [Imagen](https:{$personaje["image"]})";
+                return "*{$idPersonaje}* [Image](https:{$personaje["image"]})";
             }
         }
 
