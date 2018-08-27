@@ -8,6 +8,6 @@ class SwgohCharacters implements iSWGOH
 {
     public static function recuperarJSON(): array
     {
-        return json_decode(file_get_contents("https://swgoh.gg/api/characters/"), true);
+        return json_decode(file_get_contents("https://swgoh.gg/api/characters/?format=json"), true);
     }
 }

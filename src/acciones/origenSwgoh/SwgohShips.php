@@ -8,6 +8,6 @@ class SwgohShips implements iSWGOH
 {
     public static function recuperarJSON(): array
     {
-        return json_decode(file_get_contents("https://swgoh.gg/api/ships/"), true);
+        return json_decode(file_get_contents("https://swgoh.gg/api/ships/?format=json"), true);
     }
 }
