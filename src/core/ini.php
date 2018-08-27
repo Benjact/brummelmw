@@ -5,11 +5,10 @@ define("RUTA_API", "https://api.telegram.org/bot");
 define("RUTA_WEB", "brumelmw.000webhostapp.com");
 define("ID_GREMIO", "7217");
 
-//define("PARSE_MODE", "MARKDOWN");
-//define("BOLD", "*");
-//define("BOLD_CERRAR", "*");
-//define("ENTER", "\\");
-//define("ASTERISCO", "\*");
+define("BOLD_MD", "*");
+define("BOLD_CERRAR_MD", "*");
+define("ENTER_MD", "\\");
+define("ASTERISCO_MD", "\*");
 
 define("PARSE_MODE", "HTML");
 define("BOLD", "<b>");

@@ -73,9 +73,9 @@ class Personajes extends AccionCompuesta
             if (in_array($this->personaje, $array_personajes)) {
                 $datos_personaje = $this->objetoJSON[$this->personaje];
                 if ($this->estrellas != 0) {
-                    return $this->retornoObjeto($id_chat, $this->infoPersonajeEstrellas($datos_personaje, $this->estrellas));
+                    return $this->retornoObjeto($id_chat, $this->infoPersonajeEstrellas($datos_personaje, $this->estrellas), "markdown");
                 } else {
-                    return $this->retornoObjeto($id_chat, $this->infoPersonaje($datos_personaje));
+                    return $this->retornoObjeto($id_chat, $this->infoPersonaje($datos_personaje), "markdown");
                 }
             } else {
                 throw new ExcepcionAccion($this->avisoPersonajeNoEncontrado());
@@ -83,11 +83,11 @@ class Personajes extends AccionCompuesta
         }
     }
 
-    protected function retornoObjeto(string $id_chat, array $array_mensaje): ObjetoResponse
+    protected function retornoObjeto(string $id_chat, array $array_mensaje, string $parse_mode = PARSE_MODE): ObjetoResponse
     {
         return new ObjetoResponse(ObjetoResponse::MENSAJE, [
             "chat_id" => $id_chat,
-            "parse_mode" => PARSE_MODE,
+            "parse_mode" => $parse_mode,
             "text" => implode(ENTER, $array_mensaje),
         ]);
     }
@@ -105,6 +105,14 @@ class Personajes extends AccionCompuesta
 
     protected function infoPersonajeEstrellas(array $datos_personaje, int $estrellas = 1)
     {
+
+        $datos_retorno = [];
+
+        $texto_imagen = $this->buscarImagen($this->personaje);
+        if ($texto_imagen != "") {
+            $datos_retorno[] = $texto_imagen;
+        }
+
         $recopilacion = [
             1 => ["cantidad" => 0],
             2 => ["cantidad" => 0],
@@ -134,13 +142,13 @@ class Personajes extends AccionCompuesta
                 }
                 return 0;
             }, array_keys($recopilacion), $recopilacion));
-            $datos_retorno = [BOLD."{$this->personaje} {$cantidad}/{$cantidad_total} en el gremio".BOLD_CERRAR];
+            $datos_retorno[] = BOLD_MD."{$cantidad}/{$cantidad_total} en el gremio".BOLD_CERRAR_MD;
         } else {
-            $datos_retorno = [BOLD."{$this->personaje} {$cantidad_total} en el gremio".BOLD_CERRAR];
+            $datos_retorno[] = BOLD_MD."{$cantidad_total} en el gremio".BOLD_CERRAR_MD;
         }
         foreach ($recopilacion as $estrellas_recopilacion => $datos) {
             if ($estrellas_recopilacion >= $estrellas) {
-                $datos_retorno[] = BOLD.$estrellas_recopilacion.ASTERISCO." => {$datos["cantidad"]} en el gremio".BOLD_CERRAR;
+                $datos_retorno[] = BOLD_MD.$estrellas_recopilacion.ASTERISCO_MD." => {$datos["cantidad"]} en el gremio".BOLD_CERRAR_MD;
                 if (!empty($datos["jugadores"])) {
                     foreach ($datos["jugadores"] as $jugador) {
                         $datos_retorno[] = $jugador;
@@ -158,5 +166,16 @@ class Personajes extends AccionCompuesta
     protected function avisoPersonajeNoEncontrado(): string
     {
         return "Personaje {$this->personaje} no encontrado";
+    }
+
+    protected function buscarImagen(string $idPersonaje)
+    {
+        foreach ($this->objetoJSONextra as $personaje) {
+            if ($personaje["base_id"] == $idPersonaje) {
+                return "[{$idPersonaje}](https://{$personaje["image"]})";
+            }
+        }
+
+        return "";
     }
 }
