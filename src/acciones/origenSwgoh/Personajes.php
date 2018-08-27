@@ -149,7 +149,7 @@ class Personajes extends AccionCompuesta
 
         foreach ($recopilacion as $estrellas_recopilacion => $datos) {
             if ($estrellas_recopilacion >= $estrellas) {
-                $datos_retorno[] = BOLD_MD.$estrellas_recopilacion.ASTERISCO_MD." => {$datos["cantidad"]} en el gremio".BOLD_CERRAR_MD;
+                $datos_retorno[] = BOLD_MD.$estrellas_recopilacion." => {$datos["cantidad"]} en el gremio".BOLD_CERRAR_MD;
                 if (!empty($datos["jugadores"])) {
                     foreach ($datos["jugadores"] as $jugador) {
                         $datos_retorno[] = $jugador;
