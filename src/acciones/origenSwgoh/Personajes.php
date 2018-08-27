@@ -146,6 +146,7 @@ class Personajes extends AccionCompuesta
         } else {
             $datos_retorno[] = BOLD_MD."{$cantidad_total} en el gremio".BOLD_CERRAR_MD;
         }
+
         foreach ($recopilacion as $estrellas_recopilacion => $datos) {
             if ($estrellas_recopilacion >= $estrellas) {
                 $datos_retorno[] = BOLD_MD.$estrellas_recopilacion.ASTERISCO_MD." => {$datos["cantidad"]} en el gremio".BOLD_CERRAR_MD;
