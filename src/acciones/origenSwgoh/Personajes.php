@@ -88,7 +88,7 @@ class Personajes extends AccionCompuesta
         return new ObjetoResponse(ObjetoResponse::MENSAJE, [
             "chat_id" => $id_chat,
             "parse_mode" => $parse_mode,
-            "text" => implode(ENTER, $array_mensaje),
+            "text" => implode(($parse_mode == PARSE_MODE) ? ENTER : ENTER_MD, $array_mensaje),
         ]);
     }
 
@@ -112,7 +112,7 @@ class Personajes extends AccionCompuesta
         if ($texto_imagen != "") {
             $datos_retorno[] = $texto_imagen;
         }
-        return $datos_retorno;
+
         $recopilacion = [
             1 => ["cantidad" => 0],
             2 => ["cantidad" => 0],
