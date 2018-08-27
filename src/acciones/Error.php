@@ -1,6 +1,8 @@
 <?php
 namespace BrummelMW\acciones;
 
+use BrummelMW\response\ObjetoResponse;
+
 class Error extends AccionBasica implements iAcciones
 {
     protected $mensaje_error = "";
@@ -11,13 +13,16 @@ class Error extends AccionBasica implements iAcciones
     }
 
     /**
-     * @return array|string
+     * @return ObjetoResponse
      * @throws ExcepcionAccion
      */
-    public function retorno()
+    public function retorno(): ObjetoResponse
     {
         if ($this->mensaje_error != "") {
-            return $this->mensaje_error;
+            return new ObjetoResponse(ObjetoResponse::MENSAJE, [
+                "parse_mode" => PARSE_MODE,
+                "text" => $this->mensaje_error,
+            ]);
         } else {
             throw new ExcepcionAccion("No reconozco esa instruccion");
         }

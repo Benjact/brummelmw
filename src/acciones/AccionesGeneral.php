@@ -1,25 +1,30 @@
 <?php
 namespace BrummelMW\acciones;
 
-use BrummelMW\acciones\swgoh\Gremio;
-use BrummelMW\acciones\swgoh\Hoth;
-use BrummelMW\acciones\swgoh\HothNaves;
-use BrummelMW\acciones\swgoh\Jugadores;
-use BrummelMW\acciones\swgoh\Naves;
-use BrummelMW\acciones\swgoh\Personajes;
-use BrummelMW\acciones\swgoh\PersonajesInline;
-use BrummelMW\acciones\swgoh\SwgohCharacters;
-use BrummelMW\acciones\swgoh\SwgohGuildUnits;
+use BrummelMW\acciones\origenSwgoh\Gremio;
+use BrummelMW\acciones\origenSwgoh\Hoth;
+use BrummelMW\acciones\origenSwgoh\HothNaves;
+use BrummelMW\acciones\origenSwgoh\Jugadores;
+use BrummelMW\acciones\origenSwgoh\Naves;
+use BrummelMW\acciones\origenSwgoh\Personajes;
+use BrummelMW\acciones\origenSwgoh\PersonajesInline;
+use BrummelMW\acciones\origenSwgoh\SwgohCharacters;
+use BrummelMW\acciones\origenSwgoh\SwgohGuildUnits;
+use BrummelMW\bot\iBot;
 use BrummelMW\core\PHPFileLoader;
+use BrummelMW\response\ObjetoResponse;
 
 class AccionesGeneral
 {
+    /**
+     * @var iAcciones
+     */
     protected $instruccion;
     protected $mensajes = [];
 
-    public function __construct(string $instruccion, string $username, bool $inline)
+    public function __construct(iBot $bot, bool $inline)
     {
-        $instruccion_partida = explode(" ", $instruccion);
+        $instruccion_partida = explode(" ", $bot->mensaje());
         $primera_palabra = $this->devuelvePrimeraPalabra($instruccion_partida);
 
         if (in_array($primera_palabra, ["ayuda", "help"])) {
@@ -53,7 +58,7 @@ class AccionesGeneral
         $this->mensajes = (new PHPFileLoader)->load(dirname(__DIR__) . "/acciones/mensajes");
         if (in_array($primera_palabra, array_keys($this->mensajes))) {
             if ($primera_palabra == "hola") {
-                $this->accionHola($this->mensajes[$primera_palabra], $username);
+                $this->accionHola($this->mensajes[$primera_palabra], $bot->username());
                 return;
             } else {
                 $this->accionMensaje($this->mensajes[$primera_palabra]);
@@ -82,9 +87,10 @@ class AccionesGeneral
     }
 
     /**
-     * @return string|array
+     * @return ObjetoResponse
+     * @throws ExcepcionAccion
      */
-    public function retorno()
+    public function retorno(): ObjetoResponse
     {
         if (!is_null($this->instruccion)) {
             return $this->instruccion->retorno();

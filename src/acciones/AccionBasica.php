@@ -1,6 +1,8 @@
 <?php
 namespace BrummelMW\acciones;
 
+use BrummelMW\response\ObjetoResponse;
+
 class AccionBasica implements iAcciones
 {
     public function __construct(string $parametro = "", array $objetoJSON = [])
@@ -8,11 +10,11 @@ class AccionBasica implements iAcciones
     }
 
     /**
-     * @return array|string
+     * @return ObjetoResponse
      * @throws ExcepcionAccion
      */
-    public function retorno()
+    public function retorno(): ObjetoResponse
     {
-        return "";
+        throw new ExcepcionAccion("Esta instrucción no tiene implementado el retorno");
     }
 }

@@ -1,9 +1,10 @@
 <?php
-namespace BrummelMW\acciones\swgoh;
+namespace BrummelMW\acciones\origenSwgoh;
 
 use BrummelMW\acciones\AccionBasica;
 use BrummelMW\acciones\ExcepcionAccion;
 use BrummelMW\core\Utils;
+use BrummelMW\response\ObjetoResponse;
 
 class Jugadores extends AccionBasica
 {
@@ -47,33 +48,42 @@ class Jugadores extends AccionBasica
     }
 
     /**
-     * @return array|string
+     * @return ObjetoResponse
      * @throws ExcepcionAccion
      */
-    public function retorno()
+    public function retorno(): ObjetoResponse
     {
         $array_jugadores = $this->jugadores();
         $array_key_jugadores = array_keys($array_jugadores);
 
         if ($this->jugador == "") {
             asort($array_key_jugadores);
-            return $array_key_jugadores;
+
+            return $this->retornoObjeto($array_key_jugadores);
 
         } elseif ($this->jugador[0] == "%") {
             $coincidencia = str_replace("%", "", $this->jugador);
             $array_jugadores_coincidentes = Utils::filtrar($array_key_jugadores, $coincidencia);
 
             asort($array_jugadores_coincidentes);
-            return $array_jugadores_coincidentes;
+            return $this->retornoObjeto($array_jugadores_coincidentes);
 
         } else {
             if (in_array($this->jugador, array_keys($array_jugadores))) {
-                return $this->infoJugador($array_jugadores[$this->jugador]);
+                return $this->retornoObjeto($this->infoJugador($array_jugadores[$this->jugador]));
 
             } else {
                 throw new ExcepcionAccion($this->avisoJugadorNoEncontrado());
             }
         }
+    }
+
+    protected function retornoObjeto(array $array_mensaje): ObjetoResponse
+    {
+        return new ObjetoResponse(ObjetoResponse::MENSAJE, [
+            "parse_mode" => PARSE_MODE,
+            "text" => implode(ENTER, $array_mensaje),
+        ]);
     }
 
     public function jugadores()

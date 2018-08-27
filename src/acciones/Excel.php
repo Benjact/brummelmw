@@ -1,6 +1,7 @@
 <?php
 namespace BrummelMW\acciones;
 
+use BrummelMW\response\ObjetoResponse;
 use Exception;
 use Google_Client;
 use Google_Service_Sheets;
@@ -10,10 +11,10 @@ class Excel extends AccionBasica implements iAcciones
     const ID = "1L5T8Zso07c5wNKPnW0werZnQ5zS8FAdtD0GWliqg76s";
 
     /**
-     * @return array|string
-     * @throws ExcepcionAccion
+     * @return ObjetoResponse
+     * @throws Exception
      */
-    public function retorno()
+    public function retorno(): ObjetoResponse
     {
         // Get the API client and construct the service object.
         $client = $this->getClient();
@@ -33,6 +34,11 @@ class Excel extends AccionBasica implements iAcciones
                 printf("%s, %s\n", $row[0], $row[4]);
             }
         }
+
+        return new ObjetoResponse(ObjetoResponse::MENSAJE, [
+            "parse_mode" => PARSE_MODE,
+            "text" => "-",
+        ]);
     }
 
     /**

@@ -9,6 +9,7 @@ use BrummelMW\acciones\ExcepcionAccion;
 use BrummelMW\bot\Bot;
 use BrummelMW\bot\BotInline;
 use BrummelMW\bot\BotHTML;
+use BrummelMW\response\ObjetoResponse;
 use BrummelMW\response\Response;
 use BrummelMW\response\ResponseHTML;
 use BrummelMW\response\ResponseInline;
@@ -32,20 +33,17 @@ if (is_null($update)) {
         $response = new ResponseHTML();
     }
 } else {
-    //if (isset($update["message"]["chat"])) {
-        $bot = new Bot(TOKEN, RUTA_API, $update);
+    $bot = new Bot(TOKEN, RUTA_API, $update);
 
-        $response = new Response($bot);
-    /*} else {
-        $bot = new BotInline(TOKEN, RUTA_API, $update);
-        $response = new ResponseInline($bot);
-        $inline = true;
-    }*/
+    $response = new Response($bot);
 }
 
 try {
-    $acciones = new AccionesGeneral($bot->mensaje(), $bot->username(), $inline);
+    $acciones = new AccionesGeneral($bot, $inline);
     $response->devolverMensaje($acciones->retorno());
 } catch (ExcepcionAccion $e) {
-    $response->devolverMensaje($e->getMessage());
+    $response->devolverMensaje(new ObjetoResponse(ObjetoResponse::MENSAJE, [
+        "parse_mode" => PARSE_MODE,
+        "text" => $e->getMessage(),
+    ]));
 }

@@ -1,8 +1,9 @@
 <?php
-namespace BrummelMW\acciones\swgoh;
+namespace BrummelMW\acciones\origenSwgoh;
 
 use BrummelMW\acciones\AccionBasica;
 use BrummelMW\acciones\ExcepcionAccion;
+use BrummelMW\response\ObjetoResponse;
 
 class Gremio extends AccionBasica
 {
@@ -16,16 +17,19 @@ class Gremio extends AccionBasica
         $this->objetoJSON = $this->recuperar_json($objetoJSON);
     }
 
+    /**
+     * @param array $recuperar_json
+     * @return array
+     */
     protected function recuperar_json(array $recuperar_json): array
     {
         return $recuperar_json;
     }
 
     /**
-     * @return array|string
-     * @throws ExcepcionAccion
+     * @return ObjetoResponse
      */
-    public function retorno()
+    public function retorno(): ObjetoResponse
     {
         $total = 0;
         $total_personajes = 0;
@@ -40,10 +44,14 @@ class Gremio extends AccionBasica
                 $total += $jugador["power"];
             }
         }
-        return [
+        $array_mensaje = [
             BOLD."PG TOTAL:".BOLD_CERRAR." {$total}",
             BOLD."PG PERSONAJES:".BOLD_CERRAR." {$total_personajes}",
             BOLD."PG NAVES:".BOLD_CERRAR." {$total_naves}",
         ];
+        return new ObjetoResponse(ObjetoResponse::MENSAJE, [
+            "parse_mode" => PARSE_MODE,
+            "text" => implode(ENTER, $array_mensaje),
+        ]);
     }
 }

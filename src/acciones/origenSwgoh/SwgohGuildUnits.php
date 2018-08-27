@@ -1,5 +1,5 @@
 <?php
-namespace BrummelMW\acciones\swgoh;
+namespace BrummelMW\acciones\origenSwgoh;
 
 use BrummelMW\acciones\AccionBasica;
 use BrummelMW\acciones\iAcciones;

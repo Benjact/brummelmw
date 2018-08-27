@@ -1,7 +1,8 @@
 <?php
 namespace BrummelMW\acciones;
 
-use BrummelMW\acciones\swgoh\Personajes;
+use BrummelMW\acciones\origenSwgoh\Personajes;
+use BrummelMW\response\ObjetoResponse;
 
 class Ayuda extends AccionBasica implements iAcciones
 {
@@ -13,15 +14,15 @@ class Ayuda extends AccionBasica implements iAcciones
     }
 
     /**
-     * @return array|string
+     * @return ObjetoResponse
      * @throws ExcepcionAccion
      */
-    public function retorno()
+    public function retorno(): ObjetoResponse
     {
         if ($this->parametro == "personajes") {
             return (new Personajes())->retorno();
         } else {
-            return [
+            $array_ayuda = [
                 "/ayuda: mostrará los comandos disponibles en el bot",
                 "/personajes o personaje: devolverá un listado de personajes posibles",
                 "/personajes [NOMBRE_PERSONAJE]: devolverá información de dicho personaje. Se puede buscar 
@@ -49,6 +50,11 @@ class Ayuda extends AccionBasica implements iAcciones
                 "/hola",
                 //"/jugadores: devolverá un listado de jugadores del gremio registrados en swgoh",
             ];
+
+            return new ObjetoResponse(ObjetoResponse::MENSAJE, [
+                "parse_mode" => PARSE_MODE,
+                "text" => implode(ENTER, $array_ayuda),
+            ]);
         }
     }
 }

@@ -1,5 +1,5 @@
 <?php
-namespace BrummelMW\acciones\swgoh;
+namespace BrummelMW\acciones\origenSwgoh;
 
 interface iSWGOH
 {

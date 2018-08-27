@@ -3,8 +3,10 @@ namespace BrummelMW\response;
 
 class ResponseHTML
 {
-    public function devolverMensaje($mensaje)
+    public function devolverMensaje(ObjetoResponse $objetoResponse)
     {
-        echo is_array($mensaje) ? implode(ENTER, $mensaje) : $mensaje;
+        echo $objetoResponse->tipoRespuesta();
+
+        echo "<pre>".print_r($objetoResponse->arrayPost(), true)."</pre>";
     }
 }

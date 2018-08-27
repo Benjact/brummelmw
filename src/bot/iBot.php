@@ -11,6 +11,8 @@ interface iBot
 
     public function mensaje(): string;
 
+    public function username(): string;
+
     /**
      * @return string
      */

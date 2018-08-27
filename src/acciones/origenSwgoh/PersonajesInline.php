@@ -1,9 +1,10 @@
 <?php
-namespace BrummelMW\acciones\swgoh;
+namespace BrummelMW\acciones\origenSwgoh;
 
 use BrummelMW\acciones\AccionBasica;
 use BrummelMW\acciones\ExcepcionAccion;
 use BrummelMW\core\Utils;
+use BrummelMW\response\ObjetoResponse;
 
 class PersonajesInline extends AccionBasica
 {
@@ -52,34 +53,42 @@ class PersonajesInline extends AccionBasica
     }
 
     /**
-     * @return array|string
+     * @return ObjetoResponse
      * @throws ExcepcionAccion
      */
-    public function retorno()
+    public function retorno(): ObjetoResponse
     {
         $array_personajes = $this->personajes();
 
         if ($this->personaje == "") {
             asort($array_personajes);
-            return $array_personajes;
+            return $this->retornoObjeto($array_personajes);
         } elseif ($this->personaje[0] == "%") {
             $coincidencia = str_replace("%", "", $this->personaje);
             $array_personajes_coincidentes = Utils::filtrar($array_personajes, $coincidencia);
 
             asort($array_personajes_coincidentes);
-            return $array_personajes_coincidentes;
+            return $this->retornoObjeto($array_personajes_coincidentes);
         } else {
             if (in_array($this->personaje, $array_personajes)) {
                 $datos_personaje = $this->objetoJSON[$this->personaje];
                 if ($this->estrellas != 0) {
-                    return $this->infoPersonajeEstrellas($datos_personaje, $this->estrellas);
+                    return $this->retornoObjeto($this->infoPersonajeEstrellas($datos_personaje, $this->estrellas));
                 } else {
-                    return $this->infoPersonaje($datos_personaje);
+                    return $this->retornoObjeto($this->infoPersonaje($datos_personaje));
                 }
             } else {
                 throw new ExcepcionAccion($this->avisoPersonajeNoEncontrado());
             }
         }
+    }
+
+    protected function retornoObjeto(array $array_mensaje): ObjetoResponse
+    {
+        return new ObjetoResponse(ObjetoResponse::MENSAJE, [
+            "parse_mode" => PARSE_MODE,
+            "text" => implode(ENTER, $array_mensaje),
+        ]);
     }
 
     public function personajes()

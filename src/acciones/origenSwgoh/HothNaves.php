@@ -1,7 +1,9 @@
 <?php
-namespace BrummelMW\acciones\swgoh;
+namespace BrummelMW\acciones\origenSwgoh;
 
-class Hoth extends Personajes
+use BrummelMW\acciones\ExcepcionAccion;
+
+class HothNaves extends Naves
 {
     use TraitHoth;
 

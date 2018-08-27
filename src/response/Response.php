@@ -15,23 +15,20 @@ class Response
         $this->bot = $bot;
     }
 
-    public function devolverMensaje($mensaje)
+    public function devolverMensaje(ObjetoResponse $objetoResponse)
     {
-        $url = $this->bot->webSite()."/sendMessage";
+        $url = $this->bot->webSite()."/".$objetoResponse->tipoRespuesta();
 
-        $fields = [
-            "chat_id" => $this->bot->chatId(),
-            "parse_mode" => PARSE_MODE,
-            "text" => is_array($mensaje) ? implode(ENTER, $mensaje) : $mensaje,
-        ];
+        $array_respuesta = $objetoResponse->arrayPost();
+        $array_respuesta["chat_id"] = $this->bot->chatId();
 
         $ch = curl_init();
         //  set the url
         curl_setopt($ch, CURLOPT_URL, $url);
         //  number of POST vars
-        curl_setopt($ch, CURLOPT_POST, count($fields));
+        curl_setopt($ch, CURLOPT_POST, count($array_respuesta));
         //  POST data
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($fields));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($array_respuesta));
         //  To display result of curl
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         //  execute post

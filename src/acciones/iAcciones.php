@@ -1,6 +1,8 @@
 <?php
 namespace BrummelMW\acciones;
 
+use BrummelMW\response\ObjetoResponse;
+
 interface iAcciones
 {
     /**
@@ -11,8 +13,7 @@ interface iAcciones
     public function __construct(string $parametro = "", array $objetoJSON = []);
 
     /**
-     * @return array|string
-     * @throws ExcepcionAccion
+     * @return ObjetoResponse
      */
-    public function retorno();
+    public function retorno(): ObjetoResponse;
 }
