@@ -88,7 +88,7 @@ class Personajes extends AccionCompuesta
         return new ObjetoResponse(ObjetoResponse::MENSAJE, [
             "chat_id" => $id_chat,
             "parse_mode" => $parse_mode,
-            "text" => implode(($parse_mode == PARSE_MODE) ? ENTER : ENTER_MD, $array_mensaje),
+            "text" => implode("\\n", $array_mensaje),
         ]);
     }
 
