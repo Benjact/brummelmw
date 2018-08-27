@@ -17,10 +17,10 @@ class Ayuda extends AccionBasica implements iAcciones
      * @return ObjetoResponse
      * @throws ExcepcionAccion
      */
-    public function retorno(): ObjetoResponse
+    public function retorno(string $id_chat): ObjetoResponse
     {
         if ($this->parametro == "personajes") {
-            return (new Personajes())->retorno();
+            return (new Personajes())->retorno($id_chat);
         } else {
             $array_ayuda = [
                 "/ayuda: mostrará los comandos disponibles en el bot",
@@ -52,6 +52,7 @@ class Ayuda extends AccionBasica implements iAcciones
             ];
 
             return new ObjetoResponse(ObjetoResponse::MENSAJE, [
+                "chat_id" => $id_chat,
                 "parse_mode" => PARSE_MODE,
                 "text" => implode(ENTER, $array_ayuda),
             ]);

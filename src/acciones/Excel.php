@@ -11,10 +11,11 @@ class Excel extends AccionBasica implements iAcciones
     const ID = "1L5T8Zso07c5wNKPnW0werZnQ5zS8FAdtD0GWliqg76s";
 
     /**
+     * @param string $id_chat
      * @return ObjetoResponse
      * @throws Exception
      */
-    public function retorno(): ObjetoResponse
+    public function retorno(string $id_chat): ObjetoResponse
     {
         // Get the API client and construct the service object.
         $client = $this->getClient();
@@ -36,6 +37,7 @@ class Excel extends AccionBasica implements iAcciones
         }
 
         return new ObjetoResponse(ObjetoResponse::MENSAJE, [
+            "chat_id" => $id_chat,
             "parse_mode" => PARSE_MODE,
             "text" => "-",
         ]);

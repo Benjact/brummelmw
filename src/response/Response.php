@@ -20,7 +20,6 @@ class Response
         $url = $this->bot->webSite()."/".$objetoResponse->tipoRespuesta();
 
         $array_respuesta = $objetoResponse->arrayPost();
-        $array_respuesta["chat_id"] = $this->bot->chatId();
 
         $ch = curl_init();
         //  set the url

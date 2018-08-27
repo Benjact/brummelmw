@@ -10,10 +10,11 @@ class AccionBasica implements iAcciones
     }
 
     /**
+     * @param string $id_chat
      * @return ObjetoResponse
      * @throws ExcepcionAccion
      */
-    public function retorno(): ObjetoResponse
+    public function retorno(string $id_chat): ObjetoResponse
     {
         throw new ExcepcionAccion("Esta instrucción no tiene implementado el retorno");
     }

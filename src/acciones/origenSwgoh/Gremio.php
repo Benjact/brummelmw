@@ -27,9 +27,10 @@ class Gremio extends AccionBasica
     }
 
     /**
+     * @param string $id_chat
      * @return ObjetoResponse
      */
-    public function retorno(): ObjetoResponse
+    public function retorno(string $id_chat): ObjetoResponse
     {
         $total = 0;
         $total_personajes = 0;
@@ -50,6 +51,7 @@ class Gremio extends AccionBasica
             BOLD."PG NAVES:".BOLD_CERRAR." {$total_naves}",
         ];
         return new ObjetoResponse(ObjetoResponse::MENSAJE, [
+            "chat_id" => $id_chat,
             "parse_mode" => PARSE_MODE,
             "text" => implode(ENTER, $array_mensaje),
         ]);

@@ -13,13 +13,15 @@ class Error extends AccionBasica implements iAcciones
     }
 
     /**
+     * @param string $id_chat
      * @return ObjetoResponse
      * @throws ExcepcionAccion
      */
-    public function retorno(): ObjetoResponse
+    public function retorno(string $id_chat): ObjetoResponse
     {
         if ($this->mensaje_error != "") {
             return new ObjetoResponse(ObjetoResponse::MENSAJE, [
+                "chat_id" => $id_chat,
                 "parse_mode" => PARSE_MODE,
                 "text" => $this->mensaje_error,
             ]);

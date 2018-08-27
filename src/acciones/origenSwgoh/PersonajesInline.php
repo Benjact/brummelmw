@@ -53,29 +53,30 @@ class PersonajesInline extends AccionBasica
     }
 
     /**
+     * @param string $id_chat
      * @return ObjetoResponse
      * @throws ExcepcionAccion
      */
-    public function retorno(): ObjetoResponse
+    public function retorno(string $id_chat): ObjetoResponse
     {
         $array_personajes = $this->personajes();
 
         if ($this->personaje == "") {
             asort($array_personajes);
-            return $this->retornoObjeto($array_personajes);
+            return $this->retornoObjeto($id_chat, $array_personajes);
         } elseif ($this->personaje[0] == "%") {
             $coincidencia = str_replace("%", "", $this->personaje);
             $array_personajes_coincidentes = Utils::filtrar($array_personajes, $coincidencia);
 
             asort($array_personajes_coincidentes);
-            return $this->retornoObjeto($array_personajes_coincidentes);
+            return $this->retornoObjeto($id_chat, $array_personajes_coincidentes);
         } else {
             if (in_array($this->personaje, $array_personajes)) {
                 $datos_personaje = $this->objetoJSON[$this->personaje];
                 if ($this->estrellas != 0) {
-                    return $this->retornoObjeto($this->infoPersonajeEstrellas($datos_personaje, $this->estrellas));
+                    return $this->retornoObjeto($id_chat, $this->infoPersonajeEstrellas($datos_personaje, $this->estrellas));
                 } else {
-                    return $this->retornoObjeto($this->infoPersonaje($datos_personaje));
+                    return $this->retornoObjeto($id_chat, $this->infoPersonaje($datos_personaje));
                 }
             } else {
                 throw new ExcepcionAccion($this->avisoPersonajeNoEncontrado());
@@ -83,9 +84,10 @@ class PersonajesInline extends AccionBasica
         }
     }
 
-    protected function retornoObjeto(array $array_mensaje): ObjetoResponse
+    protected function retornoObjeto(string $id_chat, array $array_mensaje): ObjetoResponse
     {
         return new ObjetoResponse(ObjetoResponse::MENSAJE, [
+            "chat_id" => $id_chat,
             "parse_mode" => PARSE_MODE,
             "text" => implode(ENTER, $array_mensaje),
         ]);

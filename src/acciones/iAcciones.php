@@ -13,7 +13,8 @@ interface iAcciones
     public function __construct(string $parametro = "", array $objetoJSON = []);
 
     /**
+     * @param string $id_chat
      * @return ObjetoResponse
      */
-    public function retorno(): ObjetoResponse;
+    public function retorno(string $id_chat): ObjetoResponse;
 }

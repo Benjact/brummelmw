@@ -21,9 +21,14 @@ class AccionesGeneral
      */
     protected $instruccion;
     protected $mensajes = [];
+    /**
+     * @var iBot
+     */
+    private $bot;
 
     public function __construct(iBot $bot, bool $inline)
     {
+        $this->bot = $bot;
         $instruccion_partida = explode(" ", $bot->mensaje());
         $primera_palabra = $this->devuelvePrimeraPalabra($instruccion_partida);
 
@@ -84,6 +89,7 @@ class AccionesGeneral
         if ($instruccion_partida[0] == "/") {
             $this->accionError();
         }
+
     }
 
     /**
@@ -93,7 +99,7 @@ class AccionesGeneral
     public function retorno(): ObjetoResponse
     {
         if (!is_null($this->instruccion)) {
-            return $this->instruccion->retorno();
+            return $this->instruccion->retorno($this->bot->chatId());
         }
         throw new ExcepcionAccion("No reconozco esa instruccion");
     }
