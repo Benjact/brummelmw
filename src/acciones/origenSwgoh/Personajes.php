@@ -112,7 +112,7 @@ class Personajes extends AccionCompuesta
         if ($texto_imagen != "") {
             $datos_retorno[] = $texto_imagen;
         }
-
+        return $datos_retorno;
         $recopilacion = [
             1 => ["cantidad" => 0],
             2 => ["cantidad" => 0],
