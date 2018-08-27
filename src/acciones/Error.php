@@ -5,13 +5,6 @@ use BrummelMW\response\ObjetoResponse;
 
 class Error extends AccionBasica implements iAcciones
 {
-    protected $mensaje_error = "";
-
-    public function __construct(string $parametro = "", array $objetoJSON = [])
-    {
-        $this->mensaje_error = $parametro;
-    }
-
     /**
      * @param string $id_chat
      * @return ObjetoResponse
@@ -19,11 +12,11 @@ class Error extends AccionBasica implements iAcciones
      */
     public function retorno(string $id_chat): ObjetoResponse
     {
-        if ($this->mensaje_error != "") {
+        if ($this->parametro != "") {
             return new ObjetoResponse(ObjetoResponse::MENSAJE, [
                 "chat_id" => $id_chat,
                 "parse_mode" => PARSE_MODE,
-                "text" => $this->mensaje_error,
+                "text" => $this->parametro,
             ]);
         } else {
             throw new ExcepcionAccion("No reconozco esa instruccion");

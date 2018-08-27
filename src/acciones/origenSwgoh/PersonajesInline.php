@@ -11,16 +11,18 @@ class PersonajesInline extends AccionBasica
     protected $personaje = "";
     protected $estrellas = 0;
     protected $combat_type = 1;
-    /**
-     * @var array
-     */
-    private $objetoJSON;
 
     public function __construct(string $parametro = "", array $objetoJSON = [])
     {
+        parent::__construct($parametro, $objetoJSON);
+
         $this->objetoJSON = $this->recuperar_json($objetoJSON);
     }
 
+    /**
+     * @param array $recuperar_json
+     * @return array
+     */
     protected function recuperar_json(array $recuperar_json): array
     {
         foreach ($recuperar_json as $key_json => $personaje) {

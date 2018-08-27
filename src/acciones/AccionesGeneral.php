@@ -124,7 +124,7 @@ class AccionesGeneral
         if ($inline) {
             $this->instruccion = new PersonajesInline("", SwgohCharacters::recuperarJSON());
         } else {
-            $this->instruccion = new Personajes("", SwgohGuildUnits::recuperarJSON());
+            $this->instruccion = new Personajes("", SwgohGuildUnits::recuperarJSON(), SwgohCharacters::recuperarJSON());
         }
         if (isset($instruccion_partida[1])) {
             $personaje = mb_strtoupper(str_replace("/", "", $instruccion_partida[1]));

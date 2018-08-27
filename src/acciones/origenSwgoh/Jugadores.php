@@ -9,19 +9,12 @@ use BrummelMW\response\ObjetoResponse;
 class Jugadores extends AccionBasica
 {
     protected $jugador = "";
-    /**
-     * @var array
-     */
-    private $objetoJSON;
-    /**
-     * @var string
-     */
-    private $parametro;
 
     public function __construct(string $parametro = "", array $objetoJSON = [])
     {
+        parent::__construct($parametro, $objetoJSON);
+
         $this->objetoJSON = $this->recuperar_json($objetoJSON);
-        $this->parametro = $parametro;
     }
 
     protected function recuperar_json(array $recuperar_json): array

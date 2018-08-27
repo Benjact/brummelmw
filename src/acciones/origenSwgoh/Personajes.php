@@ -2,22 +2,21 @@
 namespace BrummelMW\acciones\origenSwgoh;
 
 use BrummelMW\acciones\AccionBasica;
+use BrummelMW\acciones\AccionCompuesta;
 use BrummelMW\acciones\ExcepcionAccion;
 use BrummelMW\core\Utils;
 use BrummelMW\response\ObjetoResponse;
 
-class Personajes extends AccionBasica
+class Personajes extends AccionCompuesta
 {
     protected $personaje = "";
     protected $estrellas = 0;
     protected $combat_type = 1;
-    /**
-     * @var array
-     */
-    private $objetoJSON;
 
-    public function __construct(string $parametro = "", array $objetoJSON = [])
+    public function __construct(string $parametro = "", array $objetoJSON = [], array $objetoJSONextra = [])
     {
+        parent::__construct($parametro, $objetoJSON, $objetoJSONextra);
+
         $this->objetoJSON = $this->recuperar_json($objetoJSON);
     }
 

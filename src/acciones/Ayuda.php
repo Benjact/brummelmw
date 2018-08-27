@@ -6,13 +6,6 @@ use BrummelMW\response\ObjetoResponse;
 
 class Ayuda extends AccionBasica implements iAcciones
 {
-    private $parametro = "";
-
-    public function __construct(string $parametro = "", array $objetoJSON = [])
-    {
-        $this->parametro = $parametro;
-    }
-
     /**
      * @return ObjetoResponse
      * @throws ExcepcionAccion

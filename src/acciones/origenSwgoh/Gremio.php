@@ -7,13 +7,10 @@ use BrummelMW\response\ObjetoResponse;
 
 class Gremio extends AccionBasica
 {
-    /**
-     * @var array
-     */
-    private $objetoJSON;
-
     public function __construct(string $parametro = "", array $objetoJSON = [])
     {
+        parent::__construct($parametro, $objetoJSON);
+
         $this->objetoJSON = $this->recuperar_json($objetoJSON);
     }
 

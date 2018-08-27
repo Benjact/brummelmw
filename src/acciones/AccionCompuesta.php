@@ -3,7 +3,7 @@ namespace BrummelMW\acciones;
 
 use BrummelMW\response\ObjetoResponse;
 
-class AccionBasica implements iAcciones
+class AccionCompuesta implements iAcciones
 {
     /**
      * @var string
@@ -13,11 +13,16 @@ class AccionBasica implements iAcciones
      * @var array
      */
     protected $objetoJSON;
+    /**
+     * @var array
+     */
+    protected $objetoJSONextra;
 
-    public function __construct(string $parametro = "", array $objetoJSON = [])
+    public function __construct(string $parametro = "", array $objetoJSON = [], array $objetoJSONextra = [])
     {
         $this->parametro = $parametro;
         $this->objetoJSON = $objetoJSON;
+        $this->objetoJSONextra = $objetoJSONextra;
     }
 
     /**
