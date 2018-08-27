@@ -10,6 +10,7 @@ use BrummelMW\acciones\origenSwgoh\Personajes;
 use BrummelMW\acciones\origenSwgoh\PersonajesInline;
 use BrummelMW\acciones\origenSwgoh\SwgohCharacters;
 use BrummelMW\acciones\origenSwgoh\SwgohGuildUnits;
+use BrummelMW\acciones\origenSwgoh\SwgohShips;
 use BrummelMW\bot\iBot;
 use BrummelMW\core\PHPFileLoader;
 use BrummelMW\response\ObjetoResponse;
@@ -72,14 +73,14 @@ class AccionesGeneral
         }
 
         $jsonGuildUnits = SwgohGuildUnits::recuperarJSON();
-        $personajes = new Personajes("", $jsonGuildUnits);
+        $personajes = new Personajes("", $jsonGuildUnits, SwgohCharacters::recuperarJSON());
         if (in_array(mb_strtoupper($primera_palabra), $personajes->personajes())) {
             array_unshift($instruccion_partida, "personajes");
             $this->accionPersonaje($instruccion_partida, $inline);
             return;
         }
 
-        $naves = new Naves("", $jsonGuildUnits);
+        $naves = new Naves("", $jsonGuildUnits, SwgohShips::recuperarJSON());
         if (in_array(mb_strtoupper($primera_palabra), $naves->naves())) {
             array_unshift($instruccion_partida, "naves");
             $this->accionNave($instruccion_partida);
@@ -144,7 +145,7 @@ class AccionesGeneral
      */
     protected function accionNave($instruccion_partida)
     {
-        $this->instruccion = new Naves("", SwgohGuildUnits::recuperarJSON());
+        $this->instruccion = new Naves("", SwgohGuildUnits::recuperarJSON(), SwgohShips::recuperarJSON());
         if (isset($instruccion_partida[1])) {
             $personaje = mb_strtoupper(str_replace("/", "", $instruccion_partida[1]));
             $this->instruccion->setPersonaje($personaje);
@@ -174,8 +175,8 @@ class AccionesGeneral
         }
 
         $jsonGuildUnits = SwgohGuildUnits::recuperarJSON();
-        $personajes = new Personajes("", $jsonGuildUnits);
-        $naves = new Naves("", $jsonGuildUnits);
+        $personajes = new Personajes("", $jsonGuildUnits, SwgohCharacters::recuperarJSON());
+        $naves = new Naves("", $jsonGuildUnits, SwgohShips::recuperarJSON());
 
         if (in_array(mb_strtoupper($instruccion_partida[1]), $personajes->personajes())) {
             $this->instruccion = new Hoth("", $jsonGuildUnits);
