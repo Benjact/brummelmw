@@ -155,14 +155,9 @@ class Personajes extends AccionCompuesta
             }
 
             $total_jugadores = array_keys((new Jugadores("", $this->objetoJSON))->jugadores());
-            $datos_retorno[] = "total jugadores: ".count($total_jugadores);
-            $datos_retorno[] = "jugadores con personaje: ".count($jugadores_con_personaje);
-            $datos_retorno[] = "array_diff: ".count(array_diff($total_jugadores, $jugadores_con_personaje));
             $datos_retorno = array_merge(
                 $datos_retorno,
-                //array_values(array_diff($total_jugadores, $jugadores_con_personaje))
-                $total_jugadores,
-                $jugadores_con_personaje
+                array_values(array_diff($total_jugadores, $jugadores_con_personaje))
             );
 
         } else {
