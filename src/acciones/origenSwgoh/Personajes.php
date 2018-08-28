@@ -157,7 +157,7 @@ class Personajes extends AccionCompuesta
             $total_jugadores = array_keys((new Jugadores("", $this->objetoJSON))->jugadores());
             $datos_retorno = array_merge(
                 $datos_retorno,
-                array_diff($total_jugadores, $jugadores_con_personaje)
+                array_values(array_diff($total_jugadores, $jugadores_con_personaje))
             );
         } else {
             $datos_retorno[] = "```{$cantidad_total} en el gremio```";
