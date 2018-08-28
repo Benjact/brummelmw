@@ -149,7 +149,7 @@ class Personajes extends AccionCompuesta
             foreach ($recopilacion as $estrellas_recopilacion => $datos) {
                 if (!empty($datos["jugadores"])) {
                     foreach ($datos["jugadores"] as $jugador) {
-                        $jugadores_con_personaje[] = $jugador;
+                        $jugadores_con_personaje[] = Jugadores::limpiar_nombre($jugador);
                     }
                 }
             }
