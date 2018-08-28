@@ -24,7 +24,7 @@ class Jugadores extends AccionBasica
 
     /**
      * @param string $jugador
-     * @return Personajes
+     * @return Jugadores
      */
     public function setJugador(string $jugador): Jugadores
     {
@@ -34,10 +34,12 @@ class Jugadores extends AccionBasica
 
     /**
      * @param string $parametro
+     * @return Jugadores
      */
     public function setParametro(string $parametro)
     {
         $this->parametro = $parametro;
+        return $this;
     }
 
     /**
