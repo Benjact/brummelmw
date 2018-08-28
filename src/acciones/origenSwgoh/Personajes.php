@@ -142,9 +142,9 @@ class Personajes extends AccionCompuesta
                 }
                 return 0;
             }, array_keys($recopilacion), $recopilacion));
-            $datos_retorno[] = "\`\`\`{$cantidad}/{$cantidad_total} en el gremio\`\`\`";
+            $datos_retorno[] = BOLD_MD."{$cantidad}/{$cantidad_total} en el gremio".BOLD_CERRAR_MD;
         } elseif ($estrellas == 0) {
-            $datos_retorno[] = "\`". (50 - $cantidad_total) ." no lo tienen desbloqueado\`";
+            $datos_retorno[] = BOLD_MD. (50 - $cantidad_total) ." no lo tienen desbloqueado".BOLD_CERRAR_MD;
             $jugadores_con_personaje = [];
             foreach ($recopilacion as $estrellas_recopilacion => $datos) {
                 if (!empty($datos["jugadores"])) {
@@ -161,7 +161,7 @@ class Personajes extends AccionCompuesta
             );
 
         } else {
-            $datos_retorno[] = "\`\`\`{$cantidad_total} en el gremio\`\`\`";
+            $datos_retorno[] = BOLD_MD."{$cantidad_total} en el gremio".BOLD_CERRAR_MD;
         }
 
         if ($estrellas != 0) {
