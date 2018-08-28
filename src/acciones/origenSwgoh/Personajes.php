@@ -144,7 +144,7 @@ class Personajes extends AccionCompuesta
             }, array_keys($recopilacion), $recopilacion));
             $datos_retorno[] = BOLD_MD."{$cantidad}/{$cantidad_total} en el gremio".BOLD_CERRAR_MD;
         } elseif ($estrellas == 0) {
-            $datos_retorno[] = BOLD_MD. (50 - $cantidad_total) ." no lo tienen desbloqueado".BOLD_CERRAR_MD;
+            $datos_retorno[] = "`". (50 - $cantidad_total) ." no lo tienen desbloqueado`";
             $jugadores_con_personaje = [];
             foreach ($recopilacion as $estrellas_recopilacion => $datos) {
                 if (!empty($datos["jugadores"])) {
