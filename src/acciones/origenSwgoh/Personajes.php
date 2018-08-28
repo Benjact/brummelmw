@@ -10,7 +10,7 @@ use BrummelMW\response\ObjetoResponse;
 class Personajes extends AccionCompuesta
 {
     protected $personaje = "";
-    protected $estrellas = 0;
+    protected $estrellas = 1;
     protected $combat_type = 1;
 
     public function __construct(string $parametro = "", array $objetoJSON = [], array $objetoJSONextra = [])
@@ -72,7 +72,7 @@ class Personajes extends AccionCompuesta
         } else {
             if (in_array($this->personaje, $array_personajes)) {
                 $datos_personaje = $this->objetoJSON[$this->personaje];
-                if ($this->estrellas != 0) {
+                if ($this->estrellas != 1) {
                     return $this->retornoObjeto($id_chat, $this->infoPersonajeEstrellas($datos_personaje, $this->estrellas), "markdown");
                 } else {
                     return $this->retornoObjeto($id_chat, $this->infoPersonaje($datos_personaje), "markdown");
