@@ -142,9 +142,9 @@ class Personajes extends AccionCompuesta
                 }
                 return 0;
             }, array_keys($recopilacion), $recopilacion));
-            $datos_retorno[] = BOLD_MD . "{$cantidad}/{$cantidad_total} en el gremio" . BOLD_CERRAR_MD;
+            $datos_retorno[] = "```{$cantidad}/{$cantidad_total} en el gremio```";
         } elseif ($estrellas == 0) {
-            $datos_retorno[] = BOLD_MD . (50 - $cantidad_total) ." no lo tienen desbloqueado" . BOLD_CERRAR_MD;
+            $datos_retorno[] = "`". (50 - $cantidad_total) ." no lo tienen desbloqueado`";
             $jugadores_con_personaje = [];
             foreach ($recopilacion as $estrellas_recopilacion => $datos) {
                 if (!empty($datos["jugadores"])) {
@@ -155,9 +155,14 @@ class Personajes extends AccionCompuesta
             }
 
             $total_jugadores = array_keys((new Jugadores("", $this->objetoJSON))->jugadores());
-            $datos_retorno = array_merge($datos_retorno, array_map(function($jugador) { return $jugador; }, array_diff($total_jugadores, $jugadores_con_personaje)));
+            $datos_retorno = array_merge(
+                $datos_retorno,
+                array_map(function($jugador) {
+                    return $jugador;
+                }, array_diff($total_jugadores, $jugadores_con_personaje))
+            );
         } else {
-            $datos_retorno[] = BOLD_MD."{$cantidad_total} en el gremio".BOLD_CERRAR_MD;
+            $datos_retorno[] = "```{$cantidad_total} en el gremio```";
         }
 
         if ($estrellas != 0) {
