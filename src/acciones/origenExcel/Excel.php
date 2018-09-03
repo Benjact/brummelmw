@@ -31,11 +31,7 @@ class Excel extends AccionBasica implements iAcciones
         if (empty($values)) {
             print "No data found.\n";
         } else {
-            print "Name, Major:\n";
-            foreach ($values as $row) {
-                // Print columns A and E, which correspond to indices 0 and 4.
-                printf("%s, %s\n", $row[0], $row[4]);
-            }
+            echo "<pre>".print_r($values, true)."</pre>";
         }
 
         return new ObjetoResponse(ObjetoResponse::MENSAJE, [
@@ -50,7 +46,7 @@ class Excel extends AccionBasica implements iAcciones
      * @return Google_Client the authorized client object
      * @throws \Google_Exception
      */
-    function getClient()
+    protected function getClient()
     {
         $client = new Google_Client();
         $client->setApplicationName('Google Sheets API PHP Quickstart');
@@ -63,27 +59,7 @@ class Excel extends AccionBasica implements iAcciones
         if (file_exists($credentialsPath)) {
             $accessToken = json_decode(file_get_contents($credentialsPath), true);
         } else {
-            // Request authorization from the user.
-            $authUrl = $client->createAuthUrl();
-            printf("Open the following link in your browser:\n%s\n", $authUrl);
-            print 'Enter verification code: ';
-            //$authCode = "4/TwCN36C_p35MEBoR1RQlYcNk0Le26ft--61lyGwWuxEEE1czRbaWOsc";
-            $authCode = trim(fgets(STDIN));
-
-            // Exchange authorization code for an access token.
-            $accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
-
-            // Check to see if there was an error.
-            if (array_key_exists('error', $accessToken)) {
-                throw new Exception(join(', ', $accessToken));
-            }
-
-            // Store the credentials to disk.
-            if (!file_exists(dirname($credentialsPath))) {
-                mkdir(dirname($credentialsPath), 0700, true);
-            }
-            file_put_contents($credentialsPath, json_encode($accessToken));
-            printf("Credentials saved to %s\n", $credentialsPath);
+            $accessToken = $this->createCredentialsPath($client, $credentialsPath);
         }
         $client->setAccessToken($accessToken);
 
@@ -93,5 +69,37 @@ class Excel extends AccionBasica implements iAcciones
             file_put_contents($credentialsPath, json_encode($client->getAccessToken()));
         }
         return $client;
+    }
+
+    /**
+     * @param $client
+     * @param $credentialsPath
+     * @return mixed
+     * @throws Exception
+     */
+    protected function createCredentialsPath($client, $credentialsPath)
+    {
+        // Request authorization from the user.
+        $authUrl = $client->createAuthUrl();
+        printf("Open the following link in your browser:\n%s\n", $authUrl);
+        print 'Enter verification code: ';
+        //$authCode = "4/TwCN36C_p35MEBoR1RQlYcNk0Le26ft--61lyGwWuxEEE1czRbaWOsc";
+        $authCode = trim(fgets(STDIN));
+
+        // Exchange authorization code for an access token.
+        $accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
+
+        // Check to see if there was an error.
+        if (array_key_exists('error', $accessToken)) {
+            throw new Exception(join(', ', $accessToken));
+        }
+
+        // Store the credentials to disk.
+        if (!file_exists(dirname($credentialsPath))) {
+            mkdir(dirname($credentialsPath), 0700, true);
+        }
+        file_put_contents($credentialsPath, json_encode($accessToken));
+        printf("Credentials saved to %s\n", $credentialsPath);
+        return $accessToken;
     }
 }
