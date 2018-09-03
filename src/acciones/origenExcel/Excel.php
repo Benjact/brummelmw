@@ -54,9 +54,7 @@ class Excel extends AccionBasica implements iAcciones
         $client = new Google_Client();
         $client->setApplicationName('Google Sheets API PHP Quickstart');
         $client->setScopes(Google_Service_Sheets::SPREADSHEETS_READONLY);
-        echo dirname(__DIR__) . 'acciones/origenExcel/credentials.json';
-        echo __DIR__ . 'acciones/origenExcel/credentials.json';
-        $client->setAuthConfig(dirname(__DIR__) . 'acciones/origenExcel/credentials.json');
+        $client->setAuthConfig(__DIR__ . '/credentials.json');
         $client->setAccessType('offline');
 
         // Load previously authorized credentials from a file.
