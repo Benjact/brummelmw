@@ -48,12 +48,13 @@ class Excel extends AccionBasica implements iAcciones
     /**
      * Returns an authorized API client.
      * @return Google_Client the authorized client object
+     * @throws \Google_Exception
      */
     function getClient()
     {
         $client = new Google_Client();
         $client->setApplicationName('Google Sheets API PHP Quickstart');
-        $client->setScopes(Google_Service_Sheets::SPREADSHEETS_READONLY);
+        $client->setScopes([Google_Service_Sheets::SPREADSHEETS_READONLY]);
         $client->setAuthConfig(__DIR__ . '/credentials.json');
         $client->setAccessType('offline');
 
