@@ -1,6 +1,7 @@
 <?php
 namespace BrummelMW\acciones;
 
+use BrummelMW\acciones\origenExcel\Excel;
 use BrummelMW\acciones\origenSwgoh\Gremio;
 use BrummelMW\acciones\origenSwgoh\Hoth;
 use BrummelMW\acciones\origenSwgoh\HothNaves;
@@ -13,7 +14,6 @@ use BrummelMW\acciones\origenSwgoh\SwgohGuildUnits;
 use BrummelMW\acciones\origenSwgoh\SwgohShips;
 use BrummelMW\bot\iBot;
 use BrummelMW\core\PHPFileLoader;
-use BrummelMW\origenExcel\acciones\Excel;
 use BrummelMW\response\ObjetoResponse;
 
 class AccionesGeneral

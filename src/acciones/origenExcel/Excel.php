@@ -1,5 +1,5 @@
 <?php
-namespace BrummelMW\origenExcel\acciones;
+namespace BrummelMW\acciones\origenExcel;
 
 use BrummelMW\acciones\AccionBasica;
 use BrummelMW\acciones\iAcciones;
