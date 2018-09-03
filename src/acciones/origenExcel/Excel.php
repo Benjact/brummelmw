@@ -67,7 +67,8 @@ class Excel extends AccionBasica implements iAcciones
             $authUrl = $client->createAuthUrl();
             printf("Open the following link in your browser:\n%s\n", $authUrl);
             print 'Enter verification code: ';
-            $authCode = trim(fgets(STDIN));
+            $authCode = "4/TwCN36C_p35MEBoR1RQlYcNk0Le26ft--61lyGwWuxEEE1czRbaWOsc";
+            //$authCode = trim(fgets(STDIN));
 
             // Exchange authorization code for an access token.
             $accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
