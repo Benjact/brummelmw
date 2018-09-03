@@ -13,6 +13,7 @@ use BrummelMW\acciones\origenSwgoh\SwgohGuildUnits;
 use BrummelMW\acciones\origenSwgoh\SwgohShips;
 use BrummelMW\bot\iBot;
 use BrummelMW\core\PHPFileLoader;
+use BrummelMW\origenExcel\acciones\Excel;
 use BrummelMW\response\ObjetoResponse;
 
 class AccionesGeneral
@@ -57,8 +58,9 @@ class AccionesGeneral
             $this->accionGremio($instruccion_partida);
             return;
 
-        /*} elseif (in_array($primera_palabra, ["excel"])) {
-            $this->accionExcel();*/
+        } elseif (in_array($primera_palabra, ["excel"])) {
+            $this->accionExcel();
+            return;
         }
 
         $this->mensajes = (new PHPFileLoader)->load(dirname(__DIR__) . "/acciones/mensajes");
