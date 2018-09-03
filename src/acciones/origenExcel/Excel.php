@@ -25,7 +25,7 @@ class Excel extends AccionBasica implements iAcciones
 
         // Prints the names and majors of students in a sample spreadsheet:
         $range = 'Roster!B2:E';
-        $response = $service->spreadsheets_values->get(ID, $range);
+        $response = $service->spreadsheets_values->get(self::ID, $range);
         $values = $response->getValues();
 
         if (empty($values)) {
@@ -67,8 +67,8 @@ class Excel extends AccionBasica implements iAcciones
             $authUrl = $client->createAuthUrl();
             printf("Open the following link in your browser:\n%s\n", $authUrl);
             print 'Enter verification code: ';
-            $authCode = "4/TwCN36C_p35MEBoR1RQlYcNk0Le26ft--61lyGwWuxEEE1czRbaWOsc";
-            //$authCode = trim(fgets(STDIN));
+            //$authCode = "4/TwCN36C_p35MEBoR1RQlYcNk0Le26ft--61lyGwWuxEEE1czRbaWOsc";
+            $authCode = trim(fgets(STDIN));
 
             // Exchange authorization code for an access token.
             $accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
