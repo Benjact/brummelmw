@@ -38,12 +38,7 @@ class BT extends Excel
 
                 $array_pelotones[] = "----".BOLD.mb_strtoupper($posicion_mapa).BOLD_CERRAR."----";
                 foreach ($columnas as $n_peloton => $columna) {
-                    $pelotonSINO = "SI";
-                    if (isset($values[$fila-1][$columna]) && mb_strtoupper($values[$fila][$columna]) == "SKIP") {
-                        $pelotonSINO = "NO";
-                    } elseif (isset($values[$fila][$columna]) && $values[$fila][$columna] != "") {
-                        $pelotonSINO = "NO";
-                    }
+                    $pelotonSINO = $this->pelotonRellenable($values, $fila, $columna);
                     $array_pelotones[] = BOLD."PELOTON ".($n_peloton+1).": ".BOLD_CERRAR.$pelotonSINO;
                 }
             }
@@ -54,5 +49,22 @@ class BT extends Excel
     protected function maquetarValores($valores_comprobados)
     {
         return implode(ENTER, (array)$valores_comprobados);
+    }
+
+    /**
+     * @param array $values
+     * @param $fila
+     * @param $columna
+     * @return string
+     */
+    protected function pelotonRellenable(array $values, $fila, $columna): string
+    {
+        $pelotonSINO = "SI";
+        if (isset($values[$fila - 1][$columna]) && mb_strtoupper($values[$fila - 1][$columna]) == "SKIP") {
+            $pelotonSINO = "NO";
+        } elseif (isset($values[$fila][$columna]) && $values[$fila][$columna] != "") {
+            $pelotonSINO = "NO";
+        }
+        return $pelotonSINO;
     }
 }
