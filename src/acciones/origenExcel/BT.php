@@ -29,14 +29,19 @@ class BT extends Excel
         if (empty($values)) {
             return parent::comprobarValores($values);
         } else {
+            $fase = $values[1][0];
+
             $array_pelotones = [];
-            $filas = ["norte" => 16, "centro" => 34, "sur" => 52];
+            $filas = ["norte/naves" => 16, "centro" => 34, "sur" => 52];
             $columnas = [4, 8, 12, 16, 20, 24];
             foreach ($filas as $posicion_mapa => $fila) {
+
                 $array_pelotones[] = "----".BOLD.mb_strtoupper($posicion_mapa).BOLD_CERRAR."----";
                 foreach ($columnas as $n_peloton => $columna) {
                     $pelotonSINO = "SI";
-                    if (isset($values[$fila][$columna]) && $values[$fila][$columna] != "") {
+                    if (isset($values[$fila-1][$columna]) && mb_strtoupper($values[$fila][$columna]) == "SKIP") {
+                        $pelotonSINO = "NO";
+                    } elseif (isset($values[$fila][$columna]) && $values[$fila][$columna] != "") {
                         $pelotonSINO = "NO";
                     }
                     $array_pelotones[] = BOLD."PELOTON ".($n_peloton+1).": ".BOLD_CERRAR.$pelotonSINO;
