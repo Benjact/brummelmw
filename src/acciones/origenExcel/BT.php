@@ -17,6 +17,6 @@ class BT extends Excel
      */
     protected function rango(): string
     {
-        return 'Platoon!A1:Y53';
+        return 'Platoon!A2:Y';
     }
 }
