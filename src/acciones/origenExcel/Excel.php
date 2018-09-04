@@ -10,7 +10,8 @@ use Google_Service_Sheets;
 
 class Excel extends AccionBasica implements iAcciones
 {
-    const ID = "1L5T8Zso07c5wNKPnW0werZnQ5zS8FAdtD0GWliqg76s";
+    const ID_BT = "1L5T8Zso07c5wNKPnW0werZnQ5zS8FAdtD0GWliqg76s";
+    const ID_HC = "1ElHBU0fc-fRPMonMXsre2BmkJy50K6KTpfacQC2j--M";
 
     /**
      * @param string $id_chat
@@ -24,8 +25,8 @@ class Excel extends AccionBasica implements iAcciones
         $service = new Google_Service_Sheets($client);
 
         // Prints the names and majors of students in a sample spreadsheet:
-        $range = 'Roster!B2:E';
-        $response = $service->spreadsheets_values->get(self::ID, $range);
+        $range = 'Platoon!A1:Y53';
+        $response = $service->spreadsheets_values->get(self::ID_BT, $range);
         $values = $response->getValues();
 
         if (empty($values)) {
