@@ -29,6 +29,8 @@ class BT extends Excel
         if (empty($values)) {
             return parent::comprobarValores($values);
         } else {
+            return $values;
+
             $array_pelotones = [];
             $filas = ["norte" => 16, "centro" => 34, "sur" => 52];
             $columnas = [4, 8, 12, 16, 20, 24];
