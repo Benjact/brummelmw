@@ -99,6 +99,14 @@ class Excel extends AccionBasica implements iAcciones
     }
 
     /**
+     * @return string
+     */
+    protected function rango(): string
+    {
+        return "";
+    }
+
+    /**
      * @param $values
      * @return array|string
      */
@@ -114,13 +122,5 @@ class Excel extends AccionBasica implements iAcciones
     protected function maquetarValores($valores_comprobados)
     {
         return "<pre>" . print_r((array)$valores_comprobados, true) . "</pre>";
-    }
-
-    /**
-     * @return string
-     */
-    protected function rango(): string
-    {
-        return "";
     }
 }

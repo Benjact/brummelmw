@@ -17,6 +17,19 @@ class BT extends Excel
      */
     protected function rango(): string
     {
-        return 'Platoon!A2:Y';
+        return 'Platoon!A1:Y';
+    }
+
+    /**
+     * @param $values
+     * @return array|string
+     */
+    protected function comprobarValores(array $values)
+    {
+        if (empty($values)) {
+            return parent::comprobarValores($values);
+        } else {
+            return $values;
+        }
     }
 }
