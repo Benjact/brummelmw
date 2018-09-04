@@ -11,7 +11,6 @@ use Google_Service_Sheets;
 class Excel extends AccionBasica implements iAcciones
 {
     const ID = "";
-    const RANGO = "";
 
     /**
      * @param string $id_chat
@@ -25,7 +24,7 @@ class Excel extends AccionBasica implements iAcciones
         $service = new Google_Service_Sheets($client);
 
         // Prints the names and majors of students in a sample spreadsheet:
-        $response = $service->spreadsheets_values->get(self::ID, self::RANGO);
+        $response = $service->spreadsheets_values->get(self::ID, $this->rango());
         $values = $response->getValues();
 
         $valores_comprobados = $this->comprobarValores($values);
@@ -68,12 +67,12 @@ class Excel extends AccionBasica implements iAcciones
     }
 
     /**
-     * @param Google_Client $client
-     * @param string $credentialsPath
+     * @param $client
+     * @param $credentialsPath
      * @return mixed
      * @throws Exception
      */
-    protected function createCredentialsPath(Google_Client $client, string $credentialsPath)
+    protected function createCredentialsPath($client, $credentialsPath)
     {
         // Request authorization from the user.
         $authUrl = $client->createAuthUrl();
@@ -115,5 +114,13 @@ class Excel extends AccionBasica implements iAcciones
     protected function maquetarValores($valores_comprobados)
     {
         return "<pre>" . print_r((array)$valores_comprobados, true) . "</pre>";
+    }
+
+    /**
+     * @return string
+     */
+    protected function rango(): string
+    {
+        return "";
     }
 }
