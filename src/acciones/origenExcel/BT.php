@@ -11,5 +11,5 @@ use Google_Service_Sheets;
 class BT extends Excel
 {
     const ID = "1L5T8Zso07c5wNKPnW0werZnQ5zS8FAdtD0GWliqg76s";
-    const RANGO = "Platoon!A1:Y53";
+    const RANGO = "Platoon!A1:Y";
 }
