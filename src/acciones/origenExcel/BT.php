@@ -45,4 +45,9 @@ class BT extends Excel
             return $array_pelotones;
         }
     }
+
+    protected function maquetarValores($valores_comprobados)
+    {
+        return implode(ENTER, (array)$valores_comprobados);
+    }
 }
