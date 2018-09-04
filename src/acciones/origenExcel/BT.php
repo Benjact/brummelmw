@@ -34,12 +34,16 @@ class BT extends Excel
             $array_pelotones = [];
             $filas = ["norte/naves" => 16, "centro" => 34, "sur" => 52];
             $columnas = [4, 8, 12, 16, 20, 24];
-            foreach ($filas as $posicion_mapa => $fila) {
 
-                $array_pelotones[] = "----".BOLD.mb_strtoupper($posicion_mapa).BOLD_CERRAR."----";
-                foreach ($columnas as $n_peloton => $columna) {
-                    $pelotonSINO = $this->pelotonRellenable($values, $fila, $columna);
-                    $array_pelotones[] = BOLD."PELOTON ".($n_peloton+1).": ".BOLD_CERRAR.$pelotonSINO;
+            foreach ($filas as $territorio => $fila) {
+                $muestra_territorio = $this->muestraTerritorio($fase, $territorio);
+                if ($muestra_territorio) {
+                    $array_pelotones[] = "----" . BOLD . mb_strtoupper($territorio) . BOLD_CERRAR . "----";
+                    foreach ($columnas as $n_peloton => $columna) {
+                        $pelotonSINO = $this->pelotonRellenable($values, $fila, $columna);
+                        $array_pelotones[] = BOLD . "PELOTON " . ($n_peloton + 1) . ": " . BOLD_CERRAR . $pelotonSINO;
+                    }
+                    $array_pelotones[] = "";
                 }
             }
             return $array_pelotones;
@@ -66,5 +70,11 @@ class BT extends Excel
             $pelotonSINO = "NO";
         }
         return $pelotonSINO;
+    }
+
+    protected function muestraTerritorio($fase, $territorio): bool
+    {
+        if (in_array($fase, [1, 2]) && $territorio == "norte/naves") return false;
+        return true;
     }
 }
