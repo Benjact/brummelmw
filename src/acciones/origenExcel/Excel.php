@@ -10,8 +10,8 @@ use Google_Service_Sheets;
 
 class Excel extends AccionBasica implements iAcciones
 {
-    const ID_BT = "1L5T8Zso07c5wNKPnW0werZnQ5zS8FAdtD0GWliqg76s";
-    const ID_HC = "1ElHBU0fc-fRPMonMXsre2BmkJy50K6KTpfacQC2j--M";
+    const ID = "";
+    const RANGO = "";
 
     /**
      * @param string $id_chat
@@ -25,20 +25,15 @@ class Excel extends AccionBasica implements iAcciones
         $service = new Google_Service_Sheets($client);
 
         // Prints the names and majors of students in a sample spreadsheet:
-        $range = 'Platoon!A1:Y53';
-        $response = $service->spreadsheets_values->get(self::ID_BT, $range);
+        $response = $service->spreadsheets_values->get(self::ID, self::RANGO);
         $values = $response->getValues();
 
-        if (empty($values)) {
-            print "No data found.\n";
-        } else {
-            echo "<pre>".print_r($values, true)."</pre>";
-        }
+        $valores_comprobados = $this->comprobarValores($values);
 
         return new ObjetoResponse(ObjetoResponse::MENSAJE, [
             "chat_id" => $id_chat,
             "parse_mode" => PARSE_MODE,
-            "text" => "-",
+            "text" => $this->maquetarValores($valores_comprobados),
         ]);
     }
 
@@ -73,12 +68,12 @@ class Excel extends AccionBasica implements iAcciones
     }
 
     /**
-     * @param $client
-     * @param $credentialsPath
+     * @param Google_Client $client
+     * @param string $credentialsPath
      * @return mixed
      * @throws Exception
      */
-    protected function createCredentialsPath($client, $credentialsPath)
+    protected function createCredentialsPath(Google_Client $client, string $credentialsPath)
     {
         // Request authorization from the user.
         $authUrl = $client->createAuthUrl();
@@ -102,5 +97,23 @@ class Excel extends AccionBasica implements iAcciones
         file_put_contents($credentialsPath, json_encode($accessToken));
         printf("Credentials saved to %s\n", $credentialsPath);
         return $accessToken;
+    }
+
+    /**
+     * @param $values
+     * @return array|string
+     */
+    protected function comprobarValores(array $values)
+    {
+        if (empty($values)) {
+            return "No data found.\n";
+        } else {
+            return $values;
+        }
+    }
+
+    protected function maquetarValores($valores_comprobados)
+    {
+        return "<pre>" . print_r((array)$valores_comprobados, true) . "</pre>";
     }
 }
