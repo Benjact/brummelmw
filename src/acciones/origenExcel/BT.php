@@ -37,7 +37,11 @@ class BT extends Excel
             foreach ($filas as $posicion_mapa => $fila) {
                 $array_pelotones[] = BOLD.$posicion_mapa.BOLD_CERRAR;
                 foreach ($columnas as $n_peloton => $columna) {
-                    $array_pelotones[] = BOLD."PELOTON ".($n_peloton+1).":".BOLD_CERRAR.($values[$fila][$columna] == "" ? "SI ".$columna : "NO");
+                    $pelotonSINO = "SI";
+                    if (isset($values[$fila][$columna]) && $values[$fila][$columna] != "") {
+                        $pelotonSINO = "NO";
+                    }
+                    $array_pelotones[] = BOLD."PELOTON ".($n_peloton+1).": ".BOLD_CERRAR.$pelotonSINO;
                 }
             }
             return $array_pelotones;
