@@ -10,7 +10,7 @@ use Google_Service_Sheets;
 
 class Excel extends AccionBasica implements iAcciones
 {
-    const ID = "";
+    protected $excel_id = "";
 
     /**
      * @param string $id_chat
@@ -24,7 +24,7 @@ class Excel extends AccionBasica implements iAcciones
         $service = new Google_Service_Sheets($client);
 
         // Prints the names and majors of students in a sample spreadsheet:
-        $response = $service->spreadsheets_values->get(self::ID, $this->rango());
+        $response = $service->spreadsheets_values->get($this->excel_id, $this->rango());
         $values = $response->getValues();
 
         $valores_comprobados = $this->comprobarValores($values);
