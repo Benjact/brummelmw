@@ -1,6 +1,7 @@
 <?php
 namespace BrummelMW\acciones;
 
+use BrummelMW\acciones\origenExcel\BT;
 use BrummelMW\acciones\origenExcel\Excel;
 use BrummelMW\acciones\origenSwgoh\Gremio;
 use BrummelMW\acciones\origenSwgoh\Hoth;
@@ -58,8 +59,8 @@ class AccionesGeneral
             $this->accionGremio($instruccion_partida);
             return;
 
-        } elseif (in_array($primera_palabra, ["excel"])) {
-            $this->accionExcel();
+        } elseif (in_array($primera_palabra, ["bt"])) {
+            $this->accionBT();
             return;
         }
 
@@ -226,9 +227,9 @@ class AccionesGeneral
         }
     }
 
-    protected function accionExcel()
+    protected function accionBT()
     {
-        $this->instruccion = new Excel();
+        $this->instruccion = new BT();
     }
 
     protected function accionError($mensaje = "")
