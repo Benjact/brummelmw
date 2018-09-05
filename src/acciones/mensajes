@@ -10,12 +10,10 @@ return [
     "gracias" => "De nada, a mandar",
     "hola" => [
         "superamoweb" => "hola",
-        //"<a href='https://swgoh.gg/static/img/assets/tex.charui_jedi_fighter_ahsoka.png'>"
         "amthorn" => [
-            "Hola papi!!! \xF0\x9F\x9A\xAB",
-            //"Que quieres?!",
-            //"Deja de molestarme y habla un rato con @TheOldBrummel",
-            //"<a href='https://swgoh.gg/static/img/assets/tex.charui_jedi_fighter_ahsoka.png'>"
+            "Hola papi!!!",
+            "Que quieres?!",
+            "Deja de molestarme y habla un rato con @TheOldBrummel",
         ],
         "spawtadeus" => [
             "Señor, sí señor!",

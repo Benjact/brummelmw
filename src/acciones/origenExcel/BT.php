@@ -65,9 +65,9 @@ class BT extends Excel
     {
         $pelotonSINO = "SI";
         if (isset($values[$fila - 1][$columna]) && mb_strtoupper($values[$fila - 1][$columna]) == "SKIP") {
-            $pelotonSINO = "NO";
+            $pelotonSINO = "\xF0\x9F\x9A\xAB";
         } elseif (isset($values[$fila][$columna]) && $values[$fila][$columna] != "") {
-            $pelotonSINO = "NO";
+            $pelotonSINO = "\xF0\x9F\x9A\xAB";
         }
         return $pelotonSINO;
     }
