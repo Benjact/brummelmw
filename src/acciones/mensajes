@@ -2,7 +2,10 @@
 return [
     "brummel" => "No te puedo ayudar, poco Brummel siento en ti. Mejora en la raid sith",
     "brumel" => "No te puedo ayudar, poco Brummel siento en ti. Mejora en la raid sith",
-    "autosith" => "Como spaw se entere la has cagao. El último está en imperio",
+    "autosith" => [
+        "Como spaw se entere la has cagao. El último está en imperio",
+        "\xF0\x9F\x8E\xBB\xF0\x9F\x8E\xBB\xF0\x9F\x8E\xBB"
+    ],
     "hulio" => "germinado!!",
     "herederos" => "Kiraaaa!!! Mira lo que dicen!!!",
     "chancla" => "La de nndiaz está en un territorio de las guerras",
