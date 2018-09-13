@@ -6,7 +6,6 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use BrummelMW\acciones\AccionesGeneral;
 use BrummelMW\acciones\ExcepcionAccion;
-use BrummelMW\acciones\ExcepcionRuta;
 use BrummelMW\bot\Bot;
 use BrummelMW\bot\BotHTML;
 use BrummelMW\response\ObjetoResponse;
@@ -41,11 +40,6 @@ try {
     $acciones = new AccionesGeneral($bot, $inline);
     $response->devolverMensaje($acciones->retorno());
 } catch (ExcepcionAccion $e) {
-    $response->devolverMensaje(new ObjetoResponse(ObjetoResponse::MENSAJE, [
-        "parse_mode" => PARSE_MODE,
-        "text" => $e->getMessage(),
-    ]));
-} catch (ExcepcionRuta $e) {
     $response->devolverMensaje(new ObjetoResponse(ObjetoResponse::MENSAJE, [
         "parse_mode" => PARSE_MODE,
         "text" => $e->getMessage(),

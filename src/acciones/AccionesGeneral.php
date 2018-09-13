@@ -97,7 +97,6 @@ class AccionesGeneral
         if ($instruccion_partida[0] == "/") {
             $this->accionError();
         }
-
     }
 
     /**
@@ -129,11 +128,14 @@ class AccionesGeneral
      */
     protected function accionPersonaje($instruccion_partida, bool $inline = false)
     {
-
-        if ($inline) {
-            $this->instruccion = new PersonajesInline("", SwgohCharacters::recuperarJSON());
-        } else {
-            $this->instruccion = new Personajes("", SwgohGuildUnits::recuperarJSON(), SwgohCharacters::recuperarJSON());
+        try {
+            if ($inline) {
+                $this->instruccion = new PersonajesInline("", SwgohCharacters::recuperarJSON());
+            } else {
+                $this->instruccion = new Personajes("", SwgohGuildUnits::recuperarJSON(), SwgohCharacters::recuperarJSON());
+            }
+        } catch (ExcepcionRuta $e) {
+            throw new ExcepcionAccion($e->getMessage());
         }
 
         if (isset($instruccion_partida[1])) {
@@ -183,9 +185,13 @@ class AccionesGeneral
             throw new ExcepcionAccion("Las estrellas deben ser un número comprendido entre 1-7");
         }
 
-        $jsonGuildUnits = SwgohGuildUnits::recuperarJSON();
-        $personajes = new Personajes("", $jsonGuildUnits, SwgohCharacters::recuperarJSON());
-        $naves = new Naves("", $jsonGuildUnits, SwgohShips::recuperarJSON());
+        try {
+            $jsonGuildUnits = SwgohGuildUnits::recuperarJSON();
+            $personajes = new Personajes("", $jsonGuildUnits, SwgohCharacters::recuperarJSON());
+            $naves = new Naves("", $jsonGuildUnits, SwgohShips::recuperarJSON());
+        } catch (ExcepcionRuta $e) {
+            throw new ExcepcionAccion($e->getMessage());
+        }
 
         if (in_array(mb_strtoupper($instruccion_partida[1]), $personajes->personajes())) {
             $this->instruccion = new Hoth("", $jsonGuildUnits);
@@ -211,7 +217,11 @@ class AccionesGeneral
 
     protected function accionGremio($instruccion_partida)
     {
-        $this->instruccion = new Gremio("", SwgohGuildUnits::recuperarJSON());
+        try {
+            $this->instruccion = new Gremio("", SwgohGuildUnits::recuperarJSON());
+        } catch (ExcepcionRuta $e) {
+            throw new ExcepcionAccion($e->getMessage());
+        }
     }
 
     /**
@@ -219,7 +229,12 @@ class AccionesGeneral
      */
     protected function accionJugador($instruccion_partida)
     {
-        $this->instruccion = new Jugadores("", SwgohGuildUnits::recuperarJSON());
+        try {
+            $this->instruccion = new Jugadores("", SwgohGuildUnits::recuperarJSON());
+        } catch (ExcepcionRuta $e) {
+            throw new ExcepcionAccion($e->getMessage());
+        }
+
         if (isset($instruccion_partida[1])) {
             $jugador = mb_strtoupper($instruccion_partida[1]);
             $this->instruccion->setJugador($jugador);
