@@ -41,6 +41,7 @@ try {
     $response->devolverMensaje($acciones->retorno());
 } catch (ExcepcionAccion $e) {
     $response->devolverMensaje(new ObjetoResponse(ObjetoResponse::MENSAJE, [
+        "chat_id" => $bot->chatId(),
         "parse_mode" => PARSE_MODE,
         "text" => $e->getMessage(),
     ]));
