@@ -75,19 +75,23 @@ class AccionesGeneral
             }
         }
 
-        $jsonGuildUnits = SwgohGuildUnits::recuperarJSON();
-        $personajes = new Personajes("", $jsonGuildUnits, SwgohCharacters::recuperarJSON());
-        if (in_array(mb_strtoupper($primera_palabra), $personajes->personajes())) {
-            array_unshift($instruccion_partida, "personajes");
-            $this->accionPersonaje($instruccion_partida, $inline);
-            return;
-        }
+        try {
+            $jsonGuildUnits = SwgohGuildUnits::recuperarJSON();
+            $personajes = new Personajes("", $jsonGuildUnits, SwgohCharacters::recuperarJSON());
+            if (in_array(mb_strtoupper($primera_palabra), $personajes->personajes())) {
+                array_unshift($instruccion_partida, "personajes");
+                $this->accionPersonaje($instruccion_partida, $inline);
+                return;
+            }
 
-        $naves = new Naves("", $jsonGuildUnits, SwgohShips::recuperarJSON());
-        if (in_array(mb_strtoupper($primera_palabra), $naves->naves())) {
-            array_unshift($instruccion_partida, "naves");
-            $this->accionNave($instruccion_partida);
-            return;
+            $naves = new Naves("", $jsonGuildUnits, SwgohShips::recuperarJSON());
+            if (in_array(mb_strtoupper($primera_palabra), $naves->naves())) {
+                array_unshift($instruccion_partida, "naves");
+                $this->accionNave($instruccion_partida);
+                return;
+            }
+        } catch (ExcepcionRuta $e) {
+            $this->accionError($e->getMessage());
         }
 
         if ($instruccion_partida[0] == "/") {
@@ -125,11 +129,13 @@ class AccionesGeneral
      */
     protected function accionPersonaje($instruccion_partida, bool $inline = false)
     {
+
         if ($inline) {
             $this->instruccion = new PersonajesInline("", SwgohCharacters::recuperarJSON());
         } else {
             $this->instruccion = new Personajes("", SwgohGuildUnits::recuperarJSON(), SwgohCharacters::recuperarJSON());
         }
+
         if (isset($instruccion_partida[1])) {
             $personaje = mb_strtoupper(str_replace("/", "", $instruccion_partida[1]));
             $this->instruccion->setPersonaje($personaje);

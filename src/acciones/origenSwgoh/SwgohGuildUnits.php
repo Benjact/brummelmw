@@ -2,12 +2,19 @@
 namespace BrummelMW\acciones\origenSwgoh;
 
 use BrummelMW\acciones\AccionBasica;
+use BrummelMW\acciones\ExcepcionAccion;
+use BrummelMW\acciones\ExcepcionRuta;
 use BrummelMW\acciones\iAcciones;
 
 class SwgohGuildUnits implements iSWGOH
 {
     public static function recuperarJSON(): array
     {
-        return json_decode(file_get_contents("https://swgoh.gg/api/guilds/".ID_GREMIO."/units/"), true);
+        $ruta = "https://swgoh.gg/api/guilds/" . ID_GREMIO . "/units/";
+        $array_retorno = json_decode(file_get_contents($ruta), true);
+        if ($array_retorno == null) {
+            throw new ExcepcionRuta($ruta);
+        }
+        return $array_retorno;
     }
 }
