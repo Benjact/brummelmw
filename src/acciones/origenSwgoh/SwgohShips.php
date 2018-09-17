@@ -2,17 +2,17 @@
 namespace BrummelMW\acciones\origenSwgoh;
 
 use BrummelMW\acciones\ExcepcionRuta;
+use BrummelMW\core\Utils;
 
 class SwgohShips implements iSWGOH
 {
     public static function recuperarJSON(): array
     {
         $ruta = "https://swgoh.gg/api/ships/?format=json";
-        if (file_exists($ruta)) {
-            $array_retorno = json_decode(file_get_contents($ruta), true);
-        } else {
+        if (!Utils::comprobarExisteRuta($ruta)) {
             throw new ExcepcionRuta($ruta);
         }
-        return $array_retorno;
+
+        return json_decode(file_get_contents($ruta), true);
     }
 }

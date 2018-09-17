@@ -13,4 +13,17 @@ class Utils
             return "";
         }, $array_filtrar));
     }
+
+    public static function comprobarExisteRuta(string $ruta): bool
+    {
+        $file_headers = @get_headers($ruta);
+        if ($file_headers[0] == 'HTTP/1.0 404 Not Found') {
+            return false;
+        }
+
+        if ($file_headers[0] == 'HTTP/1.0 302 Found' && $file_headers[7] == 'HTTP/1.0 404 Not Found') {
+            return false;
+        }
+        return true;
+    }
 }
