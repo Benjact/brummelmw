@@ -163,9 +163,10 @@ class Personajes extends AccionCompuesta
             7 => ["cantidad" => 0],
         ];
         foreach ($datos_gremio["players"] as $jugador) {
+                echo "<pre>".print_r($jugador, true)."</pre>";
             foreach ($jugador["units"] as $personaje) {
                 $rarity = $personaje["data"]["rarity"];
-                echo "<pre>".print_r($personaje, true)."</pre>";
+               // echo "<pre>".print_r($personaje, true)."</pre>";
 
                 $recopilacion[$rarity]["cantidad"] += 1;
                 if (!isset($recopilacion[$rarity]["jugadores"])) {
