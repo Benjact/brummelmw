@@ -1,4 +1,5 @@
 <?php
+
 namespace BrummelMW\acciones\origenSwgoh;
 
 use BrummelMW\acciones\AccionBasica;
@@ -17,18 +18,7 @@ class Personajes extends AccionCompuesta
     {
         parent::__construct($parametro, $objetoJSON, $objetoJSONextra);
 
-        $this->objetoJSON = $this->recuperar_json($objetoJSON);
-    }
-
-    protected function recuperar_json(array $recuperar_json): array
-    {
-        foreach ($recuperar_json as $nombre => $personaje) {
-            if ($personaje[0]["combat_type"] != $this->combat_type) {
-                unset($recuperar_json[$nombre]);
-            }
-        }
-
-        return $recuperar_json;
+        $this->objetoJSON = $objetoJSON;
     }
 
     /**
@@ -66,9 +56,13 @@ class Personajes extends AccionCompuesta
         } elseif ($this->personaje[0] == "%") {
             $coincidencia = str_replace("%", "", $this->personaje);
             $array_personajes_coincidentes = Utils::filtrar($array_personajes, $coincidencia);
-
-            asort($array_personajes_coincidentes);
-            return $this->retornoObjeto($id_chat, $array_personajes_coincidentes);
+            if (count($array_personajes_coincidentes) == 1) {
+                $this->personaje = str_replace(BOLD, "", str_replace(BOLD_CERRAR, "", $array_personajes_coincidentes[0]));
+                return $this->retorno($id_chat);
+            } else {
+                asort($array_personajes_coincidentes);
+                return $this->retornoObjeto($id_chat, $array_personajes_coincidentes);
+            }
         } else {
             if (in_array($this->personaje, $array_personajes)) {
                 $datos_personaje = $this->objetoJSON[$this->personaje];
@@ -103,8 +97,54 @@ class Personajes extends AccionCompuesta
         return $this->infoPersonajeEstrellas($datos_personaje);
     }
 
-    protected function infoPersonajeEstrellas(array $datos_personaje, int $estrellas = 1)
+    protected function infoPersonajeEstrellas(array $datos_gremio, int $estrellas = 1)
     {
+        /*$json = {
+            "players":[{
+                "units":[{
+                    "data":{
+                        "gear_level":9,
+                        "gear":[
+                            {"slot":0,"is_obtained":true,"base_id":"126"},
+                            {"slot":1,"is_obtained":false,"base_id":"121"},
+                            {"slot":2,"is_obtained":false,"base_id":"125"},
+                            {"slot":3,"is_obtained":false,"base_id":"108"},
+                            {"slot":4,"is_obtained":false,"base_id":"112"},
+                            {"slot":5,"is_obtained":false,"base_id":"109"}
+                        ],
+                        "power":13978,
+                        "level":85,
+                        "url":"/p/687829488/characters/garazeb-zeb-orrelios",
+                        "rarity":7,
+                        "base_id":"ZEBS3",
+                        "stats":{
+                            "27":0.1, "28":22039.0, "40":0.0, "1":23981.0, "3":644, "2":983,"5":128.0,"4":493,"7":1325.0,"6":2006.0,"9":14.601473543201607,"8":34.17656169334022,"39":0.0,"12":2.0,"11":0.0,"10":20.0,"13":2.0,"38":0.0,"15":19.69,"14":40.690000000000005,"17":0.3256,"16":1.5,"18":0.5321,"37":0.0
+                        },
+                        "zeta_abilities":[]
+                    }
+                }],
+                "data":{
+                    "ship_galactic_power":1254582,
+                    "arena_leader_base_id":"REYJEDITRAINING",
+                    "name":"SpawTadeus",
+                    "ally_code":411625797,
+                    "galactic_power":3131494,
+                    "level":85,
+                    "character_galactic_power":1876912,
+                    "arena_rank":156,
+                    "url":"/p/411625797/"}
+                }
+            }],
+            "data":{
+                "name":"MadridWars",
+                "member_count":47,
+                "galactic_power":104150254,
+                "rank":0,
+                "profile_count":47,
+                "id":7217
+            }
+        };*/
+
 
         $datos_retorno = [];
 
@@ -122,13 +162,14 @@ class Personajes extends AccionCompuesta
             6 => ["cantidad" => 0],
             7 => ["cantidad" => 0],
         ];
-        foreach ($datos_personaje as $jugador) {
-            $recopilacion[$jugador["rarity"]]["cantidad"] += 1;
-            if (!isset($recopilacion[$jugador["rarity"]]["jugadores"])) {
-                $recopilacion[$jugador["rarity"]]["jugadores"] = [];
+        foreach ($datos_gremio["players"] as $jugador) {
+            foreach ($jugador["units"] as $personaje) {
+                $recopilacion[$personaje["rarity"]]["cantidad"] += 1;
+                if (!isset($recopilacion[$personaje["rarity"]]["jugadores"])) {
+                    $recopilacion[$personaje["rarity"]]["jugadores"] = [];
+                }
+                $recopilacion[$personaje["rarity"]]["jugadores"][] = $jugador["data"]["name"];
             }
-            $recopilacion[$jugador["rarity"]]["jugadores"][] = $jugador["player"];
-            //." lvl:".$jugador["level"]." gear:".$jugador["gear_level"];
         }
 
         $cantidad_total = array_sum(array_map(function ($cantidad) {
@@ -142,9 +183,9 @@ class Personajes extends AccionCompuesta
                 }
                 return 0;
             }, array_keys($recopilacion), $recopilacion));
-            $datos_retorno[] = BOLD_MD."{$cantidad}/{$cantidad_total} en el gremio".BOLD_CERRAR_MD;
+            $datos_retorno[] = BOLD_MD . "{$cantidad}/{$cantidad_total} en el gremio" . BOLD_CERRAR_MD;
         } elseif ($estrellas == 0) {
-            $datos_retorno[] = "`". (50 - $cantidad_total) ." no lo tienen desbloqueado`";
+            $datos_retorno[] = "`" . (50 - $cantidad_total) . " no lo tienen desbloqueado`";
             $jugadores_con_personaje = [];
             foreach ($recopilacion as $estrellas_recopilacion => $datos) {
                 if (!empty($datos["jugadores"])) {
@@ -161,7 +202,7 @@ class Personajes extends AccionCompuesta
             );
 
         } else {
-            $datos_retorno[] = BOLD_MD."{$cantidad_total} en el gremio".BOLD_CERRAR_MD;
+            $datos_retorno[] = BOLD_MD . "{$cantidad_total} en el gremio" . BOLD_CERRAR_MD;
         }
 
         if ($estrellas != 0) {
@@ -184,18 +225,18 @@ class Personajes extends AccionCompuesta
      * @return string
      */
     protected function avisoPersonajeNoEncontrado(): string
-    {
-        return "Personaje {$this->personaje} no encontrado";
-    }
-
-    protected function buscarImagen(string $idPersonaje)
-    {
-        foreach ($this->objetoJSONextra as $personaje) {
-            if ($personaje["base_id"] == $idPersonaje) {
-                return "[$idPersonaje](https:{$personaje["image"]})";
-            }
+        {
+            return "Personaje {$this->personaje} no encontrado";
         }
 
-        return "";
-    }
+    protected function buscarImagen(string $idPersonaje)
+        {
+            foreach ($this->objetoJSONextra as $personaje) {
+                if ($personaje["base_id"] == $idPersonaje) {
+                    return "[$idPersonaje](https:{$personaje["image"]})";
+                }
+            }
+
+            return "";
+        }
 }
