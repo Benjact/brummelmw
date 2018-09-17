@@ -93,6 +93,7 @@ class Jugadores extends AccionBasica
                     "pg" => 0,
                     "pg_personajes" => 0,
                     "pg_naves" => 0,
+                    "zetas" => 0,
                     "personajes" => [],
                 ];
             }
@@ -101,7 +102,13 @@ class Jugadores extends AccionBasica
             $array_jugadores[$nombre_judador]["pg_personajes"] = $jugador["data"]["character_galactic_power"];
             $array_jugadores[$nombre_judador]["pg_naves"] = $jugador["data"]["ship_galactic_power"];
             foreach ($jugador["units"] as $personaje) {
-                $array_jugadores[$nombre_judador]["personajes"][] = $personaje["data"]["base_id"];
+                $cantidad_zetas = count($personaje["data"]["zeta_abilities"]);
+                $array_jugadores[$nombre_judador]["zetas"] += $cantidad_zetas;
+                $nombre_personaje = $personaje["data"]["base_id"];
+                if ($cantidad_zetas > 0) {
+                    $nombre_personaje .= " ".BOLD.$cantidad_zetas." zetas".BOLD_CERRAR;
+                }
+                $array_jugadores[$nombre_judador]["personajes"][] = $nombre_personaje;
             }
         }
         return $array_jugadores;
@@ -122,6 +129,7 @@ class Jugadores extends AccionBasica
             BOLD."PG TOTAL {$this->jugador}:".BOLD_CERRAR." ".$datos_jugador["pg"],
             "PG PERSONAJES: ".$datos_jugador["pg_personajes"],
             "PG NAVES: ".$datos_jugador["pg_naves"],
+            "ZETAS: ".$datos_jugador["zetas"],
         ];
         if ($this->parametro == "extendido") {
             $datos_retorno[] = "";
