@@ -14,13 +14,6 @@ class Personajes extends AccionCompuesta
     protected $estrellas = 1;
     protected $combat_type = 1;
 
-    public function __construct(string $parametro = "", array $objetoJSON = [], array $objetoJSONextra = [])
-    {
-        parent::__construct($parametro, $objetoJSON, $objetoJSONextra);
-
-        $this->objetoJSON = $objetoJSON;
-    }
-
     /**
      * @param string $personaje
      * @return Personajes
@@ -65,11 +58,10 @@ class Personajes extends AccionCompuesta
             }
         } else {
             if (in_array($this->personaje, $array_personajes)) {
-                $datos_personaje = $this->objetoJSON[$this->personaje];
                 if ($this->estrellas != 1) {
-                    return $this->retornoObjeto($id_chat, $this->infoPersonajeEstrellas($datos_personaje, $this->estrellas), "markdown");
+                    return $this->retornoObjeto($id_chat, $this->infoPersonajeEstrellas($this->objetoJSON, $this->estrellas), "markdown");
                 } else {
-                    return $this->retornoObjeto($id_chat, $this->infoPersonaje($datos_personaje), "markdown");
+                    return $this->retornoObjeto($id_chat, $this->infoPersonaje($this->objetoJSON), "markdown");
                 }
             } else {
                 throw new ExcepcionAccion($this->avisoPersonajeNoEncontrado());
@@ -89,7 +81,13 @@ class Personajes extends AccionCompuesta
 
     public function personajes()
     {
-        return array_keys($this->objetoJSON);
+        $personajes = [];
+        foreach ($this->objetoJSONextra as $personaje) {
+            if ($personaje["combat_type"] == $this->combat_type) {
+                $personajes[] = $personaje["base_id"];
+            }
+        }
+        return $personajes;
     }
 
     protected function infoPersonaje(array $datos_personaje)
