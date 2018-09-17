@@ -50,6 +50,7 @@ class Personajes extends AccionCompuesta
             $coincidencia = str_replace("%", "", $this->personaje);
             $array_personajes_coincidentes = Utils::filtrar($array_personajes, $coincidencia);
             if (count($array_personajes_coincidentes) == 1) {
+                echo "<pre>".print_r($array_personajes_coincidentes, true)."</pre>";
                 $this->personaje = str_replace(BOLD, "", str_replace(BOLD_CERRAR, "", $array_personajes_coincidentes[0]));
                 return $this->retorno($id_chat);
             } else {
