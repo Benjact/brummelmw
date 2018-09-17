@@ -19,7 +19,9 @@ class Ayuda extends AccionBasica implements iAcciones
                 "/ayuda: mostrará los comandos disponibles en el bot",
                 "/personajes o personaje: devolverá un listado de personajes posibles",
                 "/personajes [NOMBRE_PERSONAJE]: devolverá información de dicho personaje. Se puede buscar 
-                    %[TROZO_NOMBRE_PERSONAJE] y devolverá solo los coincidentes",
+                    %[TROZO_NOMBRE_PERSONAJE] y devolverá solo los coincidentes, si solo devuelve uno será 
+                    como si lo hubieramos buscado con el nombre completo, pudiendo añadir el número
+                    de estrellas",
                 "/[NOMBRE_PERSONAJE]: lo mismo que el anterior, tanto para naves como para personajes",
                 "/personajes [NOMBRE_PERSONAJE] [NUMERO_ESTRELLAS]: indicará cuantos hay en el gremio con esas o 
                     más estrellas y quién los tiene",

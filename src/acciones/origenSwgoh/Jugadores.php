@@ -86,27 +86,22 @@ class Jugadores extends AccionBasica
     public function jugadores()
     {
         $array_jugadores = [];
-        foreach ($this->objetoJSON as $personaje => $jugadores) {
-            foreach ($jugadores as $jugador) {
-                $nombre_judador = self::limpiar_nombre($jugador["player"]);
-                if (!isset($array_jugadores[$nombre_judador])) {
-                    $array_jugadores[$nombre_judador] = [
-                        "pg" => 0,
-                        "pg_personajes" => 0,
-                        "pg_naves" => 0,
-                        "personajes" => [],
-                        "naves" => [],
-                    ];
-                }
+        foreach ($this->objetoJSON["players"] as $jugador) {
+            $nombre_judador = self::limpiar_nombre($jugador["data"]["name"]);
+            if (!isset($array_jugadores[$nombre_judador])) {
+                $array_jugadores[$nombre_judador] = [
+                    "pg" => 0,
+                    "pg_personajes" => 0,
+                    "pg_naves" => 0,
+                    "personajes" => [],
+                ];
+            }
 
-                $array_jugadores[$nombre_judador]["pg"] += $jugador["power"];
-                if ($jugador["combat_type"] == 1) {
-                    $array_jugadores[$nombre_judador]["pg_personajes"] += $jugador["power"];
-                    $array_jugadores[$nombre_judador]["personajes"][] = $personaje;
-                } else {
-                    $array_jugadores[$nombre_judador]["pg_naves"] += $jugador["power"];
-                    $array_jugadores[$nombre_judador]["naves"][] = $personaje;
-                }
+            $array_jugadores[$nombre_judador]["pg"] = $jugador["data"]["galactic_power"];
+            $array_jugadores[$nombre_judador]["pg_personajes"] = $jugador["data"]["character_galactic_power"];
+            $array_jugadores[$nombre_judador]["pg_naves"] = $jugador["data"]["ship_galactic_power"];
+            foreach ($jugador["units"] as $personaje) {
+                $array_jugadores[$nombre_judador]["personajes"][] = $personaje["data"]["base_id"];
             }
         }
         return $array_jugadores;
@@ -130,12 +125,8 @@ class Jugadores extends AccionBasica
         ];
         if ($this->parametro == "extendido") {
             $datos_retorno[] = "";
-            $datos_retorno[] = BOLD."PERSONAJES".BOLD_CERRAR;
+            $datos_retorno[] = BOLD."PERSONAJES Y NAVES".BOLD_CERRAR;
             $datos_retorno = array_merge($datos_retorno, $datos_jugador["personajes"]);
-
-            $datos_retorno[] = "";
-            $datos_retorno[] = BOLD."NAVES".BOLD_CERRAR;
-            $datos_retorno = array_merge($datos_retorno, $datos_jugador["naves"]);
         }
         return $datos_retorno;
     }
