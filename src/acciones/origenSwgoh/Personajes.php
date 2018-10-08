@@ -21,7 +21,7 @@ class Personajes extends AccionCompuesta
     public function setPersonaje(string $personaje): Personajes
     {
         $this->personaje = mb_strtoupper($personaje);
-        echo "setPersonaje: ".$this->personaje ." vs ".$personaje;
+        echo "setPersonaje: ".$this->personaje ." vs ".$personaje."<br>";
         return $this;
     }
 
@@ -58,6 +58,7 @@ class Personajes extends AccionCompuesta
                 return $this->retornoObjeto($id_chat, $array_personajes_coincidentes);
             }
         } else {
+            echo "retorno: ".$this->personaje."<br>";
             if (in_array($this->personaje, $array_personajes)) {
                 if ($this->estrellas != 1) {
                     return $this->retornoObjeto($id_chat, $this->infoPersonajeEstrellas($this->objetoJSON, $this->estrellas), "markdown");
