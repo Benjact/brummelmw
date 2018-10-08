@@ -188,18 +188,18 @@ class AccionesGeneral
         try {
             $jsonGuildUnits = SwgohGuildUnits::recuperarJSON();
             $personajes = new Personajes("", $jsonGuildUnits, SwgohCharacters::recuperarJSON());
-            $naves = new Naves("", $jsonGuildUnits, SwgohShips::recuperarJSON());
+            $naves = new Naves("", $jsonGuildUnits);
         } catch (ExcepcionRuta $e) {
             throw new ExcepcionAccion($e->getMessage());
         }
 
         if (in_array(mb_strtoupper($instruccion_partida[1]), $personajes->personajes())) {
-            $this->instruccion = new Hoth("", $jsonGuildUnits);
+            $this->instruccion = new Hoth("", $jsonGuildUnits, SwgohCharacters::recuperarJSON());
 
         } elseif (in_array(mb_strtoupper($instruccion_partida[1]), $naves->naves())) {
             unset($instruccion_partida[0]);
             array_unshift($instruccion_partida, "hothnaves");
-            $this->instruccion = new HothNaves("", $jsonGuildUnits);
+            $this->instruccion = new HothNaves("", $jsonGuildUnits, SwgohShips::recuperarJSON());
 
         } else {
             throw new ExcepcionAccion("No se identifica ese personaje o nave para pelotones de Hoth. Es posible que no lo tenga nadie del gremio");
