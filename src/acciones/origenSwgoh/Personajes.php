@@ -84,9 +84,9 @@ class Personajes extends AccionCompuesta
     {
         $personajes = [];
         foreach ($this->objetoJSONextra as $personaje) {
-            echo $personaje["base_id"].":".$personaje["combat_type"]." vs ".$this->combat_type."<br>";
             if ($personaje["combat_type"] == $this->combat_type) {
                 $personajes[] = $personaje["base_id"];
+                echo $this->personaje . "=" .$personaje["base_id"].":".$personaje["combat_type"]." vs ".$this->combat_type."<br>";
             }
         }
         return $personajes;
