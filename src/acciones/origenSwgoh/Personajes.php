@@ -57,6 +57,7 @@ class Personajes extends AccionCompuesta
                 return $this->retornoObjeto($id_chat, $array_personajes_coincidentes);
             }
         } else {
+            print_r($array_personajes);
             if (in_array($this->personaje, $array_personajes)) {
                 if ($this->estrellas != 1) {
                     return $this->retornoObjeto($id_chat, $this->infoPersonajeEstrellas($this->objetoJSON, $this->estrellas), "markdown");
@@ -227,18 +228,18 @@ class Personajes extends AccionCompuesta
      * @return string
      */
     protected function avisoPersonajeNoEncontrado(): string
-        {
-            return "Personaje {$this->personaje} no encontrado";
-        }
+    {
+        return "Personaje {$this->personaje} no encontrado";
+    }
 
     protected function buscarImagen(string $idPersonaje)
-        {
-            foreach ($this->objetoJSONextra as $personaje) {
-                if ($personaje["base_id"] == $idPersonaje) {
-                    return "[$idPersonaje](https:{$personaje["image"]})";
-                }
+    {
+        foreach ($this->objetoJSONextra as $personaje) {
+            if ($personaje["base_id"] == $idPersonaje) {
+                return "[$idPersonaje](https:{$personaje["image"]})";
             }
-
-            return "";
         }
+
+        return "";
+    }
 }
