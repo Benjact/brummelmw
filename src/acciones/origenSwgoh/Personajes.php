@@ -59,6 +59,7 @@ class Personajes extends AccionCompuesta
             }
         } else {
             echo "retorno: ".$this->personaje."<br>";
+            print_r($array_personajes);
             if (in_array($this->personaje, $array_personajes)) {
                 if ($this->estrellas != 1) {
                     return $this->retornoObjeto($id_chat, $this->infoPersonajeEstrellas($this->objetoJSON, $this->estrellas), "markdown");
