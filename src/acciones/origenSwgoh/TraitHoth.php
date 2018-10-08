@@ -13,8 +13,14 @@ trait TraitHoth
         $this->cantidad_retorno = $cantidad_retorno;
     }
 
-    protected function buscarCandidatos(array $datos_personaje, int $estrellas = 1)
+    /**
+     * @param array $datos_personaje
+     * @param int $estrellas
+     * @return array
+     */
+    protected function buscarCandidatos(array $datos_personaje, int $estrellas = 1): array
     {
+        $datos_retorno = [];
         $recopilacion = [];
         foreach ($datos_personaje["players"] as $jugador) {
             foreach ($jugador["units"] as $personaje) {
