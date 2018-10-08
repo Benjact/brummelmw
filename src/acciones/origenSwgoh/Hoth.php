@@ -15,6 +15,6 @@ class Hoth extends Personajes
      */
     protected function avisoPersonajeNoEncontrado(): string
     {
-        return "Personaje {$this->personaje} no encontrado par Hoth";
+        return "Personaje {$this->personaje} no encontrado para Hoth";
     }
 }

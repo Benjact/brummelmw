@@ -194,7 +194,6 @@ class AccionesGeneral
         }
 
         if (in_array(mb_strtoupper($instruccion_partida[1]), $personajes->personajes())) {
-            echo "esto es hoth";
             $this->instruccion = new Hoth("", $jsonGuildUnits);
 
         } elseif (in_array(mb_strtoupper($instruccion_partida[1]), $naves->naves())) {
@@ -207,10 +206,8 @@ class AccionesGeneral
         }
 
         $personaje = mb_strtoupper(str_replace("/", "", $instruccion_partida[1]));
-        echo "--{$personaje}--";
-        $this->instruccion->setPersonaje($personaje);
-
-        $this->instruccion->setEstrellas($instruccion_partida[2]);
+        $this->instruccion->setPersonaje($personaje)
+            ->setEstrellas($instruccion_partida[2]);
 
         if (isset($instruccion_partida[3])) {
             $this->instruccion->setCantidadRetorno($instruccion_partida[3]);

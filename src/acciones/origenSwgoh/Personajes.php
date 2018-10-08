@@ -21,6 +21,7 @@ class Personajes extends AccionCompuesta
     public function setPersonaje(string $personaje): Personajes
     {
         $this->personaje = mb_strtoupper($personaje);
+        echo "setPersonaje: ".$this->personaje ." vs ".$personaje;
         return $this;
     }
 
