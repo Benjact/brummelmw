@@ -9,4 +9,12 @@ class Hoth extends Personajes
     {
         return $this->buscarCandidatos($datos_personaje, $estrellas);
     }
+
+    /**
+     * @return string
+     */
+    protected function avisoPersonajeNoEncontrado(): string
+    {
+        return "Personaje {$this->personaje} no encontrado par Hoth";
+    }
 }

@@ -13,4 +13,12 @@ class HothNaves extends Naves
     {
         return $this->buscarCandidatos($datos_personaje, $estrellas);
     }
+
+    /**
+     * @return string
+     */
+    protected function avisoPersonajeNoEncontrado(): string
+    {
+        return "Nave {$this->personaje} no encontrada para Hoth";
+    }
 }

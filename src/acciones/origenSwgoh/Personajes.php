@@ -57,7 +57,6 @@ class Personajes extends AccionCompuesta
                 return $this->retornoObjeto($id_chat, $array_personajes_coincidentes);
             }
         } else {
-            print_r($array_personajes);
             if (in_array($this->personaje, $array_personajes)) {
                 if ($this->estrellas != 1) {
                     return $this->retornoObjeto($id_chat, $this->infoPersonajeEstrellas($this->objetoJSON, $this->estrellas), "markdown");
@@ -86,7 +85,6 @@ class Personajes extends AccionCompuesta
         foreach ($this->objetoJSONextra as $personaje) {
             if ($personaje["combat_type"] == $this->combat_type) {
                 $personajes[] = $personaje["base_id"];
-                echo $this->personaje . "=" .$personaje["base_id"].":".$personaje["combat_type"]." vs ".$this->combat_type."<br>";
             }
         }
         return $personajes;
