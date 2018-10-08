@@ -16,9 +16,11 @@ trait TraitHoth
     protected function buscarCandidatos(array $datos_personaje, int $estrellas = 1)
     {
         $recopilacion = [];
-        foreach ($datos_personaje as $jugador) {
-            if ($jugador["rarity"] >= $estrellas) {
-                $recopilacion[$jugador["player"]] = $jugador["power"];
+        foreach ($datos_personaje["players"] as $jugador) {
+            foreach ($jugador["units"] as $personaje) {
+                if ($personaje["data"]["rarity"] >= $estrellas) {
+                    $recopilacion[$jugador["data"]["name"]] = $personaje["data"]["power"];
+                }
             }
         }
 
