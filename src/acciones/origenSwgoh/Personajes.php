@@ -83,6 +83,7 @@ class Personajes extends AccionCompuesta
     public function personajes()
     {
         $personajes = [];
+        print_r($this->objetoJSONextra);
         foreach ($this->objetoJSONextra as $personaje) {
             if ($personaje["combat_type"] == $this->combat_type) {
                 $personajes[] = $personaje["base_id"];
