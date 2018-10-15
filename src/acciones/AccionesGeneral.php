@@ -94,6 +94,7 @@ class AccionesGeneral
                 $this->accionNave($instruccion_partida);
                 return;
             }
+
         } catch (ExcepcionRuta $e) {
             $this->accionError($e->getMessage());
         }
