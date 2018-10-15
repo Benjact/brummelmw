@@ -5,6 +5,7 @@ namespace BrummelMW\acciones\origenSwgoh;
 use BrummelMW\acciones\AccionBasica;
 use BrummelMW\acciones\AccionCompuesta;
 use BrummelMW\acciones\ExcepcionAccion;
+use BrummelMW\core\PHPFileLoader;
 use BrummelMW\core\Utils;
 use BrummelMW\response\ObjetoResponse;
 
@@ -245,13 +246,7 @@ class Personajes extends AccionCompuesta
 
     protected function buscarXMote()
     {
-        $array_motes = [];
-        $motesPath = 'pjs_motes.json';
-        if (file_exists($motesPath)) {
-            $array_motes = json_decode(file_get_contents($motesPath), true);
-        } else {
-            echo "no se encuentra";
-        }
+        $array_motes = json_decode((new PHPFileLoader)->load(dirname(__DIR__) . "/acciones/origenSwgoh/pjs_motes.json"), true);
 
         if (array_key_exists($this->personaje, $array_motes)) {
             $this->personaje = $array_motes[$this->personaje];
