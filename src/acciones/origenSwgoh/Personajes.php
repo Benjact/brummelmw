@@ -245,7 +245,7 @@ class Personajes extends AccionCompuesta
 
     protected function buscarXMote()
     {
-        $array_motes = json_decode(file_get_contents("pjs_motes.json"), true);
+        $array_motes = json_decode(file_get_contents('pjs_motes.json'), true);
         if (array_key_exists($this->personaje, $array_motes)) {
             $this->personaje = $array_motes[$this->personaje];
         }
