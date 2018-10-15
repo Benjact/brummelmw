@@ -245,8 +245,8 @@ class Personajes extends AccionCompuesta
 
     protected function buscarXMote()
     {
-        $array_motes = json_decode((new PHPFileLoader)->leer(dirname(__DIR__) . "/origenSwgoh/pjs_motes.json"), true);
-print_r($array_motes);
+        $array_motes = (new PHPFileLoader)->leer(dirname(__DIR__) . "/origenSwgoh/pjs_motes.json");
+
         if (array_key_exists($this->personaje, $array_motes)) {
             $this->personaje = $array_motes[$this->personaje];
         }

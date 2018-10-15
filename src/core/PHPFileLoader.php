@@ -14,7 +14,7 @@ class PHPFileLoader implements ConfigLoaderInterface
         return include($file);
     }
 
-    public function leer($file)
+    public function leer($file): array
     {
         if (!is_readable($file)) {
             if (!file_exists($file) ) {
@@ -22,7 +22,7 @@ class PHPFileLoader implements ConfigLoaderInterface
             }
             throw new \RunTimeException("Configuration file {$file} is not readable");
         }
-        return file_get_contents($file);
+        return json_decode(file_get_contents($file), true);
     }
 
     public function supports($resource): bool

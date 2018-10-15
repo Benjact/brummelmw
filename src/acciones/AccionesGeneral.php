@@ -64,7 +64,8 @@ class AccionesGeneral
             return;
         }
 
-        $this->mensajes = (new PHPFileLoader)->load(dirname(__DIR__) . "/acciones/mensajes");
+        //$this->mensajes = (new PHPFileLoader)->load(dirname(__DIR__) . "/acciones/mensajes");
+        $this->mensajes = (new PHPFileLoader)->leer(dirname(__DIR__) . "/acciones/mensajes.json");
         if (in_array($primera_palabra, array_keys($this->mensajes))) {
             if ($primera_palabra == "hola") {
                 $this->accionHola($this->mensajes[$primera_palabra], $bot->username());
