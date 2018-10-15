@@ -57,6 +57,7 @@ class Personajes extends AccionCompuesta
                 return $this->retornoObjeto($id_chat, $array_personajes_coincidentes);
             }
         } else {
+            $this->buscarXMote();
             if (in_array($this->personaje, $array_personajes)) {
                 if ($this->estrellas != 1) {
                     return $this->retornoObjeto($id_chat, $this->infoPersonajeEstrellas($this->objetoJSON, $this->estrellas), "markdown");
@@ -240,5 +241,13 @@ class Personajes extends AccionCompuesta
         }
 
         return "";
+    }
+
+    protected function buscarXMote()
+    {
+        $array_motes = json_decode(file_get_contents("pjs_motes"), true);
+        if (array_key_exists($this->personaje, $array_motes)) {
+            $this->personaje = $array_motes[$this->personaje];
+        }
     }
 }
