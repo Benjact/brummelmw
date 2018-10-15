@@ -57,7 +57,7 @@ class Personajes extends AccionCompuesta
                 return $this->retornoObjeto($id_chat, $array_personajes_coincidentes);
             }
         } else {
-            $this->buscarXMote();
+            $this->buscarXMote($this->personaje);
             if (in_array($this->personaje, $array_personajes)) {
                 if ($this->estrellas != 1) {
                     return $this->retornoObjeto($id_chat, $this->infoPersonajeEstrellas($this->objetoJSON, $this->estrellas), "markdown");
@@ -243,11 +243,11 @@ class Personajes extends AccionCompuesta
         return "";
     }
 
-    public function buscarXMote($asignar = true): bool
+    public function buscarXMote(string $personaje, $asignar = true): bool
     {
         $array_motes = (new PHPFileLoader)->leer(dirname(__DIR__) . "/origenSwgoh/pjs_motes.json");
 
-        if (array_key_exists($this->personaje, $array_motes)) {
+        if (array_key_exists($personaje, $array_motes)) {
             if ($asignar) {
                 $this->personaje = $array_motes[$this->personaje];
             } else {

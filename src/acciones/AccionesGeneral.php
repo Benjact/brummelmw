@@ -78,7 +78,7 @@ class AccionesGeneral
         try {
             $jsonGuildUnits = SwgohGuildUnits::recuperarJSON();
             $personajes = new Personajes("", $jsonGuildUnits, SwgohCharacters::recuperarJSON());
-            if (in_array(mb_strtoupper($primera_palabra), $personajes->buscarXMote(false))) {
+            if ($personajes->buscarXMote(mb_strtoupper($primera_palabra), false)) {
                 array_unshift($instruccion_partida, "personajes");
                 $this->accionPersonaje($instruccion_partida, $inline);
                 return;
