@@ -39,15 +39,15 @@ class AccionesGeneral
             $this->accionAyuda($instruccion_partida);
             return;
 
-        } elseif (in_array($primera_palabra, ["personaje", "personajes"])) {
+        } elseif (in_array($primera_palabra, ["personaje", "personajes", "p"])) {
             $this->accionPersonaje($instruccion_partida);
             return;
 
-        } elseif (in_array($primera_palabra, ["nave", "naves"])) {
+        } elseif (in_array($primera_palabra, ["nave", "naves", "n"])) {
             $this->accionNave($instruccion_partida);
             return;
 
-        } elseif (in_array($primera_palabra, ["hoth"])) {
+        } elseif (in_array($primera_palabra, ["hoth", "h"])) {
             $this->accionHoth($instruccion_partida);
             return;
 
