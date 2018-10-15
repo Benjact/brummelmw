@@ -2,7 +2,8 @@
   "brummel": "No te puedo ayudar, poco Brummel siento en ti. Mejora en la raid sith",
   "brumel": "No te puedo ayudar, poco Brummel siento en ti. Mejora en la raid sith",
   "autosith": {
-    "1": "Como spaw se entere la has cagao. El último está en imperio"
+    "1": "Como spaw se entere la has cagao. El último está en imperio",
+    "2": "\xF0\x9F\x8E\xBB\xF0\x9F\x8E\xBB\xF0\x9F\x8E\xBB"
   },
   "hulio": "germinado!!",
   "herederos": "Kiraaaa!!! Mira lo que dicen!!!",
@@ -37,5 +38,115 @@
       "2": "@SpawTadeus, ¿username nos cae bien?",
       "3": "Mucho gusto... supongo... ¿te gusta el brummel?"
     }
-  }
+  },
+  "counter": "Zarris
+  Hard Counter
+  Resistance
+  Sith con Nihilus líder
+  Soft Counter
+  Palpatine
+  Thrawn
+
+  CLS
+  Hard Counter
+  Nightsisters (si no lleva Chirrut+Baze)
+  GK/Zarris
+  Soft Counter
+  CLS & Co.
+  Thrawn
+
+  ReyJedi
+  Hard Counter
+  Nightsisters
+  ZPalpa
+
+  NightSisters
+  Hard Counter
+  Zaul
+  ZVeers + Troopers
+  Soft Counter
+  Chaze
+  B2
+
+  Zaul
+  Hard Counter
+  Rex + Chaze
+  Rex + R2
+
+  Zader
+  Hard Counter
+  Fast Rex
+  Rogue One
+  Soft Counter
+  Equipos con tenacidad
+
+  Zalpatine
+  Hard Counter
+  Rex + Wampa
+  Zalpatine
+  Soft Counter
+  Rey Jedi
+  CLS+Zolo
+
+  Fenix
+  Hard Counter
+  Rebeldes
+  Chaze
+  Soft Counter
+  Droides
+  Ewoks
+
+  RogueOne
+  Hard Counter
+  Zader
+  Soft Counter
+  zQGJ
+
+  JavaDroids
+  Hard Counter
+  Zaul
+  Wiggs & Co.
+  Soft Counter
+  Fenix
+
+  ZVeers
+  Hard Counter
+  Wiggs + Chaze + Leia
+  Soft Counter
+  Cualquiera menos NightSisters
+
+  Thrawn Empire
+  Hard Counter
+  Darth Nihilus
+  CLS
+
+  Threxus (Rex, Thrawn, R2, GK, Nihilus)
+  Hard Counter
+  CLS
+  zQGJ
+  Soft Counter
+  Nihilus lider
+
+  Primera Orden
+  Hard Counter
+  Troopers (Starck debe empezar primero)
+  Equipos rápidos
+  Zarris
+
+  Resistencia
+  Hard Counter
+  Zolo
+  Rex
+
+  Wiggs
+  Hard Counter
+  Zaul
+  Wiggs +STHAN
+  Zader
+
+  zQGJ
+  Hard Counter
+  Zaul
+  ZQGJ
+  Wiggs",
 }
