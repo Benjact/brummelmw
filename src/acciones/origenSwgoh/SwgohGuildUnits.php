@@ -9,8 +9,6 @@ use SplFileObject;
 
 class SwgohGuildUnits implements iSWGOH
 {
-
-
     public static function recuperarJSON(): array
     {
         $ruta = "https://swgoh.gg/api/guild/" . ID_GREMIO . "/";
@@ -33,12 +31,6 @@ class BigFile
 
     public function __construct($filename, $mode = "r")
     {
-        if (!file_exists($filename)) {
-
-            throw new Exception("File not found");
-
-        }
-
         $this->file = new SplFileObject($filename, $mode);
     }
 
