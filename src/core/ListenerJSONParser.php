@@ -6,6 +6,11 @@ class ListenerJSONParser extends \JsonStreamingParser\Listener\InMemoryListener
     //control variable that allow us to know if is a child or parent object
     protected $level = 0;
 
+    public function __construct()
+    {
+        ini_set('memory_limit', '256M');
+    }
+
     protected function startComplexValue($type): void
     {
         //start complex value, increment our level
