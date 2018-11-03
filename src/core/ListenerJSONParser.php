@@ -24,12 +24,15 @@ class ListenerJSONParser extends \JsonStreamingParser\Listener\InMemoryListener
         if (empty($this->stack)) {
             $this->result = $obj['value'];
         } else {
-            echo $obj['type'];
             if ($obj['type'] == 'object') {
                 //insert value to top object, author listener way
                 $this->insertValue($obj['value']);
-                //HERE I call the custom function to do what I want
+            } elseif ($obj['type'] == 'array') {
                 $this->insertObj($obj);
+
+            } else {
+                echo "TYPE:".$obj['type']."\n";
+
             }
         }
     }
@@ -37,5 +40,6 @@ class ListenerJSONParser extends \JsonStreamingParser\Listener\InMemoryListener
     //custom function to do whatever
     protected function insertObj($obj)
     {
+        print_r($obj);
     }
 }
