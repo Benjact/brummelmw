@@ -2,7 +2,7 @@
 namespace BrummelMW\acciones\origenSwgoh;
 
 use BrummelMW\acciones\ExcepcionRuta;
-use BrummelMW\core\MyListener;
+use BrummelMW\core\ListenerJSONParser;
 use BrummelMW\core\Utils;
 use Exception;
 
@@ -15,7 +15,7 @@ class SwgohGuildUnits implements iSWGOH
             throw new ExcepcionRuta($ruta);
         }
 
-        $listener = new MyListener();
+        $listener = new ListenerJSONParser();
         $stream = fopen($ruta, 'r');
         try {
             $parser = new \JsonStreamingParser\Parser($stream, $listener);

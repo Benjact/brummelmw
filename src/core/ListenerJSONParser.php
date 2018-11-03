@@ -1,7 +1,7 @@
 <?php
 namespace BrummelMW\core;
 
-class MyListener extends \JsonStreamingParser\Listener\InMemoryListener
+class ListenerJSONParser extends \JsonStreamingParser\Listener\InMemoryListener
 {
     //control variable that allow us to know if is a child or parent object
     protected $level = 0;
