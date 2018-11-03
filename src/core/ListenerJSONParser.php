@@ -28,8 +28,8 @@ class ListenerJSONParser extends \JsonStreamingParser\Listener\InMemoryListener
                 //insert value to top object, author listener way
                 $this->insertValue($obj['value']);
             } elseif ($obj['type'] == 'array') {
-                $this->insertObj($obj);
-
+                $this->insertValue($obj['value']);
+                //$this->insertObj($obj);
             } else {
                 echo "TYPE:".$obj['type']."\n";
 
