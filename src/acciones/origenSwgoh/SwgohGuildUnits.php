@@ -26,7 +26,6 @@ class SwgohGuildUnits implements iSWGOH
             throw $e;
         }
 
-        var_dump($listener->getJson());
-        return json_decode(file_get_contents($ruta), true);
+        return $listener->getJson();
     }
 }
