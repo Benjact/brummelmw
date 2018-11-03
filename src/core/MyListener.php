@@ -37,10 +37,10 @@ class MyListener extends \JsonStreamingParser\Listener\InMemoryListener
     protected function insertObj($obj)
     {
         //parent object
-        if($this->level <= 2) {
+       // if($this->level <= 2) {
             echo "<pre>";
             var_dump($obj);
             echo "</pre>";
-        }
+        //}
     }
 }
