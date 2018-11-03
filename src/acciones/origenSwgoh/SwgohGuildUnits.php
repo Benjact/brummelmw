@@ -2,10 +2,9 @@
 namespace BrummelMW\acciones\origenSwgoh;
 
 use BrummelMW\acciones\ExcepcionRuta;
+use BrummelMW\core\MyListener;
 use BrummelMW\core\Utils;
 use Exception;
-use NoRewindIterator;
-use SplFileObject;
 
 class SwgohGuildUnits implements iSWGOH
 {
@@ -16,59 +15,17 @@ class SwgohGuildUnits implements iSWGOH
             throw new ExcepcionRuta($ruta);
         }
 
-        $largefile = new BigFile($ruta);
-        $iterator = $largefile->iterate("Text"); // Text or Binary based on your file type
-        foreach ($iterator as $line) {
-            echo $line;
+        $listener = new MyListener();
+        $stream = fopen($ruta, 'r');
+        try {
+            $parser = new \JsonStreamingParser\Parser($stream, $listener);
+            $parser->parse();
+            fclose($stream);
+        } catch (Exception $e) {
+            fclose($stream);
+            throw $e;
         }
+
         return json_decode(file_get_contents($ruta), true);
-    }
-}
-
-class BigFile
-{
-    protected $file;
-
-    public function __construct($filename, $mode = "r")
-    {
-        $this->file = new SplFileObject($filename, $mode);
-    }
-
-    protected function iterateText()
-    {
-        $count = 0;
-
-        while (!$this->file->eof()) {
-
-            yield $this->file->fgets();
-
-            $count++;
-        }
-        return $count;
-    }
-
-    protected function iterateBinary($bytes)
-    {
-        $count = 0;
-
-        while (!$this->file->eof()) {
-
-            yield $this->file->fread($bytes);
-
-            $count++;
-        }
-    }
-
-    public function iterate($type = "Text", $bytes = NULL)
-    {
-        if ($type == "Text") {
-
-            return new NoRewindIterator($this->iterateText());
-
-        } else {
-
-            return new NoRewindIterator($this->iterateBinary($bytes));
-        }
-
     }
 }
