@@ -6,8 +6,12 @@ use BrummelMW\core\Utils;
 
 class SwgohGuildUnits implements iSWGOH
 {
+
+
     public static function recuperarJSON(): array
     {
+        ini_set('memory_limit','256MB');
+
         $ruta = "https://swgoh.gg/api/guild/" . ID_GREMIO . "/";
         if (!Utils::comprobarExisteRuta($ruta)) {
             throw new ExcepcionRuta($ruta);
