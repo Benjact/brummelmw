@@ -36,11 +36,5 @@ class ListenerJSONParser extends \JsonStreamingParser\Listener\InMemoryListener
     //custom function to do whatever
     protected function insertObj($obj)
     {
-        //parent object
-       // if($this->level <= 2) {
-            echo "<pre>";
-            var_dump($obj);
-            echo "</pre>";
-        //}
     }
 }
