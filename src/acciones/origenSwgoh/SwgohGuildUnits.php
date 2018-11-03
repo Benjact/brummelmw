@@ -10,7 +10,7 @@ class SwgohGuildUnits implements iSWGOH
 
     public static function recuperarJSON(): array
     {
-        ini_set('memory_limit','256MB');
+        ini_set('memory_limit','512MB');
 
         $ruta = "https://swgoh.gg/api/guild/" . ID_GREMIO . "/";
         echo $ruta;
