@@ -40,6 +40,6 @@ class ListenerJSONParser extends \JsonStreamingParser\Listener\InMemoryListener
     //custom function to do whatever
     protected function insertObj($obj)
     {
-        print_r($obj);
+        echo "<pre>".print_r($obj,true)."</pre>";
     }
 }
