@@ -24,7 +24,8 @@ class ListenerJSONParser extends \JsonStreamingParser\Listener\InMemoryListener
         if (empty($this->stack)) {
             $this->result = $obj['value'];
         } else {
-            if($obj['type'] == 'object') {
+            echo $obj['type'];
+            if ($obj['type'] == 'object') {
                 //insert value to top object, author listener way
                 $this->insertValue($obj['value']);
                 //HERE I call the custom function to do what I want
