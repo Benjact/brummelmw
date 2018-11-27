@@ -1,4 +1,5 @@
 <?php
+
 namespace BrummelMW;
 
 require_once __DIR__ . '/core/ini.php';
@@ -36,13 +37,22 @@ if (is_null($update)) {
     $response = new Response($bot);
 }
 
-try {
-    $acciones = new AccionesGeneral($bot, $inline);
-    $response->devolverMensaje($acciones->retorno());
-} catch (ExcepcionAccion $e) {
+$usuarios_permitidos = ["superamoweb", "theoldbrummel", "nndiaz", "theolderu", "drevan", "spawtadeus", "genesismad", "ly0ne", "oes7e"];
+if (in_array($bot->username(), $usuarios_permitidos)) {
+    try {
+        $acciones = new AccionesGeneral($bot, $inline);
+        $response->devolverMensaje($acciones->retorno());
+    } catch (ExcepcionAccion $e) {
+        $response->devolverMensaje(new ObjetoResponse(ObjetoResponse::MENSAJE, [
+            "chat_id" => $bot->chatId(),
+            "parse_mode" => PARSE_MODE,
+            "text" => $e->getMessage(),
+        ]));
+    }
+} else {
     $response->devolverMensaje(new ObjetoResponse(ObjetoResponse::MENSAJE, [
         "chat_id" => $bot->chatId(),
         "parse_mode" => PARSE_MODE,
-        "text" => $e->getMessage(),
+        "text" => "...",
     ]));
 }

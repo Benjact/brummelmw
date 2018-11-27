@@ -7,6 +7,7 @@ return [
         "\xF0\x9F\x8E\xBB\xF0\x9F\x8E\xBB\xF0\x9F\x8E\xBB"
     ],
     "ok" => "ok",
+    "siempre" => "Tú calla!",
     "hulio" => "germinado!!",
     "herederos" => "Kiraaaa!!! Mira lo que dicen!!!",
     "chancla" => "La de nndiaz está en un territorio de las guerras",
@@ -34,6 +35,9 @@ return [
         "ly0ne" => [
             "Entre tu mujer y la de @Genesismad no doy a vasto con las denuncias",
             "Yo que se! Habla con @TheOldBrummel",
+        ],
+        "theolderu" => [
+            "...",
         ],
         "desconocido" => [
             "¿Tú quien eres, username?",
