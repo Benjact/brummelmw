@@ -16,3 +16,4 @@ define("BOLD_CERRAR", "</b>");
 define("ENTER", "\n");
 define("ASTERISCO", "&#42;");
 
+define("USUARIOS_PERMITIDOS", ["superamoweb", "theoldbrummel", "nndiaz", "theolderu", "drevan", "spawtadeus", "genesismad", "ly0ne", "oes7e"]);

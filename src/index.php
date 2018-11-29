@@ -37,8 +37,7 @@ if (is_null($update)) {
     $response = new Response($bot);
 }
 
-$usuarios_permitidos = ["superamoweb", "theoldbrummel", "nndiaz", "theolderu", "drevan", "spawtadeus", "genesismad", "ly0ne", "oes7e"];
-if (in_array($bot->username(), $usuarios_permitidos)) {
+if (in_array($bot->username(), USUARIOS_PERMITIDOS)) {
     try {
         $acciones = new AccionesGeneral($bot, $inline);
         $response->devolverMensaje($acciones->retorno());
