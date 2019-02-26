@@ -13,7 +13,6 @@ return [
     "hulio" => "germinado!!",
     "herederos" => "Kiraaaa!!! Mira lo que dicen!!!",
     "chancla" => "La de nndiaz está en un territorio de las guerras",
-    "genio" => "Me voy a poner rojo!! Genio mi papi!!",
     "gracias" => "De nada, a mandar",
     "hola" => [
         "superamoweb" => "hola",
@@ -21,9 +20,8 @@ return [
             "Tú también?",
         ],
         "spawtadeus" => [
-            "Señor, sí señor!",
-            "A sus órdenes, señor!",
-            "No me pegues!",
+            "Te doy un nombre y le disparas?",
+            "hola Spaw q tal, estoy cumpliendo en todo pero se de uno que..."
         ],
         "theoldbrummel" => [
             "Skiridirfirder... Eskidifader... Skiridikuqi... el cuchara... yo que sé",
@@ -32,8 +30,7 @@ return [
             "Me han dicho que @SpawTadeus se ha enfadao porque le has puesto los cuernos con ocético"
         ],
         "ly0ne" => [
-            "Entre tu mujer y la de @Genesismad no doy a vasto con las denuncias",
-            "Yo que se! Habla con @TheOldBrummel",
+            "Pelotones 3 4 25 y 33 gamorranos",
         ],
         "theolderu" => [
             "Contigo no bicho",
