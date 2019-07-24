@@ -31,7 +31,6 @@ if (is_null($update)) {
         //https://brumelmw.000webhostapp.com/src/index.php?debug=0&instruccion=
         $bot = new BotHTML("/" . $_GET["instruccion"]);
         $response = new ResponseHTML();
-        echo "aqui";
     }
 } else {
     $bot = new Bot(TOKEN, RUTA_API, $update);
@@ -41,7 +40,6 @@ if (is_null($update)) {
 
 if (in_array($bot->username(), USUARIOS_PERMITIDOS)) {
     try {
-        echo "-aqui2";
         $acciones = new AccionesGeneral($bot, $inline);
         $response->devolverMensaje($acciones->retorno());
     } catch (ExcepcionAccion $e) {
