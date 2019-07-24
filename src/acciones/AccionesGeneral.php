@@ -11,8 +11,10 @@ use BrummelMW\acciones\origenSwgoh\Naves;
 use BrummelMW\acciones\origenSwgoh\Personajes;
 use BrummelMW\acciones\origenSwgoh\PersonajesInline;
 use BrummelMW\acciones\origenSwgoh\SwgohCharacters;
+use BrummelMW\acciones\origenSwgoh\SwgohGuildTemplates;
 use BrummelMW\acciones\origenSwgoh\SwgohGuildUnits;
 use BrummelMW\acciones\origenSwgoh\SwgohShips;
+use BrummelMW\acciones\origenSwgoh\Template;
 use BrummelMW\bot\iBot;
 use BrummelMW\core\PHPFileLoader;
 use BrummelMW\response\ObjetoResponse;
@@ -61,6 +63,10 @@ class AccionesGeneral
 
         } elseif (in_array($primera_palabra, ["bt"])) {
             $this->accionBT();
+            return;
+
+        } elseif (in_array($primera_palabra, ["template"])) {
+            $this->accionTemplate();
             return;
         }
 
@@ -305,5 +311,16 @@ class AccionesGeneral
         $primera_palabra = str_replace("/", "", $primera_palabra);
         $primera_palabra = str_replace("@brummelmwbot", "", $primera_palabra);
         return $primera_palabra;
+    }
+
+
+
+    protected function accionTemplate($instruccion_partida)
+    {
+        try {
+            $this->instruccion = new Template("", SwgohGuildTemplates::recuperarJSON());
+        } catch (ExcepcionRuta $e) {
+            throw new ExcepcionAccion($e->getMessage());
+        }
     }
 }
