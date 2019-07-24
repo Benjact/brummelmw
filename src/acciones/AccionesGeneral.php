@@ -66,7 +66,7 @@ class AccionesGeneral
             return;
 
         } elseif (in_array($primera_palabra, ["template"])) {
-            $this->accionTemplate();
+            $this->accionTemplate($instruccion_partida);
             return;
         }
 
