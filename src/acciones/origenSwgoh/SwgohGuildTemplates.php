@@ -10,7 +10,7 @@ class SwgohGuildTemplates implements iSWGOH
 {
     public static function recuperarJSON(): array
     {
-        $ruta = "https://swgoh.gg/api/internal/" . ID_GREMIO . "/guild-squad-template/";
+        $ruta = "https://swgoh.gg/api/internal/" . ID_GREMIO . "/guild-squad-template/65761/";
         if (!Utils::comprobarExisteRuta($ruta)) {
             throw new ExcepcionRuta($ruta);
         }
