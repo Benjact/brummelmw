@@ -29,6 +29,6 @@ class Template extends AccionBasica
      */
     public function retorno(string $id_chat): ObjetoResponse
     {
-        return new ObjetoResponse(ObjetoResponse::MENSAJE, json_decode($this->objetoJSON, true));
+        return new ObjetoResponse(ObjetoResponse::MENSAJE, $this->objetoJSON);
     }
 }
