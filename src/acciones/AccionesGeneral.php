@@ -154,11 +154,11 @@ class AccionesGeneral
             $this->instruccion->setPersonaje($personaje);
         }
 
-        foreach($instruccion_partida as $posicion_instruccion => $trozo) {
+        foreach ($instruccion_partida as $posicion_instruccion => $trozo) {
             if ($posicion_instruccion > 1) {
                 if (is_numeric($trozo) && in_array($trozo, [0,1,2,3,4,5,6,7])) {
                     $this->instruccion->setEstrellas($instruccion_partida[2]);
-                } elseif ($instruccion_partida[3] == "-e") {
+                } elseif ($trozo == "-e") {
                     $this->instruccion->setExtra(true);
                 } else {
                     throw new ExcepcionAccion("Las estrellas deben ser un número comprendido entre 1-7");
