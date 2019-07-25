@@ -30,13 +30,14 @@ Extendido devolverá un listado de su roster separado en personajes y naves",
                 "/hoth [NOMBRE_PERSONAJE] [NUMERO_ESTRELLAS] (opcional [CANTIDAD]): Por defecto devolverá los 5 jugadores que tengan a ese personaje o nave con menos pg",
 
                 //tonterias
+                /*
                 "/brummel: indicaciones indispensables para el gremio",
                 "/autosith: posibles equipos para pasarse la raid sith en auto",
                 "/hulio",
                 "/herederos",
                 "/chancla",
                 "/hola",
-                //"/jugadores: devolverá un listado de jugadores del gremio registrados en swgoh",
+                */
             ];
 
             return new ObjetoResponse(ObjetoResponse::MENSAJE, [
