@@ -14,6 +14,7 @@ class Ayuda extends AccionBasica implements iAcciones
     {
         if ($this->parametro == "personajes") {
             return (new Personajes())->retorno($id_chat);
+
         } else {
             $array_ayuda = [
                 "/ayuda: mostrará los comandos disponibles en el bot",
