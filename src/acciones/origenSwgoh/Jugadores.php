@@ -87,7 +87,7 @@ class Jugadores extends AccionBasica
     {
         $array_jugadores = [];
         foreach ($this->objetoJSON["players"] as $jugador) {
-            $nombre_judador = self::limpiar_nombre($jugador["data"]["name"]);
+            $nombre_judador = self::limpiarNombre($jugador["data"]["name"]);
             if (!isset($array_jugadores[$nombre_judador])) {
                 $array_jugadores[$nombre_judador] = [
                     "pg" => 0,
@@ -118,9 +118,9 @@ class Jugadores extends AccionBasica
      * @param string $nombre
      * @return string
      */
-    public static function limpiar_nombre(string $nombre)
+    public static function limpiarNombre(string $nombre): string
     {
-        return str_replace(" ", "_", mb_strtoupper($nombre));
+        return str_replace(" ", "_", str_replace(";", "_", mb_strtoupper($nombre)));
     }
 
     protected function infoJugador(array $datos_jugador)

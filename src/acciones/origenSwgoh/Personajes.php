@@ -182,12 +182,12 @@ class Personajes extends AccionCompuesta
                         $recopilacion[$rarity]["jugadores"] = [];
                     }
                     $recopilacion[$rarity]["jugadores"][] = [
-                        "nombre" => $jugador["data"]["name"],
+                        "nombre" => Jugadores::limpiarNombre($jugador["data"]["name"]),
                         "nivel" => $personaje["data"]["level"],
                         "pg" => $personaje["data"]["power"],
                         "estrellas" => $rarity,
                         "gear" => $personaje["data"]["gear_level"],
-                        "zetas" => count($personaje["data"]["zeta_abilities"]),
+                        "zetas" => count($personaje["data"]["zeta_abilities"] ?? []),
                     ];
                 }
             }
@@ -211,7 +211,7 @@ class Personajes extends AccionCompuesta
             foreach ($recopilacion as $estrellas_recopilacion => $datos) {
                 if (!empty($datos["jugadores"])) {
                     foreach ($datos["jugadores"] as $jugador) {
-                        $jugadores_con_personaje[] = Jugadores::limpiar_nombre($jugador);
+                        $jugadores_con_personaje[] = $jugador["nombre"];
                     }
                 }
             }

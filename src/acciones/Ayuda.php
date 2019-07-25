@@ -17,16 +17,15 @@ class Ayuda extends AccionBasica implements iAcciones
         } else {
             $array_ayuda = [
                 "/ayuda: mostrará los comandos disponibles en el bot",
-                "/personajes o personaje: devolverá un listado de personajes posibles",
-                "/personajes [NOMBRE_PERSONAJE]: devolverá información de dicho personaje. Se puede buscar 
+                "/personajes o personaje o p: devolverá un listado de personajes posibles",
+                "/personajes [NOMBRE_PERSONAJE] [NUMERO_ESTRELLAS] [-e]: devolverá información de dicho personaje. Se puede buscar 
                     %[TROZO_NOMBRE_PERSONAJE] y devolverá solo los coincidentes, si solo devuelve uno será 
                     como si lo hubieramos buscado con el nombre completo, pudiendo añadir el número
-                    de estrellas",
+                    de estrellas.
+                    El número de estrellas es opcional. Puede ir de 0 a 7. Indicando 0 mostrará quien no tiene al personaje 
+                    desbloqueado, sinó mostrará los que lo tengan con esa cantidad de estrellas o más.
+                    -e: mostrá más info aparte del jugador que lo tenga (nivel, pg, estrellas, gear, zetas)",
                 "/[NOMBRE_PERSONAJE]: lo mismo que el anterior, tanto para naves como para personajes",
-                "/personajes [NOMBRE_PERSONAJE] [NUMERO_ESTRELLAS]: indicará cuantos hay en el gremio con esas o 
-                    más estrellas y quién los tiene",
-                "/[NOMBRE_PERSONAJE] [NUMERO_ESTRELLAS]: lo mismo que el anterior, tanto para naves como 
-                    para personajes",
                 "/naves o nave: devolverá un listado de naves posibles. Se aplican los mismos parámetros que 
                     para personajes",
                 "/naves [NOMBRE_NAVE]: devolverá información de dicho personaje",
