@@ -12,6 +12,7 @@ class Personajes extends AccionCompuesta
 {
     protected $personaje = "";
     protected $estrellas = 1;
+    protected $extra = false;
     protected $combat_type = 1;
 
     /**
@@ -31,6 +32,16 @@ class Personajes extends AccionCompuesta
     public function setEstrellas(int $estrellas): Personajes
     {
         $this->estrellas = $estrellas;
+        return $this;
+    }
+
+    /**
+     * @param bool $extra
+     * @return Personajes
+     */
+    public function setExtra(bool $extra): Personajes
+    {
+        $this->extra = $extra;
         return $this;
     }
 
@@ -170,7 +181,14 @@ class Personajes extends AccionCompuesta
                     if (!isset($recopilacion[$rarity]["jugadores"])) {
                         $recopilacion[$rarity]["jugadores"] = [];
                     }
-                    $recopilacion[$rarity]["jugadores"][] = $jugador["data"]["name"];
+                    $recopilacion[$rarity]["jugadores"][] = [
+                        "nombre" => $jugador["data"]["name"],
+                        "nivel" => $personaje["data"]["level"],
+                        "pg" => $personaje["data"]["power"],
+                        "estrellas" => $rarity,
+                        "gear" => $personaje["data"]["gear_level"],
+                        "zetas" => count($personaje["data"]["zeta_abilities"]),
+                    ];
                 }
             }
         }
@@ -214,7 +232,11 @@ class Personajes extends AccionCompuesta
                     $datos_retorno[] = BOLD_MD . $estrellas_recopilacion . BOLD_CERRAR_MD . " => {$datos["cantidad"]} en el gremio";
                     if (!empty($datos["jugadores"])) {
                         foreach ($datos["jugadores"] as $jugador) {
-                            $datos_retorno[] = $jugador;
+                            if ($this->extra) {
+                                $datos_retorno[] = implode(";", $jugador);
+                            } else {
+                                $datos_retorno[] = $jugador["nombre"];
+                            }
                         }
                     }
                     $datos_retorno[] = "";

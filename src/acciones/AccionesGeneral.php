@@ -153,11 +153,17 @@ class AccionesGeneral
             $personaje = mb_strtoupper(str_replace("/", "", $instruccion_partida[1]));
             $this->instruccion->setPersonaje($personaje);
         }
-        if (isset($instruccion_partida[2])) {
-            if (is_numeric($instruccion_partida[2]) && in_array($instruccion_partida[2], [0,1,2,3,4,5,6,7])) {
-                $this->instruccion->setEstrellas($instruccion_partida[2]);
-            } else {
-                throw new ExcepcionAccion("Las estrellas deben ser un número comprendido entre 1-7");
+
+        foreach($instruccion_partida as $posicion_instruccion => $trozo) {
+            if ($posicion_instruccion > 1) {
+                if (is_numeric($trozo) && in_array($trozo, [0,1,2,3,4,5,6,7])) {
+                    $this->instruccion->setEstrellas($instruccion_partida[2]);
+                } elseif ($instruccion_partida[3] == "-e") {
+                    $this->instruccion->setExtra(true);
+                } else {
+                    throw new ExcepcionAccion("Las estrellas deben ser un número comprendido entre 1-7");
+                }
+
             }
         }
     }
