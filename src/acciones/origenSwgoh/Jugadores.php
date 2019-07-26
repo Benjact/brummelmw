@@ -120,7 +120,7 @@ class Jugadores extends AccionBasica
      */
     public static function limpiarNombre(string $nombre): string
     {
-        return str_replace(" ", "_", str_replace(";", "_", mb_strtoupper($nombre)));
+        return str_replace(" ", "_", mb_strtoupper($nombre));
     }
 
     protected function infoJugador(array $datos_jugador)
