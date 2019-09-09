@@ -12,7 +12,7 @@ return [
     "hola" => [
         "superamoweb" => "hola",
         "amthorn" => [
-            "Tú también?",
+            "Tú qué haces aquí?",
         ],
         "spawtadeus" => [
             "Te doy un nombre y le disparas?",
