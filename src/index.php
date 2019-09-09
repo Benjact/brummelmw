@@ -50,9 +50,16 @@ if (in_array($bot->username(), USUARIOS_PERMITIDOS)) {
         ]));
     }
 } else {
+    $mensajes = [
+        "...",
+        "dadme vaciones",
+        "paso de vosotros",
+        "mi primo el de lego lo sabe mejor",
+        "os odio... a todos... a nani más...",
+    ];
     $response->devolverMensaje(new ObjetoResponse(ObjetoResponse::MENSAJE, [
         "chat_id" => $bot->chatId(),
         "parse_mode" => PARSE_MODE,
-        "text" => "...",
+        "text" => array_rand($mensajes),
     ]));
 }

@@ -182,7 +182,7 @@ class Personajes extends AccionCompuesta
                         $recopilacion[$rarity]["jugadores"] = [];
                     }
                     $recopilacion[$rarity]["jugadores"][] = [
-                        "nombre" => Jugadores::limpiarNombre($jugador["data"]["name"]),
+                        "nombre" => $jugador["data"]["name"],
                         "nivel" => $personaje["data"]["level"],
                         "pg" => $personaje["data"]["power"],
                         "estrellas" => $rarity,
