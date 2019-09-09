@@ -28,6 +28,8 @@ define("USUARIOS_PERMITIDOS", [
     "amthorn",
     "jarco179",
     "albercobe",
+    "nani333_mb",
+    "darthsergius",
     //"theolderu",
     //"oes7e",
 ]);
